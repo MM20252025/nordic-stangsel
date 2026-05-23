@@ -43,8 +43,18 @@ export default function Contact() {
                     <Phone className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
                     <div>
                       <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Telefon</span>
-                      <p className="text-gray-800 text-sm mb-1"><span className="text-gray-500 w-20 inline-block">Uppsala:</span> +46 18 34 61 11</p>
-                      <p className="text-gray-800 text-sm"><span className="text-gray-500 w-20 inline-block">Stockholm:</span> +46 8 35 63 66</p>
+                      <p className="text-gray-800 text-sm mb-1">
+                        <span className="text-gray-500 w-20 inline-block">Uppsala:</span>
+                        <a href="tel:+46183461111" className="hover:text-[#1a3349] transition-colors">
+                          +46 18 34 61 11
+                        </a>
+                      </p>
+                      <p className="text-gray-800 text-sm">
+                        <span className="text-gray-500 w-20 inline-block">Stockholm:</span>
+                        <a href="tel:+468356366" className="hover:text-[#1a3349] transition-colors">
+                          +46 8 35 63 66
+                        </a>
+                      </p>
                     </div>
                   </div>
 
@@ -52,7 +62,12 @@ export default function Contact() {
                     <Mail className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
                     <div>
                       <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Offertförfrågan</span>
-                      <p className="text-gray-800 text-sm">Använd formuläret för att beskriva projektet och bifoga bilder om det hjälper oss att förstå platsen bättre.</p>
+                      <p className="text-gray-800 text-sm mb-2">
+                        Använd formuläret för att beskriva projektet och bifoga bilder om det hjälper oss att förstå platsen bättre.
+                      </p>
+                      <a href="mailto:marcin@stangselab.se" className="text-sm text-[#1a3349] hover:text-[#264056] transition-colors">
+                        marcin@stangselab.se
+                      </a>
                     </div>
                   </div>
                 </div>
