@@ -146,9 +146,13 @@ export function QuoteForm() {
           <span>
             {isFormEndpointConfigured ? (
               <>
-                Det gick inte att skicka förfrågan. Kontakta oss direkt på{" "}
+                Det gick inte att skicka förfrågan just nu. Kontakta oss direkt på{" "}
                 <a href="tel:+46183461111" className="underline underline-offset-2">
                   +46 18 34 61 11
+                </a>
+                {" "}eller{" "}
+                <a href="mailto:marcin@stangselab.se" className="underline underline-offset-2">
+                  marcin@stangselab.se
                 </a>
                 .
               </>
@@ -158,7 +162,7 @@ export function QuoteForm() {
                 <a href="tel:+46183461111" className="underline underline-offset-2">
                   +46 18 34 61 11
                 </a>
-                eller{" "}
+                {" "}eller{" "}
                 <a href="mailto:marcin@stangselab.se" className="underline underline-offset-2">
                   marcin@stangselab.se
                 </a>
@@ -177,7 +181,7 @@ export function QuoteForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Name</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Namn</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="För- och efternamn"
@@ -196,7 +200,7 @@ export function QuoteForm() {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Phone</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Telefon</FormLabel>
                   <FormControl>
                     <Input
                       type="tel"
@@ -218,7 +222,7 @@ export function QuoteForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Email</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">E-post</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -238,7 +242,7 @@ export function QuoteForm() {
               name="projectType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Project type</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Typ av projekt</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger
@@ -267,7 +271,7 @@ export function QuoteForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Message</FormLabel>
+                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Projektbeskrivning</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Beskriv projektet, platsen och vad ni vill ha hjälp med."
@@ -282,7 +286,7 @@ export function QuoteForm() {
           />
 
           <div>
-            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">Upload images</label>
+            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">Bifoga bilder</label>
             <div className="flex items-center gap-4 flex-wrap">
               <label className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors text-sm font-medium">
                 <Upload className="h-4 w-4" />
@@ -307,6 +311,9 @@ export function QuoteForm() {
               </label>
               {fileName && <span className="text-sm text-gray-500">{fileName}</span>}
             </div>
+            <p className="mt-3 text-sm text-gray-500">
+              Bifoga gärna bilder på platsen eller nuvarande stängsel om det hjälper oss att bedöma projektet.
+            </p>
           </div>
 
           <Button
