@@ -16,8 +16,8 @@ export default function Home() {
             alt="Professionell stängselmontering" 
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-[#0c1824]/55"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/40 via-[#0c1824]/30 to-[#0c1824]/70"></div>
+          <div className="absolute inset-0 bg-[#0c1824]/35"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/25 via-transparent to-[#0c1824]/55"></div>
         </div>
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
