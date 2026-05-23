@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Building } from "lucide-react";
+import { MapPin, Phone, Mail, Building, ArrowUpRight } from "lucide-react";
 import { QuoteForm } from "@/components/QuoteForm";
+
+const destination = encodeURIComponent("Segerstavägen 7B, 741 43 Knivsta");
+const mapQuery = encodeURIComponent("Segerstavägen 7B, 741 43 Knivsta, Sweden");
 
 export default function Contact() {
   return (
@@ -56,6 +59,33 @@ export default function Contact() {
 
                 <div className="mt-8 pt-6 border-t border-gray-100">
                   <p className="text-xs text-gray-500">Org.nr: 559582-1900</p>
+                </div>
+              </div>
+
+              <div className="overflow-hidden border border-[#1a3349]/10 bg-white shadow-sm">
+                <div className="aspect-[4/3] bg-[#d7dee5]">
+                  <iframe
+                    title="Nordic Stängsel karta"
+                    src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+                <div className="bg-[#1a3349] p-6 text-white">
+                  <span className="text-xs uppercase tracking-[0.2em] text-white/45 mb-3 block">Plats</span>
+                  <h2 className="text-2xl font-serif mb-3">Besök oss i Knivsta</h2>
+                  <p className="text-sm text-white/70 leading-relaxed mb-6">
+                    Segerstavägen 7B, 741 43 Knivsta. Härifrån planerar vi projekt, platsbesök och nästa steg i offertprocessen.
+                  </p>
+                  <a
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${destination}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium tracking-[0.12em] uppercase text-white transition-opacity hover:opacity-80"
+                  >
+                    Öppna vägbeskrivning <ArrowUpRight className="h-4 w-4" />
+                  </a>
                 </div>
               </div>
             </div>
