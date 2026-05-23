@@ -24,7 +24,7 @@ import {
 
 const projectTypes = [
   "Industristängsel",
-  "Skolfencing",
+  "Förskolestängsel",
   "Idrottsanläggning",
   "Säkerhetsstängsel",
   "Automatisk grind",

@@ -42,7 +42,7 @@ export function Footer() {
             <h4 className="font-semibold text-lg mb-6 font-serif">Tjänster</h4>
             <ul className="space-y-3 text-sm text-white/70">
               <li><Link href="/tjanster" className="hover:text-white transition-colors">Industristängsel</Link></li>
-              <li><Link href="/tjanster" className="hover:text-white transition-colors">Skolfencing</Link></li>
+              <li><Link href="/tjanster" className="hover:text-white transition-colors">Förskolestängsel</Link></li>
               <li><Link href="/tjanster" className="hover:text-white transition-colors">Idrottsanläggningar</Link></li>
               <li><Link href="/tjanster" className="hover:text-white transition-colors">Säkerhetsstängsel</Link></li>
               <li><Link href="/tjanster" className="hover:text-white transition-colors">Automatiska grindar</Link></li>
