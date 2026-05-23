@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Shield, MapPin, Clock, Hammer, ShieldCheck, Factory, School, Home as HomeIcon, ChevronRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuoteForm } from "@/components/QuoteForm";
+import logoTransparentSrc from "../assets/images/nordic_logo_transparent.png";
 
 export default function Home() {
   return (
@@ -20,37 +21,42 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0c1824]/60 via-transparent to-transparent"></div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-3xl pt-24">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <div className="w-12 h-[1px] bg-white/40 mb-8"></div>
-              <span className="text-xs uppercase tracking-[0.3em] text-white/50 mb-4 block">Stockholm & Uppsala · Hela Sverige</span>
-              
-              <h1 className="text-[2.4rem] leading-[1.15] md:text-[3.5rem] md:leading-[1.1] lg:text-[4.5rem] lg:leading-[1.05] font-serif font-medium text-white mb-8">
-                Professionella stängsel och grindlösningar för företag, skolor, idrottsanläggningar och villor
-              </h1>
-              <p className="text-base md:text-lg text-white/70 font-light max-w-xl mb-12 leading-relaxed tracking-wide">
-                Moderna, säkra och hållbara lösningar med professionell montering i hela Sverige.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/kontakt">
-                  <Button className="bg-white text-[#0c1824] hover:bg-white/90 font-medium rounded-none h-12 px-7 text-sm tracking-widest uppercase transition-all duration-200 w-full sm:w-auto">
-                    Begär offert
-                  </Button>
-                </Link>
-                <Link href="/projekt">
-                  <Button variant="outline" className="bg-transparent text-white border border-white/30 hover:border-white/70 hover:bg-white/5 rounded-none h-12 px-7 text-sm tracking-widest uppercase transition-all duration-200 w-full sm:w-auto">
-                    Våra projekt
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          </div>
+        <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="flex flex-col items-center"
+          >
+            <img
+              src={logoTransparentSrc}
+              alt="Nordic Stängsel"
+              className="h-16 md:h-20 w-auto mb-10 brightness-110"
+            />
+
+            <div className="w-10 h-[1px] bg-white/30 mb-10"></div>
+
+            <h1 className="text-[2rem] leading-[1.2] md:text-[3rem] md:leading-[1.1] lg:text-[3.75rem] lg:leading-[1.05] font-serif font-medium text-white mb-5 max-w-2xl">
+              Premium stängsel och grindar
+            </h1>
+
+            <p className="text-sm md:text-base text-white/60 font-light max-w-sm mb-12 leading-relaxed tracking-wide">
+              Genomtänkta lösningar med professionell montering i Sverige.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link href="/kontakt">
+                <Button className="bg-white text-[#0c1824] hover:bg-white/90 font-medium rounded-none h-12 px-8 text-sm tracking-widest uppercase transition-all duration-200 w-full sm:w-auto">
+                  Begär offert
+                </Button>
+              </Link>
+              <Link href="/projekt">
+                <Button variant="outline" className="bg-transparent text-white border border-white/30 hover:border-white/70 hover:bg-white/5 rounded-none h-12 px-8 text-sm tracking-widest uppercase transition-all duration-200 w-full sm:w-auto">
+                  Våra projekt
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-[60px] flex items-center border-t border-white/10 z-10">
