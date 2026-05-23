@@ -40,12 +40,12 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6 h-[80px] flex items-center justify-between">
         <Link href="/" className="inline-block" data-testid="link-logo">
           {scrolled ? (
-            <img src={logoLightSrc} alt="Nordic Stängsel" className="h-10 w-auto" />
+            <img src={logoLightSrc} alt="Nordic Stängsel" className="h-12 w-auto" />
           ) : (
             <img
               src={logoDarkSrc}
               alt="Nordic Stängsel"
-              className="h-10 w-auto"
+              className="h-12 w-auto brightness-125"
               style={{ mixBlendMode: "screen" }}
             />
           )}

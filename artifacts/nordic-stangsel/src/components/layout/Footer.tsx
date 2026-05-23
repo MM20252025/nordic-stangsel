@@ -11,7 +11,7 @@ export function Footer() {
               <img
                 src={logoSrc}
                 alt="Nordic Stängsel"
-                className="h-10 w-auto"
+                className="h-12 w-auto brightness-125"
                 style={{ mixBlendMode: "screen" }}
               />
             </Link>
