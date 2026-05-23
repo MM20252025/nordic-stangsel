@@ -49,7 +49,7 @@ type FormValues = z.infer<typeof formSchema>;
 type SubmissionMode = "api" | "mailto";
 
 const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
-const SUPPORT_EMAIL = "info@nordicstangsel.se";
+const SUPPORT_EMAIL = "info@nordicstangsel.com";
 
 function buildMailtoLink(values: FormValues, attachmentCount: number) {
   const subject = `Offertförfrågan - ${values.projectType}`;
