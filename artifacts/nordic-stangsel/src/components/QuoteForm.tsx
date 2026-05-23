@@ -24,24 +24,24 @@ import {
 
 const projectTypes = [
   "Industristängsel",
-  "Förskolestängsel",
-  "Idrottsanläggning",
+  "Skolstängsel",
+  "Stängsel för idrottsanläggningar",
   "Säkerhetsstängsel",
-  "Automatisk grind",
-  "Skjutgrind",
-  "Svänggrind",
+  "Automatiska grindar",
+  "Skjutgrindar",
+  "Svänggrindar",
   "Panelstängsel",
   "Villastängsel",
   "Kundanpassad lösning",
-  "Reparation och underhåll",
+  "Reparationer och underhåll",
 ];
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Namn måste vara minst 2 tecken." }),
+  name: z.string().min(2, { message: "Ange minst två tecken." }),
   phone: z.string().min(6, { message: "Ange ett giltigt telefonnummer." }),
   email: z.string().email({ message: "Ange en giltig e-postadress." }),
   projectType: z.string().min(1, { message: "Välj en projekttyp." }),
-  message: z.string().min(10, { message: "Meddelandet måste vara minst 10 tecken." }),
+  message: z.string().min(10, { message: "Beskriv projektet med minst tio tecken." }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -92,6 +92,7 @@ export function QuoteForm() {
           },
           body: formData,
         });
+
         if (res.ok) {
           setIsSubmitted(true);
         } else {
@@ -101,7 +102,6 @@ export function QuoteForm() {
         setSubmitError(true);
       }
     } else {
-      // No endpoint configured — treat as success so UX works in demo/preview
       setIsSubmitted(true);
     }
   }
@@ -114,7 +114,7 @@ export function QuoteForm() {
         </div>
         <h3 className="text-2xl font-serif mb-4">Tack för din förfrågan</h3>
         <p className="text-white/70 mb-8 max-w-md mx-auto">
-          Vi har mottagit dina uppgifter och återkommer till dig med en offert eller kompletterande frågor inom 24 timmar.
+          Vi har mottagit dina uppgifter och återkommer så snart vi kan med nästa steg i processen.
         </p>
         <Button
           variant="outline"
@@ -143,10 +143,6 @@ export function QuoteForm() {
           <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
           <span>
             Det gick inte att skicka förfrågan. Kontakta oss direkt på{" "}
-            <a href="mailto:info@nordicstangsel.se" className="underline underline-offset-2">
-              info@nordicstangsel.se
-            </a>{" "}
-            eller ring{" "}
             <a href="tel:+46183461111" className="underline underline-offset-2">
               +46 18 34 61 11
             </a>
@@ -163,7 +159,7 @@ export function QuoteForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Namn</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Name</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="För- och efternamn"
@@ -182,7 +178,7 @@ export function QuoteForm() {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Telefon</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Phone</FormLabel>
                   <FormControl>
                     <Input
                       type="tel"
@@ -204,7 +200,7 @@ export function QuoteForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">E-post</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Email</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -224,7 +220,7 @@ export function QuoteForm() {
               name="projectType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Projekttyp</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Project type</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger
@@ -253,12 +249,10 @@ export function QuoteForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">
-                  Meddelande & Beskrivning
-                </FormLabel>
+                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Message</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Beskriv ditt projekt, ungefärliga mått och specifika önskemål..."
+                    placeholder="Beskriv projektet, platsen och vad ni vill ha hjälp med."
                     className="min-h-[120px] rounded-none border-gray-200 focus-visible:ring-[#0f1f2e] resize-none"
                     {...field}
                     data-testid="input-message"
@@ -270,10 +264,8 @@ export function QuoteForm() {
           />
 
           <div>
-            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">
-              Ladda upp bilder (Frivilligt)
-            </label>
-            <div className="flex items-center gap-4">
+            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">Upload images</label>
+            <div className="flex items-center gap-4 flex-wrap">
               <label className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors text-sm font-medium">
                 <Upload className="h-4 w-4" />
                 Välj filer
