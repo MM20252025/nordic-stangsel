@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { NordicLogo } from "@/components/NordicLogo";
 
 const navLinks = [
   { href: "/", label: "Start" },
@@ -18,21 +19,25 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY >= 40);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Always keep it dark navy
-  const headerClass = "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#0f1f2e] border-b border-white/10";
+  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    scrolled ? "bg-white border-b border-[#0f1f2e]/10 shadow-sm" : "bg-transparent border-transparent"
+  }`;
+
+  const linkClass = scrolled ? "text-[#0f1f2e]/70 hover:text-[#0f1f2e]" : "text-white/70 hover:text-white";
+  const activeLinkClass = scrolled ? "text-[#0f1f2e] border-b-2 border-[#0f1f2e] pb-1" : "text-white border-b-2 border-white pb-1";
+  const mobileBtnClass = scrolled ? "text-[#0f1f2e] p-2 -mr-2" : "text-white p-2 -mr-2";
 
   return (
     <header className={headerClass} data-testid="navbar">
-      <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="flex flex-col text-white group" data-testid="link-logo">
-          <span className="font-sans font-bold tracking-[0.2em] text-xl leading-none">NORDIC</span>
-          <span className="font-sans font-light tracking-[0.3em] text-xs text-white/80 group-hover:text-white transition-colors">STÄNGSEL</span>
+      <div className="container mx-auto px-4 md:px-6 h-[80px] flex items-center justify-between">
+        <Link href="/" className="inline-block" data-testid="link-logo">
+          <NordicLogo color={scrolled ? "#0f1f2e" : "white"} />
         </Link>
 
         {/* Desktop Nav */}
@@ -42,8 +47,8 @@ export function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-white ${
-                    location === link.href ? "text-white border-b-2 border-white pb-1" : "text-white/70"
+                  className={`text-sm font-medium transition-colors ${
+                    location === link.href ? activeLinkClass : linkClass
                   }`}
                   data-testid={`link-nav-${link.label.toLowerCase()}`}
                 >
@@ -53,15 +58,21 @@ export function Navbar() {
             ))}
           </ul>
           <Link href="/kontakt" data-testid="link-nav-cta">
-            <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-[#0f1f2e] rounded-none">
-              Begär offert
-            </Button>
+            {scrolled ? (
+              <Button className="bg-[#0f1f2e] text-white hover:bg-[#1a2f45] rounded-none">
+                Begär offert
+              </Button>
+            ) : (
+              <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-[#0f1f2e] rounded-none">
+                Begär offert
+              </Button>
+            )}
           </Link>
         </nav>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white p-2 -mr-2"
+          className={`md:hidden ${mobileBtnClass}`}
           onClick={() => setIsOpen(!isOpen)}
           data-testid="button-mobile-menu"
         >

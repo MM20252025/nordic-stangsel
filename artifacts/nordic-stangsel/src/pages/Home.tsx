@@ -8,38 +8,43 @@ export default function Home() {
   return (
     <main className="w-full">
       {/* 1. Hero section */}
-      <section className="relative h-[90vh] min-h-[600px] w-full flex items-center bg-[#0f1f2e]">
+      <section className="relative h-[100vh] min-h-[600px] w-full flex items-center bg-[#0f1f2e]">
         <div className="absolute inset-0 z-0">
           <img 
             src="/src/assets/images/hero-home.png" 
             alt="Professionell stängselmontering" 
-            className="w-full h-full object-cover object-center opacity-60 mix-blend-overlay"
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1f2e] via-[#0f1f2e]/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-[#0c1824]/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1824] via-[#0c1824]/75 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c1824]/60 via-transparent to-transparent"></div>
         </div>
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-3xl pt-20">
+          <div className="max-w-3xl pt-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-white leading-tight mb-6">
+              <div className="w-12 h-[1px] bg-white/40 mb-8"></div>
+              <span className="text-xs uppercase tracking-[0.3em] text-white/50 mb-4 block">Stockholm & Uppsala · Hela Sverige</span>
+              
+              <h1 className="text-[2.4rem] leading-[1.15] md:text-[3.5rem] md:leading-[1.1] lg:text-[4.5rem] lg:leading-[1.05] font-serif font-medium text-white mb-8">
                 Professionella stängsel och grindlösningar för företag, skolor, idrottsanläggningar och villor
               </h1>
-              <p className="text-lg md:text-xl text-white/80 font-light max-w-2xl mb-10 leading-relaxed">
+              <p className="text-base md:text-lg text-white/70 font-light max-w-xl mb-12 leading-relaxed tracking-wide">
                 Moderna, säkra och hållbara lösningar med professionell montering i hela Sverige.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Link href="/kontakt">
-                  <Button size="lg" className="bg-white text-[#0f1f2e] hover:bg-gray-100 rounded-none h-14 px-8 text-base tracking-wide w-full sm:w-auto">
+                  <Button className="bg-white text-[#0c1824] hover:bg-white/90 font-medium rounded-none h-12 px-7 text-sm tracking-widest uppercase transition-all duration-200 w-full sm:w-auto">
                     Begär offert
                   </Button>
                 </Link>
                 <Link href="/projekt">
-                  <Button size="lg" variant="outline" className="bg-transparent text-white border-white/30 hover:bg-white/10 hover:border-white rounded-none h-14 px-8 text-base tracking-wide w-full sm:w-auto">
+                  <Button variant="outline" className="bg-transparent text-white border border-white/30 hover:border-white/70 hover:bg-white/5 rounded-none h-12 px-7 text-sm tracking-widest uppercase transition-all duration-200 w-full sm:w-auto">
                     Våra projekt
                   </Button>
                 </Link>
@@ -48,29 +53,21 @@ export default function Home() {
           </div>
         </div>
 
-        <motion.div 
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 hidden md:flex flex-col items-center gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        >
-          <span className="text-xs uppercase tracking-[0.2em]">Scrolla</span>
-          <div className="w-[1px] h-12 bg-white/30 relative overflow-hidden">
-            <motion.div 
-              className="w-full h-1/2 bg-white absolute top-0"
-              animate={{ y: [0, 48] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-            />
+        <div className="absolute bottom-0 left-0 right-0 h-[60px] flex items-center border-t border-white/10 z-10">
+          <div className="container mx-auto px-4 md:px-6 flex items-center gap-8 text-white/40 text-xs uppercase tracking-[0.2em]">
+            <span>Uppsala: +46 18 34 61 11</span>
+            <span className="hidden sm:inline">·</span>
+            <span className="hidden sm:inline">Stockholm: +46 8 35 63 66</span>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* 2. Trust section */}
-      <section className="py-20 bg-gray-50/50">
+      <section className="py-24 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <motion.div 
-              className="flex flex-col items-start p-6 bg-white border border-gray-100"
+              className="flex flex-col items-start p-6 bg-white border-b-2 border-transparent hover:border-[#0f1f2e] transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -82,7 +79,7 @@ export default function Home() {
             </motion.div>
             
             <motion.div 
-              className="flex flex-col items-start p-6 bg-white border border-gray-100"
+              className="flex flex-col items-start p-6 bg-white border-b-2 border-transparent hover:border-[#0f1f2e] transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -94,7 +91,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div 
-              className="flex flex-col items-start p-6 bg-white border border-gray-100"
+              className="flex flex-col items-start p-6 bg-white border-b-2 border-transparent hover:border-[#0f1f2e] transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -106,7 +103,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div 
-              className="flex flex-col items-start p-6 bg-white border border-gray-100"
+              className="flex flex-col items-start p-6 bg-white border-b-2 border-transparent hover:border-[#0f1f2e] transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -121,11 +118,11 @@ export default function Home() {
       </section>
 
       {/* 3. Services section */}
-      <section className="py-24 bg-white">
+      <section className="py-28 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="max-w-2xl">
-              <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Expertis</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-gray-300 mb-4 block">Expertis</span>
               <h2 className="text-3xl md:text-5xl font-serif text-[#0f1f2e]">Våra tjänster</h2>
             </div>
             <Link href="/tjanster">
@@ -146,15 +143,15 @@ export default function Home() {
             ].map((service, i) => (
               <Link key={i} href="/tjanster">
                 <motion.div 
-                  className="group block p-8 border border-gray-100 hover:border-gray-300 transition-all bg-white hover:bg-gray-50 cursor-pointer h-full"
+                  className="group block p-8 border border-gray-100 hover:border-[#0f1f2e] transition-all bg-white hover:bg-[#0f1f2e] cursor-pointer h-full"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <service.icon className="h-8 w-8 text-gray-400 group-hover:text-[#0f1f2e] transition-colors mb-6 stroke-[1.5]" />
-                  <h3 className="font-serif text-xl text-[#0f1f2e] mb-3">{service.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{service.desc}</p>
+                  <service.icon className="h-8 w-8 text-gray-400 group-hover:text-white transition-colors mb-6 stroke-[1.5]" />
+                  <h3 className="font-serif text-xl text-[#0f1f2e] group-hover:text-white mb-3 transition-colors">{service.title}</h3>
+                  <p className="text-gray-500 group-hover:text-white/70 text-sm leading-relaxed transition-colors">{service.desc}</p>
                 </motion.div>
               </Link>
             ))}
@@ -185,7 +182,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <div className="aspect-[4/3] overflow-hidden mb-6 bg-gray-200">
+              <div className="aspect-[3/2] overflow-hidden mb-6 bg-gray-200 relative">
+                <div className="absolute inset-0 bg-[#0f1f2e]/0 group-hover:bg-[#0f1f2e]/20 transition-all duration-500 z-10"></div>
                 <img src="/src/assets/images/project-1.png" alt="Industristängsel" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <span className="text-xs uppercase tracking-wider text-gray-500 mb-2 block">Industrifastighet</span>
@@ -193,8 +191,8 @@ export default function Home() {
               <p className="text-gray-600 text-sm leading-relaxed mb-4">
                 Komplett installation av 2.4m högt säkerhetsstängsel med motoriserad skjutgrind för logistikcenter.
               </p>
-              <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] group-hover:text-blue-700 transition-colors">
-                Läs mer <ArrowRight className="ml-1 h-3 w-3" />
+              <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] group-hover:text-[#0f1f2e] transition-colors">
+                Läs mer <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-2" />
               </span>
             </motion.div>
 
@@ -205,7 +203,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="aspect-[4/3] overflow-hidden mb-6 bg-gray-200">
+              <div className="aspect-[3/2] overflow-hidden mb-6 bg-gray-200 relative">
+                <div className="absolute inset-0 bg-[#0f1f2e]/0 group-hover:bg-[#0f1f2e]/20 transition-all duration-500 z-10"></div>
                 <img src="/src/assets/images/project-2.png" alt="Skolfencing" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <span className="text-xs uppercase tracking-wider text-gray-500 mb-2 block">Kommunal skola</span>
@@ -213,8 +212,8 @@ export default function Home() {
               <p className="text-gray-600 text-sm leading-relaxed mb-4">
                 Säker inhägnad av nybyggd förskola med barnsäkra grindar och robusta nätpaneler.
               </p>
-              <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] group-hover:text-blue-700 transition-colors">
-                Läs mer <ArrowRight className="ml-1 h-3 w-3" />
+              <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] group-hover:text-[#0f1f2e] transition-colors">
+                Läs mer <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-2" />
               </span>
             </motion.div>
 
@@ -225,7 +224,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="aspect-[4/3] overflow-hidden mb-6 bg-gray-200">
+              <div className="aspect-[3/2] overflow-hidden mb-6 bg-gray-200 relative">
+                <div className="absolute inset-0 bg-[#0f1f2e]/0 group-hover:bg-[#0f1f2e]/20 transition-all duration-500 z-10"></div>
                 <img src="/src/assets/images/project-3.png" alt="Idrottsanläggning" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <span className="text-xs uppercase tracking-wider text-gray-500 mb-2 block">Sport & Fritid</span>
@@ -233,8 +233,8 @@ export default function Home() {
               <p className="text-gray-600 text-sm leading-relaxed mb-4">
                 Höga stängsel för ny utomhusarena inklusive specialanpassade publikgrindar och entréer.
               </p>
-              <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] group-hover:text-blue-700 transition-colors">
-                Läs mer <ArrowRight className="ml-1 h-3 w-3" />
+              <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] group-hover:text-[#0f1f2e] transition-colors">
+                Läs mer <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-2" />
               </span>
             </motion.div>
           </div>
@@ -342,17 +342,18 @@ export default function Home() {
             ].map((review, i) => (
               <motion.div 
                 key={i}
-                className="bg-gray-50 p-8 border border-gray-100"
+                className="bg-white p-8 border border-gray-100 border-l-2 border-l-[#0f1f2e]/10 relative"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
+                <span className="text-6xl text-gray-100 font-serif absolute -top-2 left-4 leading-none select-none">"</span>
                 <div className="flex gap-1 mb-6 text-[#0f1f2e]">
                   {[...Array(5)].map((_, j) => <Star key={j} className="h-4 w-4 fill-current" />)}
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-8 italic">"{review.text}"</p>
-                <div>
+                <p className="text-gray-600 text-sm leading-relaxed mb-8 italic relative z-10">"{review.text}"</p>
+                <div className="relative z-10">
                   <p className="font-semibold text-[#0f1f2e] text-sm">{review.role}</p>
                   <p className="text-xs text-gray-500">{review.company}</p>
                 </div>

@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { NordicLogo } from "@/components/NordicLogo";
 
 export function Footer() {
   return (
@@ -6,9 +7,8 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex flex-col text-white mb-6">
-              <span className="font-sans font-bold tracking-[0.2em] text-xl leading-none">NORDIC</span>
-              <span className="font-sans font-light tracking-[0.3em] text-xs text-white/80">STÄNGSEL</span>
+            <Link href="/" className="inline-block mb-6">
+              <NordicLogo color="white" />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">
               Premium stängsel och grindlösningar för företag, kommuner och villor över hela Sverige.
