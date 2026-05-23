@@ -35,8 +35,8 @@ export default function Home() {
 
             <div className="w-10 h-[1px] bg-white/30 mb-10"></div>
 
-            <h1 className="text-[2rem] leading-[1.2] md:text-[3rem] md:leading-[1.1] lg:text-[3.75rem] lg:leading-[1.05] font-serif font-medium text-white mb-5 max-w-2xl">
-              Premium stängsel och grindar
+            <h1 className="text-[1.875rem] leading-[1.2] md:text-[2.625rem] md:leading-[1.15] lg:text-[3.25rem] lg:leading-[1.1] font-serif font-medium text-white mb-6 max-w-4xl">
+              Byggt för att hålla.<br />Designat för att imponera.
             </h1>
 
             <p className="text-sm md:text-base text-white/60 font-light max-w-sm mb-12 leading-relaxed tracking-wide">
