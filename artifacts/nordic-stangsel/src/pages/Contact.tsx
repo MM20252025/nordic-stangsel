@@ -68,10 +68,10 @@ export default function Contact() {
                     <div>
                       <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">E-post</span>
                       <a
-                        href="mailto:info@nordicstangsel.se"
+                        href="mailto:info@nordicstangsel.com"
                         className="text-sm text-[#0f1f2e] font-medium hover:text-[#1a3349] transition-colors underline underline-offset-2 decoration-gray-300 hover:decoration-[#1a3349]"
                       >
-                        info@nordicstangsel.se
+                        info@nordicstangsel.com
                       </a>
                     </div>
                   </div>
