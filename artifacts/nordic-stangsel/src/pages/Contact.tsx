@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Building, ArrowUpRight } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Building } from "lucide-react";
 import { QuoteForm } from "@/components/QuoteForm";
-
-const destination = encodeURIComponent("Segerstavägen 7B, 741 43 Knivsta");
-const mapQuery = encodeURIComponent("Segerstavägen 7B, 741 43 Knivsta, Sweden");
 
 export default function Contact() {
   return (
@@ -16,25 +13,26 @@ export default function Contact() {
           className="max-w-7xl mx-auto"
         >
           <div className="mb-12">
-            <span className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-4 block">Kontakt</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-4 block">Hör av dig</span>
             <h1 className="text-4xl md:text-5xl font-serif text-[#0f1f2e] mb-4">Kontakta oss</h1>
             <p className="text-lg text-gray-600 font-light max-w-2xl">
-              Vi hjälper dig med rådgivning, lösningsförslag och offert för stängsel, grindar och områdesskydd. Använd formuläret eller ring oss direkt.
+              Vi hjälper dig med expertis och rådgivning kring ditt områdesskydd. Fyll i formuläret eller kontakta oss direkt via telefon eller e-post.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-4 space-y-8">
+            {/* Contact Info */}
+            <div className="lg:col-span-4 space-y-6">
               <div className="bg-white p-8 border border-gray-200">
-                <h2 className="text-xl font-serif text-[#0f1f2e] mb-6 flex items-center gap-2">
+                <h3 className="text-xl font-serif text-[#0f1f2e] mb-6 flex items-center gap-2">
                   <Building className="h-5 w-5 text-gray-400" /> Nordic Stängsel AB
-                </h2>
+                </h3>
 
                 <div className="space-y-6">
                   <div className="flex gap-4">
                     <MapPin className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Adress</span>
+                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Besöks- & postadress</span>
                       <p className="text-gray-800 text-sm">Segerstavägen 7B<br />741 43 Knivsta</p>
                     </div>
                   </div>
@@ -42,32 +40,50 @@ export default function Contact() {
                   <div className="flex gap-4">
                     <Phone className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Telefon</span>
-                      <p className="text-gray-800 text-sm mb-1">
-                        <span className="text-gray-500 w-20 inline-block">Uppsala:</span>
-                        <a href="tel:+46183461111" className="hover:text-[#1a3349] transition-colors">
-                          +46 18 34 61 11
-                        </a>
-                      </p>
-                      <p className="text-gray-800 text-sm">
-                        <span className="text-gray-500 w-20 inline-block">Stockholm:</span>
-                        <a href="tel:+468356366" className="hover:text-[#1a3349] transition-colors">
-                          +46 8 35 63 66
-                        </a>
-                      </p>
+                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-2">Telefon</span>
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2">
+                          <span className="text-gray-500 text-xs w-20">Uppsala</span>
+                          <a
+                            href="tel:+46183461111"
+                            className="text-sm text-[#0f1f2e] font-medium hover:text-[#1a3349] transition-colors underline underline-offset-2 decoration-gray-300 hover:decoration-[#1a3349]"
+                          >
+                            +46 18 34 61 11
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-gray-500 text-xs w-20">Stockholm</span>
+                          <a
+                            href="tel:+46835636600"
+                            className="text-sm text-[#0f1f2e] font-medium hover:text-[#1a3349] transition-colors underline underline-offset-2 decoration-gray-300 hover:decoration-[#1a3349]"
+                          >
+                            +46 8 35 63 66
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex gap-4">
                     <Mail className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Offertförfrågan</span>
-                      <p className="text-gray-800 text-sm mb-2">
-                        Använd formuläret för att beskriva projektet och bifoga bilder om det hjälper oss att förstå platsen bättre.
-                      </p>
-                      <a href="mailto:marcin@stangselab.se" className="text-sm text-[#1a3349] hover:text-[#264056] transition-colors">
-                        marcin@stangselab.se
+                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">E-post</span>
+                      <a
+                        href="mailto:info@nordicstangsel.se"
+                        className="text-sm text-[#0f1f2e] font-medium hover:text-[#1a3349] transition-colors underline underline-offset-2 decoration-gray-300 hover:decoration-[#1a3349]"
+                      >
+                        info@nordicstangsel.se
                       </a>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <Clock className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
+                    <div>
+                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Öppettider</span>
+                      <p className="text-gray-800 text-sm">
+                        <span className="text-gray-500 w-20 inline-block">Mån–Fre</span> 07:00–16:00
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -77,34 +93,35 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="overflow-hidden border border-[#1a3349]/10 bg-white shadow-sm">
-                <div className="aspect-[4/3] bg-[#d7dee5]">
+              {/* Location block */}
+              <div className="bg-white border border-gray-200 overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-gray-100 relative">
                   <iframe
-                    title="Nordic Stängsel karta"
-                    src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
-                    className="h-full w-full border-0"
+                    title="Nordic Stängsel — Segerstavägen 7B, Knivsta"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=17.74,59.72,17.80,59.75&layer=mapnik&marker=59.7325,17.770"
+                    className="w-full h-full border-0"
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
                   />
                 </div>
-                <div className="bg-[#1a3349] p-6 text-white">
-                  <span className="text-xs uppercase tracking-[0.2em] text-white/45 mb-3 block">Plats</span>
-                  <h2 className="text-2xl font-serif mb-3">Besök oss i Knivsta</h2>
-                  <p className="text-sm text-white/70 leading-relaxed mb-6">
-                    Segerstavägen 7B, 741 43 Knivsta. Härifrån planerar vi projekt, platsbesök och nästa steg i offertprocessen.
-                  </p>
+                <div className="p-4 flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-semibold text-[#0f1f2e] uppercase tracking-wider mb-0.5">Segerstavägen 7B</p>
+                    <p className="text-xs text-gray-500">741 43 Knivsta</p>
+                  </div>
                   <a
-                    href={`https://www.google.com/maps/dir/?api=1&destination=${destination}`}
+                    href="https://www.google.com/maps/dir/?api=1&destination=Segerstavägen+7B,+741+43+Knivsta,+Sweden"
                     target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium tracking-[0.12em] uppercase text-white transition-opacity hover:opacity-80"
+                    rel="noopener noreferrer"
+                    className="shrink-0 text-xs font-medium text-[#0f1f2e] border border-gray-300 hover:border-[#0f1f2e] hover:bg-gray-50 px-3 py-1.5 transition-colors whitespace-nowrap"
                   >
-                    Öppna vägbeskrivning <ArrowUpRight className="h-4 w-4" />
+                    Vägbeskrivning →
                   </a>
                 </div>
               </div>
             </div>
 
+            {/* Form */}
             <div className="lg:col-span-8">
               <QuoteForm />
             </div>

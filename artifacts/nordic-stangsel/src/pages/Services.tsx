@@ -15,7 +15,7 @@ const services = [
     id: 2,
     title: "Skolstängsel",
     icon: School,
-    desc: "Säkra och hållbara stängsellösningar för skolor och utbildningsmiljöer. Vi lägger stor vikt vid trygg avgränsning, tydlig funktion och ett uttryck som fungerar över tid."
+    desc: "Säkra, barnvänliga och hållbara stängsel för förskolor, skolor och lekplatser. Vi lägger stor vikt vid att inga skarpa kanter eller klämrisker finns, samtidigt som stängslet effektivt avgränsar området."
   },
   {
     id: 3,

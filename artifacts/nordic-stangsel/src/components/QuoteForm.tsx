@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { CheckCircle2, Upload, AlertCircle } from "lucide-react";
+import { CheckCircle2, Upload, AlertCircle, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -25,23 +25,23 @@ import {
 const projectTypes = [
   "Industristängsel",
   "Skolstängsel",
-  "Stängsel för idrottsanläggningar",
+  "Idrottsanläggning",
   "Säkerhetsstängsel",
-  "Automatiska grindar",
-  "Skjutgrindar",
-  "Svänggrindar",
+  "Automatisk grind",
+  "Skjutgrind",
+  "Svänggrind",
   "Panelstängsel",
   "Villastängsel",
   "Kundanpassad lösning",
-  "Reparationer och underhåll",
+  "Reparation och underhåll",
 ];
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Ange minst två tecken." }),
+  name: z.string().min(2, { message: "Namn måste vara minst 2 tecken." }),
   phone: z.string().min(6, { message: "Ange ett giltigt telefonnummer." }),
   email: z.string().email({ message: "Ange en giltig e-postadress." }),
   projectType: z.string().min(1, { message: "Välj en projekttyp." }),
-  message: z.string().min(10, { message: "Beskriv projektet med minst tio tecken." }),
+  message: z.string().min(10, { message: "Meddelandet måste vara minst 10 tecken." }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -54,7 +54,6 @@ export function QuoteForm() {
   const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const filesRef = useRef<FileList | null>(null);
-  const isFormEndpointConfigured = Boolean(FORM_ENDPOINT);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -70,40 +69,36 @@ export function QuoteForm() {
   async function onSubmit(values: FormValues) {
     setSubmitError(false);
 
-    if (!FORM_ENDPOINT) {
-      setSubmitError(true);
-      return;
-    }
+    if (FORM_ENDPOINT) {
+      try {
+        const formData = new FormData();
+        formData.append("name", values.name);
+        formData.append("phone", values.phone);
+        formData.append("email", values.email);
+        formData.append("projectType", values.projectType);
+        formData.append("message", values.message);
 
-    try {
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("phone", values.phone);
-      formData.append("email", values.email);
-      formData.append("projectType", values.projectType);
-      formData.append("message", values.message);
+        const files = filesRef.current;
+        if (files && files.length > 0) {
+          Array.from(files).forEach((file) => {
+            formData.append("images", file, file.name);
+          });
+        }
 
-      const files = filesRef.current;
-      if (files && files.length > 0) {
-        Array.from(files).forEach((file) => {
-          formData.append("images", file, file.name);
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: formData,
         });
-      }
-
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-        body: formData,
-      });
-
-      if (res.ok) {
-        setIsSubmitted(true);
-      } else {
+        if (res.ok) {
+          setIsSubmitted(true);
+        } else {
+          setSubmitError(true);
+        }
+      } catch {
         setSubmitError(true);
       }
-    } catch {
+    } else {
       setSubmitError(true);
     }
   }
@@ -116,7 +111,7 @@ export function QuoteForm() {
         </div>
         <h3 className="text-2xl font-serif mb-4">Tack för din förfrågan</h3>
         <p className="text-white/70 mb-8 max-w-md mx-auto">
-          Vi har mottagit dina uppgifter och återkommer så snart vi kan med nästa steg i processen.
+          Vi har mottagit dina uppgifter och återkommer till dig med en offert eller kompletterande frågor inom 24 timmar.
         </p>
         <Button
           variant="outline"
@@ -141,35 +136,36 @@ export function QuoteForm() {
       <h3 className="text-2xl font-serif mb-8 text-[#0f1f2e]">Begär offert</h3>
 
       {submitError && (
-        <div className="flex items-start gap-3 bg-red-50 border border-red-100 p-4 mb-6 text-sm text-red-700">
-          <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
-          <span>
-            {isFormEndpointConfigured ? (
-              <>
-                Det gick inte att skicka förfrågan just nu. Kontakta oss direkt på{" "}
-                <a href="tel:+46183461111" className="underline underline-offset-2">
-                  +46 18 34 61 11
-                </a>
-                {" "}eller{" "}
-                <a href="mailto:marcin@stangselab.se" className="underline underline-offset-2">
-                  marcin@stangselab.se
-                </a>
-                .
-              </>
-            ) : (
-              <>
-                Offertformuläret är tillfälligt inte kopplat till någon mottagare. Kontakta oss direkt på{" "}
-                <a href="tel:+46183461111" className="underline underline-offset-2">
-                  +46 18 34 61 11
-                </a>
-                {" "}eller{" "}
-                <a href="mailto:marcin@stangselab.se" className="underline underline-offset-2">
-                  marcin@stangselab.se
-                </a>
-                .
-              </>
-            )}
-          </span>
+        <div className="bg-red-50 border border-red-100 p-5 mb-6 text-sm" data-testid="quote-error">
+          <div className="flex items-start gap-3 mb-4">
+            <AlertCircle className="h-4 w-4 text-red-600 shrink-0 mt-0.5" />
+            <p className="text-red-700 font-medium">
+              Det gick inte att skicka förfrågan via formuläret. Kontakta oss direkt:
+            </p>
+          </div>
+          <div className="pl-7 space-y-2">
+            <a
+              href="tel:+46183461111"
+              className="flex items-center gap-2 text-[#0f1f2e] hover:text-[#1a3349] font-medium transition-colors"
+            >
+              <Phone className="h-3.5 w-3.5 shrink-0" />
+              Uppsala: +46 18 34 61 11
+            </a>
+            <a
+              href="tel:+46835633666"
+              className="flex items-center gap-2 text-[#0f1f2e] hover:text-[#1a3349] font-medium transition-colors"
+            >
+              <Phone className="h-3.5 w-3.5 shrink-0" />
+              Stockholm: +46 8 35 63 66
+            </a>
+            <a
+              href="mailto:info@nordicstangsel.se"
+              className="flex items-center gap-2 text-[#0f1f2e] hover:text-[#1a3349] font-medium transition-colors"
+            >
+              <Mail className="h-3.5 w-3.5 shrink-0" />
+              info@nordicstangsel.se
+            </a>
+          </div>
         </div>
       )}
 
@@ -222,7 +218,7 @@ export function QuoteForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">E-post</FormLabel>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">E-postadress</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -249,7 +245,7 @@ export function QuoteForm() {
                         className="rounded-none border-gray-200 focus:ring-[#0f1f2e]"
                         data-testid="select-project-type"
                       >
-                        <SelectValue placeholder="Välj typ av projekt" />
+                        <SelectValue placeholder="Välj projekttyp" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className="rounded-none">
@@ -271,10 +267,12 @@ export function QuoteForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Projektbeskrivning</FormLabel>
+                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">
+                  Beskrivning av projektet
+                </FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Beskriv projektet, platsen och vad ni vill ha hjälp med."
+                    placeholder="Beskriv ditt projekt, ungefärliga mått, placering och specifika önskemål..."
                     className="min-h-[120px] rounded-none border-gray-200 focus-visible:ring-[#0f1f2e] resize-none"
                     {...field}
                     data-testid="input-message"
@@ -286,8 +284,13 @@ export function QuoteForm() {
           />
 
           <div>
-            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">Bifoga bilder</label>
-            <div className="flex items-center gap-4 flex-wrap">
+            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-1">
+              Bifoga bilder <span className="normal-case text-gray-400">(frivilligt)</span>
+            </label>
+            <p className="text-xs text-gray-400 mb-3">
+              Foton av platsen, befintliga stängsel eller ritningar hjälper oss att ge en mer precis offert.
+            </p>
+            <div className="flex items-center gap-4">
               <label className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors text-sm font-medium">
                 <Upload className="h-4 w-4" />
                 Välj filer
@@ -311,9 +314,6 @@ export function QuoteForm() {
               </label>
               {fileName && <span className="text-sm text-gray-500">{fileName}</span>}
             </div>
-            <p className="mt-3 text-sm text-gray-500">
-              Bifoga gärna bilder på platsen eller nuvarande stängsel om det hjälper oss att bedöma projektet.
-            </p>
           </div>
 
           <Button
