@@ -12,12 +12,12 @@ export default function Home() {
       <section className="relative h-[100vh] min-h-[600px] w-full flex items-center bg-[#0f1f2e]">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/src/assets/images/hero-home.png" 
+            src="/src/assets/images/hero-tjanster.png" 
             alt="Professionell stängselmontering" 
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-[#0c1824]/20"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/30 via-transparent to-[#0c1824]/50"></div>
+          <div className="absolute inset-0 bg-[#0c1824]/55"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/40 via-[#0c1824]/30 to-[#0c1824]/70"></div>
         </div>
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
@@ -30,13 +30,13 @@ export default function Home() {
             <img
               src={logoTransparentSrc}
               alt="Nordic Stängsel"
-              className="h-16 md:h-20 w-auto mb-10 brightness-110"
+              className="h-24 md:h-32 lg:h-36 w-auto mb-12 brightness-125 drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
             />
 
-            <div className="w-10 h-[1px] bg-white/30 mb-10"></div>
+            <div className="w-10 h-[1px] bg-white/30 mb-8"></div>
 
-            <h1 className="text-[1.875rem] leading-[1.2] md:text-[2.625rem] md:leading-[1.15] lg:text-[3.25rem] lg:leading-[1.1] font-serif font-medium text-white mb-6 max-w-4xl">
-              Byggt för att hålla.<br />Designat för att imponera.
+            <h1 className="text-[1.875rem] leading-[1.2] md:text-[2.75rem] md:leading-[1.1] lg:text-[3.5rem] lg:leading-[1.08] font-serif font-medium text-white mb-6 max-w-4xl">
+              Professionella stängsel och grindlösningar för företag, skolor, idrottsanläggningar och villor
             </h1>
 
             <p className="text-sm md:text-base text-white/60 font-light max-w-sm mb-12 leading-relaxed tracking-wide">
