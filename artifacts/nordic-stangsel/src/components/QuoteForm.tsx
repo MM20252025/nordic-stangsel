@@ -54,6 +54,7 @@ export function QuoteForm() {
   const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const filesRef = useRef<FileList | null>(null);
+  const isFormEndpointConfigured = Boolean(FORM_ENDPOINT);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -69,40 +70,41 @@ export function QuoteForm() {
   async function onSubmit(values: FormValues) {
     setSubmitError(false);
 
-    if (FORM_ENDPOINT) {
-      try {
-        const formData = new FormData();
-        formData.append("name", values.name);
-        formData.append("phone", values.phone);
-        formData.append("email", values.email);
-        formData.append("projectType", values.projectType);
-        formData.append("message", values.message);
+    if (!FORM_ENDPOINT) {
+      setSubmitError(true);
+      return;
+    }
 
-        const files = filesRef.current;
-        if (files && files.length > 0) {
-          Array.from(files).forEach((file) => {
-            formData.append("images", file, file.name);
-          });
-        }
+    try {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("phone", values.phone);
+      formData.append("email", values.email);
+      formData.append("projectType", values.projectType);
+      formData.append("message", values.message);
 
-        const res = await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-          },
-          body: formData,
+      const files = filesRef.current;
+      if (files && files.length > 0) {
+        Array.from(files).forEach((file) => {
+          formData.append("images", file, file.name);
         });
+      }
 
-        if (res.ok) {
-          setIsSubmitted(true);
-        } else {
-          setSubmitError(true);
-        }
-      } catch {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+      } else {
         setSubmitError(true);
       }
-    } else {
-      setIsSubmitted(true);
+    } catch {
+      setSubmitError(true);
     }
   }
 
@@ -142,11 +144,27 @@ export function QuoteForm() {
         <div className="flex items-start gap-3 bg-red-50 border border-red-100 p-4 mb-6 text-sm text-red-700">
           <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
           <span>
-            Det gick inte att skicka förfrågan. Kontakta oss direkt på{" "}
-            <a href="tel:+46183461111" className="underline underline-offset-2">
-              +46 18 34 61 11
-            </a>
-            .
+            {isFormEndpointConfigured ? (
+              <>
+                Det gick inte att skicka förfrågan. Kontakta oss direkt på{" "}
+                <a href="tel:+46183461111" className="underline underline-offset-2">
+                  +46 18 34 61 11
+                </a>
+                .
+              </>
+            ) : (
+              <>
+                Offertformuläret är tillfälligt inte kopplat till någon mottagare. Kontakta oss direkt på{" "}
+                <a href="tel:+46183461111" className="underline underline-offset-2">
+                  +46 18 34 61 11
+                </a>
+                eller{" "}
+                <a href="mailto:marcin@stangselab.se" className="underline underline-offset-2">
+                  marcin@stangselab.se
+                </a>
+                .
+              </>
+            )}
           </span>
         </div>
       )}
