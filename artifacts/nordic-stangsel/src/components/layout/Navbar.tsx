@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { NordicLogo } from "@/components/NordicLogo";
+import logoSrc from "@assets/nordic_horizontal_black_centered_1779516240284.png";
 
 const navLinks = [
   { href: "/", label: "Start" },
@@ -18,26 +18,25 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY >= 40);
-    };
+    const handleScroll = () => setScrolled(window.scrollY >= 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-    scrolled ? "bg-white border-b border-[#0f1f2e]/10 shadow-sm" : "bg-transparent border-transparent"
+  const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#0f1f2e] ${
+    scrolled ? "border-b border-white/10 shadow-[0_2px_20px_rgba(0,0,0,0.3)]" : "border-b border-transparent"
   }`;
-
-  const linkClass = scrolled ? "text-[#0f1f2e]/70 hover:text-[#0f1f2e]" : "text-white/70 hover:text-white";
-  const activeLinkClass = scrolled ? "text-[#0f1f2e] border-b-2 border-[#0f1f2e] pb-1" : "text-white border-b-2 border-white pb-1";
-  const mobileBtnClass = scrolled ? "text-[#0f1f2e] p-2 -mr-2" : "text-white p-2 -mr-2";
 
   return (
     <header className={headerClass} data-testid="navbar">
       <div className="container mx-auto px-4 md:px-6 h-[80px] flex items-center justify-between">
         <Link href="/" className="inline-block" data-testid="link-logo">
-          <NordicLogo color={scrolled ? "#0f1f2e" : "white"} />
+          <img
+            src={logoSrc}
+            alt="Nordic Stängsel"
+            className="h-10 w-auto"
+            style={{ mixBlendMode: "screen" }}
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -48,7 +47,9 @@ export function Navbar() {
                 <Link
                   href={link.href}
                   className={`text-sm font-medium transition-colors ${
-                    location === link.href ? activeLinkClass : linkClass
+                    location === link.href
+                      ? "text-white border-b-2 border-white pb-1"
+                      : "text-white/70 hover:text-white"
                   }`}
                   data-testid={`link-nav-${link.label.toLowerCase()}`}
                 >
@@ -58,21 +59,15 @@ export function Navbar() {
             ))}
           </ul>
           <Link href="/kontakt" data-testid="link-nav-cta">
-            {scrolled ? (
-              <Button className="bg-[#0f1f2e] text-white hover:bg-[#1a2f45] rounded-none">
-                Begär offert
-              </Button>
-            ) : (
-              <Button variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-[#0f1f2e] rounded-none">
-                Begär offert
-              </Button>
-            )}
+            <Button variant="outline" className="bg-transparent text-white border-white/50 hover:bg-white hover:text-[#0f1f2e] rounded-none transition-all duration-200">
+              Begär offert
+            </Button>
           </Link>
         </nav>
 
         {/* Mobile Toggle */}
         <button
-          className={`md:hidden ${mobileBtnClass}`}
+          className="md:hidden text-white p-2 -mr-2"
           onClick={() => setIsOpen(!isOpen)}
           data-testid="button-mobile-menu"
         >

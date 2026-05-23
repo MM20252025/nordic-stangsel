@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { NordicLogo } from "@/components/NordicLogo";
+import logoSrc from "@assets/nordic_horizontal_black_centered_1779516240284.png";
 
 export function Footer() {
   return (
@@ -8,7 +8,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="inline-block mb-6">
-              <NordicLogo color="white" />
+              <img
+                src={logoSrc}
+                alt="Nordic Stängsel"
+                className="h-10 w-auto"
+                style={{ mixBlendMode: "screen" }}
+              />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">
               Premium stängsel och grindlösningar för företag, kommuner och villor över hela Sverige.
