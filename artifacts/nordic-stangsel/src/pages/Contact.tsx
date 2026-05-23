@@ -21,7 +21,6 @@ export default function Contact() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Contact Info */}
             <div className="lg:col-span-4 space-y-6">
               <div className="bg-white p-8 border border-gray-200">
                 <h3 className="text-xl font-serif text-[#0f1f2e] mb-6 flex items-center gap-2">
@@ -54,7 +53,7 @@ export default function Contact() {
                         <div className="flex items-center gap-2">
                           <span className="text-gray-500 text-xs w-20">Stockholm</span>
                           <a
-                            href="tel:+46835636600"
+                            href="tel:+46835633666"
                             className="text-sm text-[#0f1f2e] font-medium hover:text-[#1a3349] transition-colors underline underline-offset-2 decoration-gray-300 hover:decoration-[#1a3349]"
                           >
                             +46 8 35 63 66
@@ -93,7 +92,6 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Location block */}
               <div className="bg-white border border-gray-200 overflow-hidden">
                 <div className="aspect-[4/3] w-full bg-gray-100 relative">
                   <iframe
@@ -121,7 +119,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Form */}
             <div className="lg:col-span-8">
               <QuoteForm />
             </div>
