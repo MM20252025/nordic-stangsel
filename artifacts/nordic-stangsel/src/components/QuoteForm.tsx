@@ -111,7 +111,7 @@ export function QuoteForm() {
         </div>
         <h3 className="text-2xl font-serif mb-4">Tack för din förfrågan</h3>
         <p className="text-white/70 mb-8 max-w-md mx-auto">
-          Vi har mottagit dina uppgifter och återkommer till dig så snart som möjligt om nästa steg i ditt projekt.
+          Vi har mottagit dina uppgifter och återkommer så snart vi kan med en offert eller eventuella följdfrågor.
         </p>
         <Button
           variant="outline"

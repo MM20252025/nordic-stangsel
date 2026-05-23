@@ -1,25 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  CheckCircle,
-  Shield,
-  MapPin,
-  Clock,
-  Hammer,
-  ShieldCheck,
-  Factory,
-  School,
-  Home as HomeIcon,
-  ChevronRight,
-  FileText,
-  Handshake,
-  Wrench,
-  MoveHorizontal,
-  RefreshCcw,
-  Focus,
-  Settings2,
-} from "lucide-react";
+import { ArrowRight, CheckCircle, Shield, MapPin, Clock, Hammer, ShieldCheck, Factory, School, Home as HomeIcon, ChevronRight, MoveHorizontal, RefreshCcw, Focus, Settings2, Wrench, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuoteForm } from "@/components/QuoteForm";
 import logoTransparentSrc from "../assets/images/nordic_logo_white_transparent.png";
@@ -34,15 +15,15 @@ export default function Home() {
       {/* 1. Hero section */}
       <section className="relative h-[100vh] min-h-[600px] w-full flex items-center bg-[#1a3349]">
         <div className="absolute inset-0 z-0">
-          <img
-            src={heroSrc}
-            alt="Professionell stängselmontering"
+          <img 
+            src={heroSrc} 
+            alt="Professionell stängselmontering" 
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-[#0c1824]/35"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/25 via-transparent to-[#0c1824]/55"></div>
         </div>
-
+        
         <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -137,22 +118,22 @@ export default function Home() {
               { title: "Industristängsel", icon: Factory, desc: "Robusta lösningar för industriområden och logistikcentra." },
               { title: "Skolstängsel", icon: School, desc: "Säkra och hållbara stängsel för förskolor och skolor." },
               { title: "Idrottsanläggningar", icon: Shield, desc: "Höga stängsel anpassade för sport och bollplaner." },
-              { title: "Säkerhetsstängsel", icon: ShieldCheck, desc: "Högre skyddsnivå för objekt med särskilda säkerhetskrav." },
-              { title: "Automatiska grindar", icon: ChevronRight, desc: "Smarta grindlösningar för bekväm och kontrollerad inpassering." },
-              { title: "Skjutgrindar", icon: MoveHorizontal, desc: "Platseffektiva grindar för breda infarter och daglig drift." },
-              { title: "Svänggrindar", icon: RefreshCcw, desc: "Klassiska grindlösningar för gång- och fordonspassager." },
-              { title: "Panelstängsel", icon: Focus, desc: "Vridstyva nätpaneler med ett modernt och arkitektoniskt uttryck." },
-              { title: "Villastängsel", icon: HomeIcon, desc: "Eleganta stängsel och grindar för privata bostäder." },
-              { title: "Kundanpassade lösningar", icon: Settings2, desc: "Specialanpassade lösningar utifrån plats, funktion och uttryck." },
-              { title: "Reparation och underhåll", icon: Wrench, desc: "Service, reparationer och långsiktig skötsel av befintliga anläggningar." },
+              { title: "Säkerhetsstängsel", icon: ShieldCheck, desc: "Högsta säkerhetsklass för skyddsobjekt." },
+              { title: "Automatiska grindar", icon: ChevronRight, desc: "Smarta grindlösningar för bekväm inpassering." },
+              { title: "Skjutgrindar", icon: MoveHorizontal, desc: "Platseffektiva skjutgrindar för breda infarter, manuella eller automatiserade." },
+              { title: "Svänggrindar", icon: RefreshCcw, desc: "Klassiska svänggrindar i enkel- eller dubbelutförande för gång- och fordonstrafik." },
+              { title: "Panelstängsel", icon: Focus, desc: "Vridstyva nätpaneler med modern, arkitektonisk känsla för offentliga miljöer." },
+              { title: "Villastängsel", icon: HomeIcon, desc: "Eleganta stängsel och grindar som höjer fastighetens värde och trygghet." },
+              { title: "Kundanpassade lösningar", icon: Settings2, desc: "Projekterade och tillverkade speciallösningar helt efter era krav och ritningar." },
+              { title: "Reparation och underhåll", icon: Wrench, desc: "Serviceavtal, reparationer och underhåll av befintliga stängsel och automatik." },
             ].map((service, i) => (
               <Link key={i} href="/tjanster">
-                <motion.div
+                <motion.div 
                   className="group block p-8 border border-gray-100 hover:border-[#0f1f2e] transition-all bg-white hover:bg-[#1a3349] cursor-pointer h-full"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <service.icon className="h-8 w-8 text-gray-400 group-hover:text-white transition-colors mb-6 stroke-[1.5]" />
                   <h3 className="font-serif text-xl text-[#0f1f2e] group-hover:text-white mb-3 transition-colors">{service.title}</h3>
@@ -215,19 +196,20 @@ export default function Home() {
       <section className="py-24 bg-[#1a3349] text-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            
             <div>
               <span className="text-xs uppercase tracking-[0.2em] text-white/50 mb-4 block">Fördelar</span>
               <h2 className="text-3xl md:text-5xl font-serif mb-10">Varför Nordic Stängsel?</h2>
-
+              
               <ul className="space-y-8">
                 {[
                   { title: "Kompromisslös Kvalitet", desc: "Vi arbetar uteslutande med högkvalitativa material anpassade för det nordiska klimatet." },
                   { title: "Rikstäckande Kapacitet", desc: "Med utgångspunkt i Uppsala och Stockholm hanterar vi projekt över hela Sverige." },
                   { title: "Lång Erfarenhet", desc: "Våra montörer besitter den kunskap som krävs för komplexa och krävande installationer." },
-                  { title: "Totalentreprenad", desc: "Från första projektering till slutbesiktning — vi tar ett helhetsansvar för din installation." },
+                  { title: "Totalentreprenad", desc: "Från första projektering till slutbesiktning — vi tar ett helhetsansvar för din installation." }
                 ].map((item, i) => (
-                  <motion.li
-                    key={i}
+                  <motion.li 
+                    key={i} 
                     className="flex gap-4"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -254,9 +236,9 @@ export default function Home() {
                   { step: "01", title: "Kontakt & Offert", desc: "En första genomgång av era behov följt av ett tydligt prisförslag." },
                   { step: "02", title: "Projektering", desc: "Mätning på plats, materialval och planering av genomförande." },
                   { step: "03", title: "Montering", desc: "Effektivt och fackmannamässigt montage utfört av våra egna team." },
-                  { step: "04", title: "Slutbesiktning", desc: "Gemensam genomgång av leveransen för att säkerställa högsta kvalitet." },
+                  { step: "04", title: "Slutbesiktning", desc: "Gemensam genomgång av leveransen för att säkerställa högsta kvalitet." }
                 ].map((item, i) => (
-                  <motion.div
+                  <motion.div 
                     key={i}
                     className="relative flex gap-8 md:pl-16"
                     initial={{ opacity: 0, y: 20 }}
@@ -267,7 +249,9 @@ export default function Home() {
                     <div className="hidden md:flex absolute left-0 top-0 w-12 h-12 bg-[#264056] border border-white/20 items-center justify-center font-serif text-lg z-10">
                       {item.step}
                     </div>
-                    <div className="md:hidden text-2xl font-serif text-white/30 pt-1">{item.step}</div>
+                    <div className="md:hidden text-2xl font-serif text-white/30 pt-1">
+                      {item.step}
+                    </div>
                     <div>
                       <h4 className="text-xl font-serif mb-2">{item.title}</h4>
                       <p className="text-white/60 text-sm leading-relaxed">{item.desc}</p>
@@ -276,6 +260,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -293,62 +278,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. Reviews section */}
+      {/* 8. References section */}
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16">
-              <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Referenser & omdömen</span>
-              <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e] mb-6">Underlag för ett tryggt beslut</h2>
-              <p className="text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-                Vi delar referenser från relevanta uppdrag i samband med dialog och offert, så att ni kan bedöma vår
-                arbetsform, leveransnivå och erfarenhet i rätt kontext.
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-100 border border-gray-100">
-              {[
-                {
-                  icon: FileText,
-                  title: "Referenser för liknande uppdrag",
-                  desc: "Vid förfrågan går vi igenom referensmaterial och tidigare projekt som är relevanta för er typ av miljö och kravbild.",
-                },
-                {
-                  icon: Handshake,
-                  title: "Tydlig dialog genom projektet",
-                  desc: "Ni får en rak genomgång av lösning, omfattning och praktiska förutsättningar innan genomförandet planeras vidare.",
-                },
-                {
-                  icon: Wrench,
-                  title: "Uppföljning efter leverans",
-                  desc: "Efter avslutat montage följer vi upp resultatet tillsammans, så att funktion och slututförande stämmer med projektets mål.",
-                },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="bg-white p-10 flex flex-col items-start"
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <item.icon className="h-7 w-7 text-[#0f1f2e]/40 mb-6 stroke-[1.5]" />
-                  <h3 className="font-serif text-xl text-[#0f1f2e] mb-3 leading-snug">{item.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Omdömen & referenser</span>
+                <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e] mb-6">
+                  Vi låter vårt arbete tala
+                </h2>
+                <p className="text-gray-500 font-light leading-relaxed mb-6">
+                  Vi publicerar inga anonyma omdömen. I stället delar vi gärna kontaktuppgifter till tidigare uppdragsgivare inom er sektor — direkt under offertdialogen, med deras samtycke.
+                </p>
+                <p className="text-gray-500 font-light leading-relaxed mb-10">
+                  Det ger er möjlighet att ställa direkta frågor om vår arbetsprocess, leveransprecision och hur samarbetet fungerade i praktiken.
+                </p>
+                <Link href="/kontakt">
+                  <Button className="bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-12 px-8 text-sm tracking-widest uppercase">
+                    Begär referenser
+                  </Button>
+                </Link>
+              </motion.div>
 
-            <div className="mt-16 text-center">
-              <p className="text-sm text-gray-500 mb-6 max-w-xl mx-auto font-light leading-relaxed">
-                Vill ni se referenser från en liknande typ av anläggning eller verksamhet? Hör av er så sätter vi rätt
-                underlag i rätt sammanhang.
-              </p>
-              <Link href="/kontakt">
-                <Button className="bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-12 px-8 text-sm tracking-widest uppercase">
-                  Begär referenser
-                </Button>
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="border border-gray-100 p-8 bg-gray-50"
+              >
+                <MessageSquare className="h-7 w-7 text-[#0f1f2e]/30 mb-6 stroke-[1.5]" />
+                <p className="text-[#0f1f2e] font-serif text-lg leading-relaxed mb-6">
+                  "Vi värdesätter transparens. En kund som kan tala direkt med ett referensuppdrag lär sig mer om oss på tio minuter än vad en hemsida kan förmedla."
+                </p>
+                <div className="border-t border-gray-200 pt-5">
+                  <p className="text-xs uppercase tracking-wider text-gray-400">
+                    Nordic Stängsel AB — om vårt sätt att arbeta
+                  </p>
+                </div>
+              </motion.div>
+
             </div>
           </div>
         </div>

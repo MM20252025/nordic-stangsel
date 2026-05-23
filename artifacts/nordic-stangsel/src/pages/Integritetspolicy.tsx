@@ -21,44 +21,33 @@ export default function Integritetspolicy() {
 
           <div className="prose prose-gray max-w-none space-y-8 text-gray-600 leading-relaxed">
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">1. Personuppgifter vi tar emot</h2>
-              <p>
-                När du kontaktar Nordic Stängsel via formulär, telefon eller e-post kan vi ta emot uppgifter som namn,
-                telefonnummer, e-postadress och den information du själv väljer att lämna om ditt projekt.
-              </p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">1. Personuppgiftsansvarig</h2>
+              <p>Nordic Stängsel AB, org.nr 559582-1900, Segerstavägen 7B, 741 43 Knivsta, är personuppgiftsansvarig för behandlingen av dina personuppgifter.</p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">2. Varför vi behandlar uppgifterna</h2>
-              <p>
-                Uppgifterna används för att kunna besvara din förfrågan, följa upp kontakt kring ditt projekt och ge
-                relevant information om våra tjänster.
-              </p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">2. Vilka uppgifter samlar vi in?</h2>
+              <p>Vi samlar in uppgifter som du lämnar frivilligt, exempelvis via vårt offertformulär: namn, telefonnummer, e-postadress samt projektbeskrivning. Vi samlar inte in känsliga personuppgifter.</p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">3. Hur länge uppgifterna sparas</h2>
-              <p>
-                Vi sparar uppgifter så länge det behövs för att hantera din kontakt eller ditt pågående ärende och tar
-                bort dem när de inte längre behövs för ändamålet.
-              </p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">3. Ändamål och rättslig grund</h2>
+              <p>Uppgifterna används uteslutande för att hantera din offertförfrågan och kommunicera med dig angående ditt projekt. Den rättsliga grunden är berättigat intresse (GDPR art. 6.1 f).</p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">4. Dina rättigheter</h2>
-              <p>
-                Du kan kontakta oss om du vill få information om vilka uppgifter vi har om dig eller om du vill begära
-                rättelse eller radering av uppgifter som inte längre behöver behandlas.
-              </p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">4. Lagring och radering</h2>
+              <p>Vi lagrar dina uppgifter så länge det är nödvändigt för att fullgöra det ändamål för vilket de samlades in. När ändamålet har upphört raderas uppgifterna. Har du frågor om lagring av dina uppgifter är du välkommen att kontakta oss.</p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">5. Kontakt</h2>
-              <p>
-                Nordic Stängsel AB<br />
-                Segerstavägen 7B, 741 43 Knivsta<br />
-                info@nordicstangsel.se
-              </p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">5. Dina rättigheter</h2>
+              <p>Du har rätt att begära tillgång till, rättelse eller radering av dina personuppgifter. Kontakta oss på <a href="mailto:info@nordicstangsel.se" className="text-[#1a3349] underline underline-offset-2">info@nordicstangsel.se</a> för sådana förfrågningar.</p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">6. Kontakt</h2>
+              <p>Nordic Stängsel AB<br />Segerstavägen 7B, 741 43 Knivsta<br />info@nordicstangsel.se</p>
             </section>
           </div>
         </motion.div>
