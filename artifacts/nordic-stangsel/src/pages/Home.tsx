@@ -313,10 +313,10 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Samarbete</span>
-              <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e] mb-6">Så håller vi processen tydlig</h2>
+              <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Omdömen</span>
+              <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e] mb-6">Förtroende byggs i hur arbetet fungerar</h2>
               <p className="text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-                Ett bra projekt kräver tydliga beslut, relevant dokumentation och enkel kommunikation från första förfrågan till färdig lösning.
+                Vi undviker generiska superlativer och påhittade kundcitat. I stället bygger vi förtroende genom tydliga underlag, lugn dialog och ett genomförande som håller hela vägen till färdig leverans.
               </p>
             </div>
 
@@ -324,18 +324,18 @@ export default function Home() {
               {[
                 {
                   icon: FileText,
-                  title: "Tydlig offert",
-                  desc: "Vi beskriver omfattning, inriktning och relevanta delar av leveransen så att beslutsunderlaget blir lätt att förstå.",
+                  title: "Tydligt beslutsunderlag",
+                  desc: "När omfattning, nivå och praktiska förutsättningar är tydliga blir det enklare att fatta rätt beslut tidigt i projektet.",
                 },
                 {
                   icon: Handshake,
-                  title: "Löpande dialog",
-                  desc: "Vi håller kontakt kring praktiska frågor, förutsättningar på plats och nästa steg under genomförandet.",
+                  title: "Lugn kunddialog",
+                  desc: "Vi håller kommunikationen enkel och relevant genom hela processen, från första förfrågan till överlämning på plats.",
                 },
                 {
                   icon: Wrench,
-                  title: "Efter genomförande",
-                  desc: "När projektet är färdigt går vi igenom leveransen och fångar upp eventuella frågor kring användning eller vidare åtgärder.",
+                  title: "Omsorg i utförandet",
+                  desc: "Det som märks efter leverans är helheten: möten, avslut, funktion och att lösningen känns genomarbetad i vardagen.",
                 },
               ].map((item, i) => (
                 <motion.div
@@ -351,6 +351,14 @@ export default function Home() {
                   <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link href="/kontakt">
+                <Button className="bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-12 px-8 text-sm tracking-[0.18em] uppercase">
+                  Boka kontakt
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
