@@ -1,0 +1,56 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "h8ftzEaAx_QKfEmrNmCiW"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/hero-home.png"
+type = "image"
+title = "Professional industrial fencing installation scene"
+
+[[generated]]
+id = "iFPqyamT7JNjOoPg4tLw7"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/project-1.png"
+type = "image"
+title = "Industrial security fencing facility"
+
+[[generated]]
+id = "b0hf5-EkqaSDOO1CAxt7a"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/project-2.png"
+type = "image"
+title = "School playground fencing"
+
+[[generated]]
+id = "b3W6xCF-QClKQWAOId0Uv"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/project-3.png"
+type = "image"
+title = "Sports facility fencing"
+
+[[generated]]
+id = "yk7zpuzdjmjwIdvdqMKeI"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/hero-tjanster.png"
+type = "image"
+title = "Services hero fencing scene"
+
+[[generated]]
+id = "aiKYK9cAPUiXYG9aOAnZv"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/project-4.png"
+type = "image"
+title = "Premium villa gate"
+
+[[generated]]
+id = "DcXbf1hR8fiBpxhLqH0XP"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/project-5.png"
+type = "image"
+title = "High security fencing"
+
+[[generated]]
+id = "3kDrrirSX7mztexcI_i7Y"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/project-6.png"
+type = "image"
+title = "Municipal park fencing"
+
+[[generated]]
+id = "aFwX12ba55TMmTUJvfO2v"
+uri = "file://artifacts/nordic-stangsel/src/assets/images/hero-om-oss.png"
+type = "image"
+title = "About us fencing infrastructure"
