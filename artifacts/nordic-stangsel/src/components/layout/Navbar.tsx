@@ -24,6 +24,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
+
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
+
   const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     scrolled
       ? "bg-white border-b border-gray-200 shadow-sm"
@@ -46,7 +64,6 @@ export function Navbar() {
           )}
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-6">
             {navLinks.map((link) => (
@@ -76,17 +93,17 @@ export function Navbar() {
           </Link>
         </nav>
 
-        {/* Mobile Toggle */}
         <button
           className={`md:hidden p-2 -mr-2 ${scrolled ? "text-[#0f1f2e]" : "text-white"}`}
           onClick={() => setIsOpen(!isOpen)}
           data-testid="button-mobile-menu"
+          aria-expanded={isOpen}
+          aria-label={isOpen ? "Stäng meny" : "Öppna meny"}
         >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="fixed inset-0 top-20 bg-[#1a3349] z-40 flex flex-col p-6 animate-in slide-in-from-top-2 md:hidden">
           <ul className="flex flex-col gap-6 text-center mt-8">
