@@ -46,7 +46,8 @@ const formSchema = z.object({
 
 export function QuoteForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [fileName, setFileName] = useState<string | null>(null);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -59,12 +60,37 @@ export function QuoteForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    // Simulate API call
-    setTimeout(() => {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setSubmitError(null);
+
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("phone", values.phone);
+    formData.append("email", values.email);
+    formData.append("projectType", values.projectType);
+    formData.append("message", values.message);
+
+    selectedFiles.forEach((file) => {
+      formData.append("images", file, file.name);
+    });
+
+    try {
+      const response = await fetch("/api/quote-request", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("request_failed");
+      }
+
       setIsSubmitted(true);
-    }, 800);
+      setSelectedFiles([]);
+    } catch (_error) {
+      setSubmitError(
+        "Formuläret kunde inte skickas just nu. Ring gärna Uppsala på +46 18 34 61 11 eller Stockholm på +46 8 35 63 66 så hjälper vi dig vidare.",
+      );
+    }
   }
 
   if (isSubmitted) {
@@ -75,15 +101,16 @@ export function QuoteForm() {
         </div>
         <h3 className="text-2xl font-serif mb-4">Tack för din förfrågan</h3>
         <p className="text-white/70 mb-8 max-w-md mx-auto">
-          Vi har mottagit dina uppgifter och återkommer till dig med en offert eller kompletterande frågor inom 24 timmar.
+          Vi har mottagit dina uppgifter och återkommer till dig med offert eller kompletterande frågor så snart vi kan.
         </p>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           className="bg-transparent text-white border-white hover:bg-white hover:text-[#0f1f2e] rounded-none"
           onClick={() => {
             setIsSubmitted(false);
             form.reset();
-            setFileName(null);
+            setSelectedFiles([]);
+            setSubmitError(null);
           }}
         >
           Skicka en till förfrågan
@@ -95,7 +122,7 @@ export function QuoteForm() {
   return (
     <div className="bg-white p-8 md:p-10 border border-gray-100 shadow-sm" data-testid="quote-form">
       <h3 className="text-2xl font-serif mb-8 text-[#0f1f2e]">Begär offert</h3>
-      
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -112,7 +139,7 @@ export function QuoteForm() {
                 </FormItem>
               )}
             />
-            
+
             <FormField
               control={form.control}
               name="phone"
@@ -174,12 +201,12 @@ export function QuoteForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Meddelande & Beskrivning</FormLabel>
+                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Meddelande</FormLabel>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Beskriv ditt projekt, ungefärliga mått och specifika önskemål..." 
-                    className="min-h-[120px] rounded-none border-gray-200 focus-visible:ring-[#0f1f2e] resize-none" 
-                    {...field} 
+                  <Textarea
+                    placeholder="Beskriv ditt projekt, ungefärliga mått och specifika önskemål..."
+                    className="min-h-[120px] rounded-none border-gray-200 focus-visible:ring-[#0f1f2e] resize-none"
+                    {...field}
                     data-testid="input-message"
                   />
                 </FormControl>
@@ -189,31 +216,38 @@ export function QuoteForm() {
           />
 
           <div>
-            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">Ladda upp bilder (Frivilligt)</label>
-            <div className="flex items-center gap-4">
-              <label className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors text-sm font-medium">
+            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">Ladda upp bilder</label>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <label className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors text-sm font-medium w-full sm:w-auto">
                 <Upload className="h-4 w-4" />
                 Välj filer
-                <input 
-                  type="file" 
-                  multiple 
-                  accept="image/*" 
-                  className="hidden" 
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  className="hidden"
                   onChange={(e) => {
-                    if (e.target.files && e.target.files.length > 0) {
-                      setFileName(`${e.target.files.length} fil(er) vald(a)`);
-                    }
+                    const files = Array.from(e.target.files ?? []);
+                    setSelectedFiles(files);
                   }}
                   data-testid="input-images"
                 />
               </label>
-              {fileName && <span className="text-sm text-gray-500">{fileName}</span>}
+              {selectedFiles.length > 0 && (
+                <span className="text-sm text-gray-500">{selectedFiles.length} fil(er) vald(a)</span>
+              )}
             </div>
           </div>
 
-          <Button 
-            type="submit" 
-            size="lg" 
+          {submitError && (
+            <div className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" data-testid="quote-error">
+              {submitError}
+            </div>
+          )}
+
+          <Button
+            type="submit"
+            size="lg"
             className="w-full bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-14 text-base tracking-wide"
             disabled={form.formState.isSubmitting}
             data-testid="button-submit-quote"
