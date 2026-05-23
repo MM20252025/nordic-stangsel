@@ -11,6 +11,8 @@ import Services from "@/pages/Services";
 import Projects from "@/pages/Projects";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import Integritetspolicy from "@/pages/Integritetspolicy";
+import Villkor from "@/pages/Villkor";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ function Router() {
       <Route path="/projekt" component={Projects} />
       <Route path="/om-oss" component={About} />
       <Route path="/kontakt" component={Contact} />
+      <Route path="/integritetspolicy" component={Integritetspolicy} />
+      <Route path="/villkor" component={Villkor} />
       <Route component={NotFound} />
     </Switch>
   );

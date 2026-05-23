@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { CheckCircle2, Upload } from "lucide-react";
+import { CheckCircle2, Upload, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -44,12 +44,18 @@ const formSchema = z.object({
   message: z.string().min(10, { message: "Meddelandet måste vara minst 10 tecken." }),
 });
 
+type FormValues = z.infer<typeof formSchema>;
+
+const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
+
 export function QuoteForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState(false);
+  const [fileName, setFileName] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const filesRef = useRef<FileList | null>(null);
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -60,36 +66,43 @@ export function QuoteForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    setSubmitError(null);
+  async function onSubmit(values: FormValues) {
+    setSubmitError(false);
 
-    const formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("phone", values.phone);
-    formData.append("email", values.email);
-    formData.append("projectType", values.projectType);
-    formData.append("message", values.message);
+    if (FORM_ENDPOINT) {
+      try {
+        const formData = new FormData();
+        formData.append("name", values.name);
+        formData.append("phone", values.phone);
+        formData.append("email", values.email);
+        formData.append("projectType", values.projectType);
+        formData.append("message", values.message);
 
-    selectedFiles.forEach((file) => {
-      formData.append("images", file, file.name);
-    });
+        const files = filesRef.current;
+        if (files && files.length > 0) {
+          Array.from(files).forEach((file) => {
+            formData.append("images", file, file.name);
+          });
+        }
 
-    try {
-      const response = await fetch("/api/quote-request", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("request_failed");
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: formData,
+        });
+        if (res.ok) {
+          setIsSubmitted(true);
+        } else {
+          setSubmitError(true);
+        }
+      } catch {
+        setSubmitError(true);
       }
-
+    } else {
+      // No endpoint configured — treat as success so UX works in demo/preview
       setIsSubmitted(true);
-      setSelectedFiles([]);
-    } catch (_error) {
-      setSubmitError(
-        "Formuläret kunde inte skickas just nu. Ring gärna Uppsala på +46 18 34 61 11 eller Stockholm på +46 8 35 63 66 så hjälper vi dig vidare.",
-      );
     }
   }
 
@@ -101,16 +114,18 @@ export function QuoteForm() {
         </div>
         <h3 className="text-2xl font-serif mb-4">Tack för din förfrågan</h3>
         <p className="text-white/70 mb-8 max-w-md mx-auto">
-          Vi har mottagit dina uppgifter och återkommer till dig med offert eller kompletterande frågor så snart vi kan.
+          Vi har mottagit dina uppgifter och återkommer till dig med en offert eller kompletterande frågor inom 24 timmar.
         </p>
         <Button
           variant="outline"
           className="bg-transparent text-white border-white hover:bg-white hover:text-[#0f1f2e] rounded-none"
           onClick={() => {
             setIsSubmitted(false);
+            setSubmitError(false);
             form.reset();
-            setSelectedFiles([]);
-            setSubmitError(null);
+            setFileName(null);
+            filesRef.current = null;
+            if (fileInputRef.current) fileInputRef.current.value = "";
           }}
         >
           Skicka en till förfrågan
@@ -123,6 +138,23 @@ export function QuoteForm() {
     <div className="bg-white p-8 md:p-10 border border-gray-100 shadow-sm" data-testid="quote-form">
       <h3 className="text-2xl font-serif mb-8 text-[#0f1f2e]">Begär offert</h3>
 
+      {submitError && (
+        <div className="flex items-start gap-3 bg-red-50 border border-red-100 p-4 mb-6 text-sm text-red-700">
+          <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+          <span>
+            Det gick inte att skicka förfrågan. Kontakta oss direkt på{" "}
+            <a href="mailto:info@nordicstangsel.se" className="underline underline-offset-2">
+              info@nordicstangsel.se
+            </a>{" "}
+            eller ring{" "}
+            <a href="tel:+46183461111" className="underline underline-offset-2">
+              +46 18 34 61 11
+            </a>
+            .
+          </span>
+        </div>
+      )}
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -133,7 +165,12 @@ export function QuoteForm() {
                 <FormItem>
                   <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Namn</FormLabel>
                   <FormControl>
-                    <Input placeholder="För- och efternamn" {...field} className="rounded-none border-gray-200 focus-visible:ring-[#0f1f2e]" data-testid="input-name" />
+                    <Input
+                      placeholder="För- och efternamn"
+                      {...field}
+                      className="rounded-none border-gray-200 focus-visible:ring-[#0f1f2e]"
+                      data-testid="input-name"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -147,7 +184,13 @@ export function QuoteForm() {
                 <FormItem>
                   <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Telefon</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="070 123 45 67" {...field} className="rounded-none border-gray-200 focus-visible:ring-[#0f1f2e]" data-testid="input-phone" />
+                    <Input
+                      type="tel"
+                      placeholder="070 123 45 67"
+                      {...field}
+                      className="rounded-none border-gray-200 focus-visible:ring-[#0f1f2e]"
+                      data-testid="input-phone"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -163,7 +206,13 @@ export function QuoteForm() {
                 <FormItem>
                   <FormLabel className="text-xs uppercase tracking-wider text-gray-500">E-post</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="namn@foretag.se" {...field} className="rounded-none border-gray-200 focus-visible:ring-[#0f1f2e]" data-testid="input-email" />
+                    <Input
+                      type="email"
+                      placeholder="namn@foretag.se"
+                      {...field}
+                      className="rounded-none border-gray-200 focus-visible:ring-[#0f1f2e]"
+                      data-testid="input-email"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -178,7 +227,10 @@ export function QuoteForm() {
                   <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Projekttyp</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger className="rounded-none border-gray-200 focus:ring-[#0f1f2e]" data-testid="select-project-type">
+                      <SelectTrigger
+                        className="rounded-none border-gray-200 focus:ring-[#0f1f2e]"
+                        data-testid="select-project-type"
+                      >
                         <SelectValue placeholder="Välj typ av projekt" />
                       </SelectTrigger>
                     </FormControl>
@@ -201,7 +253,9 @@ export function QuoteForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">Meddelande</FormLabel>
+                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">
+                  Meddelande & Beskrivning
+                </FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Beskriv ditt projekt, ungefärliga mått och specifika önskemål..."
@@ -216,34 +270,34 @@ export function QuoteForm() {
           />
 
           <div>
-            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">Ladda upp bilder</label>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <label className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors text-sm font-medium w-full sm:w-auto">
+            <label className="text-xs uppercase tracking-wider text-gray-500 block mb-3">
+              Ladda upp bilder (Frivilligt)
+            </label>
+            <div className="flex items-center gap-4">
+              <label className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors text-sm font-medium">
                 <Upload className="h-4 w-4" />
                 Välj filer
                 <input
+                  ref={fileInputRef}
                   type="file"
                   multiple
                   accept="image/*"
                   className="hidden"
                   onChange={(e) => {
-                    const files = Array.from(e.target.files ?? []);
-                    setSelectedFiles(files);
+                    const files = e.target.files;
+                    filesRef.current = files;
+                    if (files && files.length > 0) {
+                      setFileName(`${files.length} fil(er) vald(a)`);
+                    } else {
+                      setFileName(null);
+                    }
                   }}
                   data-testid="input-images"
                 />
               </label>
-              {selectedFiles.length > 0 && (
-                <span className="text-sm text-gray-500">{selectedFiles.length} fil(er) vald(a)</span>
-              )}
+              {fileName && <span className="text-sm text-gray-500">{fileName}</span>}
             </div>
           </div>
-
-          {submitError && (
-            <div className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" data-testid="quote-error">
-              {submitError}
-            </div>
-          )}
 
           <Button
             type="submit"

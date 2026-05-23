@@ -2,16 +2,17 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Target, Users, Leaf, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import aboutHeroSrc from "../assets/images/hero-om-oss.png";
+import heroSrc from "../assets/images/hero-om-oss.png";
 
 export default function About() {
   return (
     <main className="w-full pt-20">
+      {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] w-full flex items-center bg-[#1a3349]">
         <div className="absolute inset-0 z-0">
-          <img
-            src={aboutHeroSrc}
-            alt="Om Nordic Stängsel"
+          <img 
+            src={heroSrc} 
+            alt="Om Nordic Stängsel" 
             className="w-full h-full object-cover object-center opacity-40 mix-blend-overlay"
           />
         </div>
@@ -24,13 +25,11 @@ export default function About() {
           >
             <span className="text-xs uppercase tracking-[0.2em] text-white/70 mb-4 block">Företaget</span>
             <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Om Nordic Stängsel</h1>
-            <p className="text-lg text-white/80 font-light max-w-2xl mx-auto leading-relaxed">
-              En professionell partner för stängsel, grindar och områdesskydd med fokus på tydlig projektering, säker montering och hållbara lösningar.
-            </p>
           </motion.div>
         </div>
       </section>
 
+      {/* Story */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
@@ -40,16 +39,16 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-serif text-[#0f1f2e] mb-8">Vi bygger tryggare och tydligare miljöer</h2>
+              <h2 className="text-3xl font-serif text-[#0f1f2e] mb-8">Vi bygger säkerhet över hela Sverige</h2>
               <div className="prose prose-lg text-gray-600 font-sans max-w-none">
                 <p>
-                  Nordic Stängsel arbetar med stängsel- och grindlösningar för verksamheter, offentliga miljöer och privata fastigheter. Vårt fokus ligger på funktion, långsiktig hållbarhet och ett utförande som känns genomarbetat från första kontakt till färdig installation.
+                  Nordic Stängsel etablerades med en tydlig övertygelse: stängsel och grindar är inte bara funktionella avskärmningar, de är infrastrukturella investeringar som kräver högsta grad av professionalism och materialkännedom.
                 </p>
                 <p>
-                  Vi hjälper kunder som behöver en lösning som både skyddar, styr flöden och passar platsens arkitektur. Det kan handla om industrimiljöer, skolor, idrottsanläggningar, bostadsrättsföreningar eller villor med höga krav på finish och driftsäkerhet.
+                  Vi är ett premium installationsföretag som vänder sig till kunder med höga krav på kvalitet, leveranssäkerhet och estetik. Med kontor i Uppsala och Stockholm hanterar vi entreprenader över hela landet — från avancerade högsäkerhetsanläggningar för industri, till skräddarsydda smideslösningar för privata fastigheter.
                 </p>
                 <p>
-                  I varje uppdrag prioriterar vi tydlig kommunikation, realistisk planering och ett noggrant montage. Ambitionen är enkel: att leverera en lösning som fungerar i vardagen och håller över tid.
+                  Vår styrka ligger i helheten. Vi hanterar hela kedjan från första projektering och riskbedömning, genom markarbete och installation, fram till färdigbesiktning. Våra montörer förstår vikten av noggrannhet och fackmannamässighet, oavsett om det handlar om en enskild villagrind eller ett storskaligt industristängsel.
                 </p>
               </div>
             </motion.div>
@@ -57,6 +56,7 @@ export default function About() {
         </div>
       </section>
 
+      {/* Mission & Vision */}
       <section className="py-24 bg-gray-50 border-y border-gray-200">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl mx-auto">
@@ -66,9 +66,9 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-serif text-[#0f1f2e] mb-4">Vår inriktning</h3>
+              <h3 className="text-2xl font-serif text-[#0f1f2e] mb-4">Vår vision</h3>
               <p className="text-gray-600 leading-relaxed">
-                Att leverera stängsel- och grindlösningar som kombinerar säkerhet, tydlig funktion och ett mer genomarbetat uttryck än standardalternativen på marknaden.
+                Att vara Sveriges mest pålitliga och kvalitetsmedvetna leverantör av områdesskydd. Vi ska driva branschstandarden framåt gällande montagekvalitet, säkerhet och kundupplevelse.
               </p>
             </motion.div>
             <motion.div
@@ -77,29 +77,30 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-2xl font-serif text-[#0f1f2e] mb-4">Vårt arbetssätt</h3>
+              <h3 className="text-2xl font-serif text-[#0f1f2e] mb-4">Vårt uppdrag</h3>
               <p className="text-gray-600 leading-relaxed">
-                Vi arbetar strukturerat med behovsanalys, lösningsförslag, montering och uppföljning, så att varje projekt får rätt nivå av säkerhet, estetik och användbarhet.
+                Att erbjuda trygga, hållbara och estetiskt tilltalande lösningar som skyddar människor, egendom och värden. Vi levererar säkerhet som håller för framtiden.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Values */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e]">Det vi värdesätter</h2>
+            <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e]">Våra Kärnvärden</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: ShieldCheck, title: "Kvalitet", desc: "Materialval, detaljer och montage ska hålla en nivå som känns trygg även på lång sikt." },
-              { icon: Target, title: "Pålitlighet", desc: "Tydliga besked, realistiska tidplaner och ett arbete som följs upp ordentligt." },
-              { icon: Leaf, title: "Hållbarhet", desc: "Lösningar som är anpassade för nordiskt klimat och daglig användning över tid." },
-              { icon: Users, title: "Professionalism", desc: "Ett lugnt, noggrant och respektfullt arbetssätt i varje kontakt med kund och på arbetsplats." }
+              { icon: ShieldCheck, title: "Kvalitet", desc: "Vi kompromissar aldrig med materialval eller utförande. Rätt från början." },
+              { icon: Target, title: "Pålitlighet", desc: "Vi håller vad vi lovar, levererar i tid och kommunicerar rakt och ärligt." },
+              { icon: Leaf, title: "Hållbarhet", desc: "Svenska stålprodukter byggda för att klara nordiskt klimat under decennier." },
+              { icon: Users, title: "Professionalism", desc: "Våra montörer uppträder alltid med högsta yrkesheder ute hos kund." }
             ].map((val, i) => (
-              <motion.div
+              <motion.div 
                 key={i}
                 className="text-center p-8 bg-white border border-gray-100 hover:shadow-md transition-shadow"
                 initial={{ opacity: 0, y: 20 }}
@@ -118,21 +119,24 @@ export default function About() {
         </div>
       </section>
 
+      {/* Customers & Details */}
       <section className="py-24 bg-[#1a3349] text-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+            
             <div>
               <h3 className="text-2xl font-serif mb-6">Vilka vi arbetar för</h3>
               <p className="text-white/70 mb-8 leading-relaxed">
-                Vi arbetar med uppdrag där säkerhet, tydliga flöden och ett professionellt uttryck är viktiga delar av helheten.
+                Vi har kapacitet att hantera projekt i alla storlekar. Våra uppdragsgivare återfinns inom både privat och offentlig sektor.
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white/80 text-sm">
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Skolor</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Kommuner</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Idrottsanläggningar</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Företag</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Bostadsrättsföreningar</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Villaägare</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Byggföretag & Entreprenörer</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Kommuner & Myndigheter</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Industrier & Logistik</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Skolor & Förskolor</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Idrottsföreningar</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Fastighetsbolag & BRF</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Privata villaägare</li>
               </ul>
             </div>
 
@@ -166,6 +170,7 @@ export default function About() {
                 </Link>
               </div>
             </div>
+
           </div>
         </div>
       </section>

@@ -63,8 +63,8 @@ export function Footer() {
         <div className="pt-8 border-t border-white/10 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-white/40">
           <p>© {new Date().getFullYear()} Nordic Stängsel AB. Alla rättigheter förbehållna.</p>
           <div className="mt-4 md:mt-0 space-x-4">
-            <span className="hover:text-white/80 cursor-pointer">Integritetspolicy</span>
-            <span className="hover:text-white/80 cursor-pointer">Villkor</span>
+            <Link href="/integritetspolicy" className="hover:text-white/80 transition-colors">Integritetspolicy</Link>
+            <Link href="/villkor" className="hover:text-white/80 transition-colors">Villkor</Link>
           </div>
         </div>
       </div>

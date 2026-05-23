@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Factory, School, Shield, ShieldCheck, Home as HomeIcon, ChevronRight, Settings2, MoveHorizontal, RefreshCcw, Wrench, Focus } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import servicesHeroSrc from "../assets/images/hero-tjanster.png";
+import heroSrc from "../assets/images/hero-tjanster.png";
 
 const services = [
   {
@@ -78,9 +78,9 @@ export default function Services() {
     <main className="w-full pt-20">
       <section className="relative h-[60vh] min-h-[400px] w-full flex items-center bg-[#1a3349]">
         <div className="absolute inset-0 z-0">
-          <img
-            src={servicesHeroSrc}
-            alt="Våra tjänster - Nordic Stängsel"
+          <img 
+            src={heroSrc} 
+            alt="Våra tjänster - Nordic Stängsel" 
             className="w-full h-full object-cover object-center opacity-50 mix-blend-overlay"
           />
         </div>
@@ -94,7 +94,7 @@ export default function Services() {
             <span className="text-xs uppercase tracking-[0.2em] text-white/70 mb-4 block">Expertis</span>
             <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Tjänster & Lösningar</h1>
             <p className="text-lg text-white/80 font-light max-w-2xl leading-relaxed">
-              Vi levererar premiumlösningar inom områdesskydd. Från komplexa industristängsel till eleganta villagrindar, alltid med fokus på kvalitet och säkerhet.
+              Vi levererar premiumlösningar inom områdesskydd. Från komplexa industristängsel till eleganta villagrindar — alltid med fokus på kvalitet och säkerhet.
             </p>
           </motion.div>
         </div>
