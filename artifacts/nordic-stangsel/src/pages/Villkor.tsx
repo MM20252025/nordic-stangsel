@@ -58,7 +58,7 @@ export default function Villkor() {
             <section>
               <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">8. Kontakt</h2>
               <p>Frågor om dessa villkor besvaras av Nordic Stängsel AB, Segerstavägen 7B, 741 43 Knivsta.<br />
-              E-post: <a href="mailto:info@nordicstangsel.se" className="text-[#1a3349] underline underline-offset-2">info@nordicstangsel.se</a></p>
+              E-post: <a href="mailto:info@nordicstangsel.com" className="text-[#1a3349] underline underline-offset-2">info@nordicstangsel.com</a></p>
             </section>
           </div>
         </motion.div>
