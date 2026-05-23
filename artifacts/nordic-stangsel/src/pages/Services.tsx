@@ -82,6 +82,8 @@ export default function Services() {
             src={heroSrc} 
             alt="Våra tjänster - Nordic Stängsel" 
             className="w-full h-full object-cover object-center opacity-50 mix-blend-overlay"
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
