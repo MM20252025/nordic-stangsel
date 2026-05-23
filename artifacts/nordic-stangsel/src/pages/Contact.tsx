@@ -16,24 +16,23 @@ export default function Contact() {
             <span className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-4 block">Hör av dig</span>
             <h1 className="text-4xl md:text-5xl font-serif text-[#0f1f2e] mb-4">Kontakta oss</h1>
             <p className="text-lg text-gray-600 font-light max-w-2xl">
-              Vi hjälper dig med expertis och rådgivning kring ditt områdesskydd. Fyll i formuläret eller kontakta oss direkt via telefon.
+              Vi hjälper dig med rådgivning, lösningsförslag och offert för ditt områdesskydd. Fyll i formuläret eller kontakta oss direkt via telefon.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Contact Info */}
             <div className="lg:col-span-4 space-y-8">
               <div className="bg-white p-8 border border-gray-200">
                 <h3 className="text-xl font-serif text-[#0f1f2e] mb-6 flex items-center gap-2">
                   <Building className="h-5 w-5 text-gray-400" /> Nordic Stängsel AB
                 </h3>
-                
+
                 <div className="space-y-6">
                   <div className="flex gap-4">
                     <MapPin className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
                     <div>
                       <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Besöks & Postadress</span>
-                      <p className="text-gray-800 text-sm">Segerstavägen 7B<br/>741 43 Knivsta</p>
+                      <p className="text-gray-800 text-sm">Segerstavägen 7B<br />741 43 Knivsta</p>
                     </div>
                   </div>
 
@@ -49,8 +48,8 @@ export default function Contact() {
                   <div className="flex gap-4">
                     <Mail className="h-5 w-5 text-gray-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">E-post</span>
-                      <p className="text-gray-800 text-sm">info@nordicstangsel.se</p>
+                      <span className="block text-xs uppercase tracking-wider text-gray-500 mb-1">Offertförfrågan</span>
+                      <p className="text-gray-800 text-sm">Använd formuläret för att beskriva projektet och bifoga bilder.</p>
                     </div>
                   </div>
 
@@ -69,7 +68,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Form */}
             <div className="lg:col-span-8">
               <QuoteForm />
             </div>
