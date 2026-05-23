@@ -13,45 +13,45 @@ const projects = [
   {
     id: 1,
     image: project1Src,
-    type: "Industristängsel & Grindar",
-    segment: "Logistik & Transport",
-    desc: "En omfattande säkerhetsinstallation för ett nytt logistikcenter. Projektet innefattade över 800 meter 2.4 meter högt industristängsel, kombinerat med två motoriserade fribärande skjutgrindar om 8 meter för tung trafik. Högsta krav på driftsäkerhet och passagekontroll."
+    type: "Industri och verksamhetsområden",
+    segment: "Företag",
+    desc: "Projekt där tydlig avgränsning, genomtänkt inpassering och lösningar som fungerar i daglig drift behöver samspela.",
   },
   {
     id: 2,
     image: project2Src,
-    type: "Panelstängsel",
-    segment: "Kommunal Fastighet",
-    desc: "Säkring av utemiljö kring en nybyggd förskola. Vi installerade vridstyva panelstängsel som erbjuder hög säkerhet utan att ge en instängd känsla. Särskilt fokus lades på barnsäkra grindbeslag och noll tolerans mot skarpa kanter."
+    type: "Skolor och utbildningsmiljöer",
+    segment: "Skolor",
+    desc: "Uppdrag med fokus på trygghet, orienterbarhet och ett lugnt uttryck i miljöer där många människor rör sig varje dag.",
   },
   {
     id: 3,
     image: project3Src,
-    type: "Bollfångarnät & Publikstängsel",
-    segment: "Sport & Fritid",
-    desc: "Komplett områdesskydd för en nyanlagd fotbollsanläggning. Leverans och montering av 6 meter höga bollfångarnät bakom målen, samt robusta publikstängsel med integrerade evakueringsgrindar längs långsidorna."
+    type: "Idrottsanläggningar",
+    segment: "Idrottsanläggningar",
+    desc: "Lösningar för anläggningar där höjd, siktlinjer, publikflöden och slitstyrka behöver vägas samman från början.",
   },
   {
     id: 4,
     image: project4Src,
-    type: "Automatiskt Smidesstaket",
-    segment: "Privat Villa",
-    desc: "Ett exklusivt arkitektritat smidesstaket till en modern privatbostad. Installationen krävde hög precision för att matcha fastighetens formspråk. Inkluderar en måttanpassad motoriserad skjutgrind styrd via GSM och app."
+    type: "Villor och privata fastigheter",
+    segment: "Privata villakunder",
+    desc: "Projekt där funktion, trygghet och hur stängsel eller grindar samspelar med husets arkitektur är lika viktiga delar av helheten.",
   },
   {
     id: 5,
     image: project5Src,
-    type: "Högsäkerhetsstängsel",
-    segment: "Skyddsobjekt",
-    desc: "Uppgradering av perimeterskydd för en industrifastighet med förhöjd hotbild. Installation av säkerhetsklassat stängsel förstärkt med rakelbladstråd och sektionerade larmzoner för omedelbar intrångsdetektering."
+    type: "Objekt med högre skyddsbehov",
+    segment: "Säkerhetsmiljöer",
+    desc: "Genomföranden där nivå på områdesskydd, passager och praktiska driftskrav behöver definieras tydligt innan installation.",
   },
   {
     id: 6,
     image: project6Src,
-    type: "Park & Områdesavgränsning",
-    segment: "Offentlig Miljö",
-    desc: "Ett storskaligt projekt för avgränsning av en kommunal parkmiljö. Vi monterade klassiska flätverksstängsel med överliggare som smälter in i naturen, samtidigt som det skapar en tydlig gräns mot trafikerade vägar."
-  }
+    type: "Offentliga och gemensamma miljöer",
+    segment: "Kommuner & bostadsrättsföreningar",
+    desc: "Uppdrag för miljöer där hållbarhet, enkel skötsel och ett sammanhållet visuellt uttryck behöver fungera långsiktigt.",
+  },
 ];
 
 export default function Projects() {
@@ -65,10 +65,10 @@ export default function Projects() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-white/70 mb-4 block">Case Studies</span>
-            <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Utvalda projekt</h1>
+            <span className="text-xs uppercase tracking-[0.2em] text-white/70 mb-4 block">Projekt</span>
+            <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Utvalda projektmiljöer</h1>
             <p className="text-lg text-white/80 font-light max-w-2xl leading-relaxed">
-              Vi är stolta över den kvalitet vi levererar. Här presenterar vi ett urval av projekt som visar vår bredd — från högsäkerhetsanläggningar till eleganta villamiljöer.
+              Här visar vi exempel på vilken typ av uppdrag vi arbetar med och vilka frågor som brukar vara avgörande i olika miljöer.
             </p>
           </motion.div>
         </div>
@@ -87,22 +87,20 @@ export default function Projects() {
                 transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
               >
                 <div className="aspect-[16/10] overflow-hidden bg-gray-200 relative">
-                  <img 
-                    src={project.image} 
-                    alt={project.type} 
+                  <img
+                    src={project.image}
+                    alt={project.type}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-[#0f1f2e] text-xs font-semibold px-3 py-1 uppercase tracking-wider">
                     {project.segment}
                   </div>
                 </div>
-                
+
                 <div className="p-8 md:p-10 flex-grow flex flex-col">
                   <h2 className="text-2xl md:text-3xl font-serif text-[#0f1f2e] mb-4">{project.type}</h2>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">
-                    {project.desc}
-                  </p>
-                  
+                  <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">{project.desc}</p>
+
                   <div className="border-t border-gray-100 pt-6 mt-auto">
                     <Link href="/kontakt" className="inline-flex items-center text-sm font-semibold text-[#0f1f2e] hover:text-blue-700 transition-colors uppercase tracking-wider">
                       Diskutera liknande projekt <ArrowRight className="ml-2 h-4 w-4" />
@@ -120,7 +118,7 @@ export default function Projects() {
           <div className="max-w-2xl mx-auto border border-gray-200 p-12 md:p-16">
             <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e] mb-6">Har du ett liknande projekt?</h2>
             <p className="text-gray-600 mb-10 leading-relaxed">
-              Varje installation är unik. Vi utgår alltid från era specifika förutsättningar för att leverera ett områdesskydd som håller över tid.
+              Vi utgår från platsens krav, användningen över tid och vilken nivå av områdesskydd som passar bäst för er verksamhet eller fastighet.
             </p>
             <Link href="/kontakt">
               <Button size="lg" className="bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-14 px-8 text-base tracking-wide">
