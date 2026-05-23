@@ -42,12 +42,12 @@ export default function Integritetspolicy() {
 
             <section>
               <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">5. Dina rättigheter</h2>
-              <p>Du har rätt att begära tillgång till, rättelse eller radering av dina personuppgifter. Kontakta oss på <a href="mailto:info@nordicstangsel.se" className="text-[#1a3349] underline underline-offset-2">info@nordicstangsel.se</a> för sådana förfrågningar.</p>
+              <p>Du har rätt att begära tillgång till, rättelse eller radering av dina personuppgifter. Kontakta oss på <a href="mailto:info@nordicstangsel.com" className="text-[#1a3349] underline underline-offset-2">info@nordicstangsel.com</a> för sådana förfrågningar.</p>
             </section>
 
             <section>
               <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">6. Kontakt</h2>
-              <p>Nordic Stängsel AB<br />Segerstavägen 7B, 741 43 Knivsta<br />info@nordicstangsel.se</p>
+              <p>Nordic Stängsel AB<br />Segerstavägen 7B, 741 43 Knivsta<br />info@nordicstangsel.com</p>
             </section>
           </div>
         </motion.div>
