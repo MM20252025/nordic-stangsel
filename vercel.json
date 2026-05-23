@@ -3,7 +3,7 @@
   "buildCommand": "sh -c 'corepack enable; corepack prepare pnpm@9.15.9 --activate; pnpm install --no-frozen-lockfile; pnpm --filter @workspace/nordic-stangsel run build'",
   "installCommand": "echo 'Skipping default install; handled in buildCommand'",
   "framework": null,
-  "outputDirectory": "artifacts/nordic-stangsel/dist",
+  "outputDirectory": "artifacts/nordic-stangsel/dist/public",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
