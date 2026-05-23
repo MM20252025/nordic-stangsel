@@ -75,7 +75,7 @@ const services = [
 export default function Services() {
   return (
     <main className="w-full pt-20">
-      <section className="relative h-[60vh] min-h-[400px] w-full flex items-center bg-[#0f1f2e]">
+      <section className="relative h-[60vh] min-h-[400px] w-full flex items-center bg-[#1a3349]">
         <div className="absolute inset-0 z-0">
           <img 
             src="/src/assets/images/hero-tjanster.png" 
@@ -122,7 +122,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#0f1f2e] text-center">
+      <section className="py-24 bg-[#1a3349] text-center">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <span className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4 block">Kostnadsfri konsultation</span>

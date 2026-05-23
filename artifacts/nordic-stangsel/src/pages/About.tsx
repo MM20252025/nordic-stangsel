@@ -7,7 +7,7 @@ export default function About() {
   return (
     <main className="w-full pt-20">
       {/* Hero */}
-      <section className="relative h-[50vh] min-h-[400px] w-full flex items-center bg-[#0f1f2e]">
+      <section className="relative h-[50vh] min-h-[400px] w-full flex items-center bg-[#1a3349]">
         <div className="absolute inset-0 z-0">
           <img 
             src="/src/assets/images/hero-om-oss.png" 
@@ -119,7 +119,7 @@ export default function About() {
       </section>
 
       {/* Customers & Details */}
-      <section className="py-24 bg-[#0f1f2e] text-white">
+      <section className="py-24 bg-[#1a3349] text-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
             

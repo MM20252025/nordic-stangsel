@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="w-full">
       {/* 1. Hero section */}
-      <section className="relative h-[100vh] min-h-[600px] w-full flex items-center bg-[#0f1f2e]">
+      <section className="relative h-[100vh] min-h-[600px] w-full flex items-center bg-[#1a3349]">
         <div className="absolute inset-0 z-0">
           <img 
             src="/src/assets/images/hero-tjanster.png" 
@@ -120,7 +120,7 @@ export default function Home() {
             ].map((service, i) => (
               <Link key={i} href="/tjanster">
                 <motion.div 
-                  className="group block p-8 border border-gray-100 hover:border-[#0f1f2e] transition-all bg-white hover:bg-[#0f1f2e] cursor-pointer h-full"
+                  className="group block p-8 border border-gray-100 hover:border-[#0f1f2e] transition-all bg-white hover:bg-[#1a3349] cursor-pointer h-full"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -160,7 +160,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <div className="aspect-[3/2] overflow-hidden mb-6 bg-gray-200 relative">
-                <div className="absolute inset-0 bg-[#0f1f2e]/0 group-hover:bg-[#0f1f2e]/20 transition-all duration-500 z-10"></div>
+                <div className="absolute inset-0 bg-[#1a3349]/0 group-hover:bg-[#1a3349]/20 transition-all duration-500 z-10"></div>
                 <img src="/src/assets/images/project-1.png" alt="Industristängsel" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <span className="text-xs uppercase tracking-wider text-gray-500 mb-2 block">Industrifastighet</span>
@@ -181,7 +181,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <div className="aspect-[3/2] overflow-hidden mb-6 bg-gray-200 relative">
-                <div className="absolute inset-0 bg-[#0f1f2e]/0 group-hover:bg-[#0f1f2e]/20 transition-all duration-500 z-10"></div>
+                <div className="absolute inset-0 bg-[#1a3349]/0 group-hover:bg-[#1a3349]/20 transition-all duration-500 z-10"></div>
                 <img src="/src/assets/images/project-2.png" alt="Skolfencing" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <span className="text-xs uppercase tracking-wider text-gray-500 mb-2 block">Kommunal skola</span>
@@ -202,7 +202,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="aspect-[3/2] overflow-hidden mb-6 bg-gray-200 relative">
-                <div className="absolute inset-0 bg-[#0f1f2e]/0 group-hover:bg-[#0f1f2e]/20 transition-all duration-500 z-10"></div>
+                <div className="absolute inset-0 bg-[#1a3349]/0 group-hover:bg-[#1a3349]/20 transition-all duration-500 z-10"></div>
                 <img src="/src/assets/images/project-3.png" alt="Idrottsanläggning" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
               <span className="text-xs uppercase tracking-wider text-gray-500 mb-2 block">Sport & Fritid</span>
@@ -219,7 +219,7 @@ export default function Home() {
       </section>
 
       {/* 5 & 6. Why choose us / Process */}
-      <section className="py-24 bg-[#0f1f2e] text-white overflow-hidden">
+      <section className="py-24 bg-[#1a3349] text-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             
@@ -272,7 +272,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                   >
-                    <div className="hidden md:flex absolute left-0 top-0 w-12 h-12 bg-[#1a2f45] border border-white/20 items-center justify-center font-serif text-lg z-10">
+                    <div className="hidden md:flex absolute left-0 top-0 w-12 h-12 bg-[#264056] border border-white/20 items-center justify-center font-serif text-lg z-10">
                       {item.step}
                     </div>
                     <div className="md:hidden text-2xl font-serif text-white/30 pt-1">
@@ -340,7 +340,7 @@ export default function Home() {
       </section>
 
       {/* 7. Quote Section */}
-      <section className="py-24 bg-[#0f1f2e]">
+      <section className="py-24 bg-[#1a3349]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="mb-12 text-center">

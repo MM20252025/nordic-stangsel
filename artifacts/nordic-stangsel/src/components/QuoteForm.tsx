@@ -69,7 +69,7 @@ export function QuoteForm() {
 
   if (isSubmitted) {
     return (
-      <div className="bg-[#0f1f2e] text-white p-8 md:p-12 text-center" data-testid="quote-success">
+      <div className="bg-[#1a3349] text-white p-8 md:p-12 text-center" data-testid="quote-success">
         <div className="flex justify-center mb-6">
           <CheckCircle2 className="h-16 w-16 text-white/80" />
         </div>
@@ -214,7 +214,7 @@ export function QuoteForm() {
           <Button 
             type="submit" 
             size="lg" 
-            className="w-full bg-[#0f1f2e] hover:bg-[#1a2f45] text-white rounded-none h-14 text-base tracking-wide"
+            className="w-full bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-14 text-base tracking-wide"
             disabled={form.formState.isSubmitting}
             data-testid="button-submit-quote"
           >

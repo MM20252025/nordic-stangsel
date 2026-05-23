@@ -3,7 +3,7 @@ import logoSrc from "../../assets/images/nordic_logo_white_transparent.png";
 
 export function Footer() {
   return (
-    <footer className="bg-[#0f1f2e] text-white pt-16 pb-8 border-t border-white/10" data-testid="footer">
+    <footer className="bg-[#1a3349] text-white pt-16 pb-8 border-t border-white/10" data-testid="footer">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">

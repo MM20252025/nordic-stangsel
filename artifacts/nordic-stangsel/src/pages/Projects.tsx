@@ -51,7 +51,7 @@ const projects = [
 export default function Projects() {
   return (
     <main className="w-full pt-20">
-      <section className="py-24 bg-[#0f1f2e]">
+      <section className="py-24 bg-[#1a3349]">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function Projects() {
               Varje installation är unik. Vi utgår alltid från era specifika förutsättningar för att leverera ett områdesskydd som håller över tid.
             </p>
             <Link href="/kontakt">
-              <Button size="lg" className="bg-[#0f1f2e] hover:bg-[#1a2f45] text-white rounded-none h-14 px-8 text-base tracking-wide">
+              <Button size="lg" className="bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-14 px-8 text-base tracking-wide">
                 Kontakta oss idag
               </Button>
             </Link>

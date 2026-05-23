@@ -27,7 +27,7 @@ export function Navbar() {
   const headerClass = `fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     scrolled
       ? "bg-white border-b border-gray-200 shadow-sm"
-      : "bg-[#0f1f2e] border-b border-transparent"
+      : "bg-[#1a3349] border-b border-transparent"
   }`;
 
   const linkClass = scrolled ? "text-[#0f1f2e]/70 hover:text-[#0f1f2e]" : "text-white/70 hover:text-white";
@@ -65,7 +65,7 @@ export function Navbar() {
           </ul>
           <Link href="/kontakt" data-testid="link-nav-cta">
             {scrolled ? (
-              <Button className="bg-[#0f1f2e] text-white hover:bg-[#1a2f45] rounded-none transition-all duration-200">
+              <Button className="bg-[#1a3349] text-white hover:bg-[#264056] rounded-none transition-all duration-200">
                 Begär offert
               </Button>
             ) : (
@@ -88,7 +88,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="fixed inset-0 top-20 bg-[#0f1f2e] z-40 flex flex-col p-6 animate-in slide-in-from-top-2 md:hidden">
+        <div className="fixed inset-0 top-20 bg-[#1a3349] z-40 flex flex-col p-6 animate-in slide-in-from-top-2 md:hidden">
           <ul className="flex flex-col gap-6 text-center mt-8">
             {navLinks.map((link) => (
               <li key={link.href}>
