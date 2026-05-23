@@ -46,11 +46,37 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+type SubmissionMode = "api" | "mailto";
+
 const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
+const SUPPORT_EMAIL = "info@nordicstangsel.se";
+
+function buildMailtoLink(values: FormValues, attachmentCount: number) {
+  const subject = `Offertförfrågan - ${values.projectType}`;
+  const bodyLines = [
+    `Namn: ${values.name}`,
+    `Telefon: ${values.phone}`,
+    `E-post: ${values.email}`,
+    `Typ av projekt: ${values.projectType}`,
+    "",
+    "Projektbeskrivning:",
+    values.message,
+  ];
+
+  if (attachmentCount > 0) {
+    bodyLines.push(
+      "",
+      `Observera: ${attachmentCount} bildbilaga/bildbilagor valdes i formuläret och behöver bifogas manuellt i e-postmeddelandet.`,
+    );
+  }
+
+  return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+}
 
 export function QuoteForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const [submissionMode, setSubmissionMode] = useState<SubmissionMode>("api");
   const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const filesRef = useRef<FileList | null>(null);
@@ -69,6 +95,9 @@ export function QuoteForm() {
   async function onSubmit(values: FormValues) {
     setSubmitError(false);
 
+    const files = filesRef.current;
+    const attachmentCount = files?.length ?? 0;
+
     if (FORM_ENDPOINT) {
       try {
         const formData = new FormData();
@@ -78,7 +107,6 @@ export function QuoteForm() {
         formData.append("projectType", values.projectType);
         formData.append("message", values.message);
 
-        const files = filesRef.current;
         if (files && files.length > 0) {
           Array.from(files).forEach((file) => {
             formData.append("images", file, file.name);
@@ -91,6 +119,7 @@ export function QuoteForm() {
           body: formData,
         });
         if (res.ok) {
+          setSubmissionMode("api");
           setIsSubmitted(true);
         } else {
           setSubmitError(true);
@@ -98,9 +127,14 @@ export function QuoteForm() {
       } catch {
         setSubmitError(true);
       }
-    } else {
-      setSubmitError(true);
+      return;
     }
+
+    if (typeof window !== "undefined") {
+      window.location.href = buildMailtoLink(values, attachmentCount);
+    }
+    setSubmissionMode("mailto");
+    setIsSubmitted(true);
   }
 
   if (isSubmitted) {
@@ -109,9 +143,13 @@ export function QuoteForm() {
         <div className="flex justify-center mb-6">
           <CheckCircle2 className="h-16 w-16 text-white/80" />
         </div>
-        <h3 className="text-2xl font-serif mb-4">Tack för din förfrågan</h3>
+        <h3 className="text-2xl font-serif mb-4">
+          {submissionMode === "api" ? "Tack för din förfrågan" : "E-postutkast öppnat"}
+        </h3>
         <p className="text-white/70 mb-8 max-w-md mx-auto">
-          Vi har mottagit dina uppgifter och återkommer så snart vi kan med en offert eller eventuella följdfrågor.
+          {submissionMode === "api"
+            ? "Vi har mottagit dina uppgifter och återkommer så snart vi kan med en offert eller eventuella följdfrågor."
+            : "Vi har förberett din förfrågan i din e-postapp. Lägg gärna till eventuella bilder som bilagor innan du skickar meddelandet."}
         </p>
         <Button
           variant="outline"
@@ -119,6 +157,7 @@ export function QuoteForm() {
           onClick={() => {
             setIsSubmitted(false);
             setSubmitError(false);
+            setSubmissionMode("api");
             form.reset();
             setFileName(null);
             filesRef.current = null;
@@ -159,11 +198,11 @@ export function QuoteForm() {
               Stockholm: +46 8 35 63 66
             </a>
             <a
-              href="mailto:info@nordicstangsel.se"
+              href={`mailto:${SUPPORT_EMAIL}`}
               className="flex items-center gap-2 text-[#0f1f2e] hover:text-[#1a3349] font-medium transition-colors"
             >
               <Mail className="h-3.5 w-3.5 shrink-0" />
-              info@nordicstangsel.se
+              {SUPPORT_EMAIL}
             </a>
           </div>
         </div>
@@ -314,6 +353,11 @@ export function QuoteForm() {
               </label>
               {fileName && <span className="text-sm text-gray-500">{fileName}</span>}
             </div>
+            {!FORM_ENDPOINT && (
+              <p className="text-xs text-gray-500 mt-3">
+                Om direktkoppling inte är aktiv öppnas din e-postapp med uppgifterna förifyllda när du skickar formuläret.
+              </p>
+            )}
           </div>
 
           <Button
