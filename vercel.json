@@ -1,9 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm install -g pnpm@9 && pnpm install --frozen-lockfile=false && pnpm --filter @workspace/nordic-stangsel run build",
-  "outputDirectory": "artifacts/nordic-stangsel/dist/public",
+  "buildCommand": "sh -c 'corepack enable; corepack prepare pnpm@9.15.9 --activate; pnpm install --no-frozen-lockfile; pnpm --filter @workspace/nordic-stangsel run build'",
   "installCommand": "echo 'Skipping default install; handled in buildCommand'",
   "framework": null,
+  "outputDirectory": "artifacts/nordic-stangsel/dist",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
