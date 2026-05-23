@@ -17,42 +17,39 @@ export default function Villkor() {
           </Link>
 
           <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Juridisk information</span>
-          <h1 className="text-4xl md:text-5xl font-serif text-[#0f1f2e] mb-12">Allmänna villkor</h1>
+          <h1 className="text-4xl md:text-5xl font-serif text-[#0f1f2e] mb-12">Villkor</h1>
 
           <div className="prose prose-gray max-w-none space-y-8 text-gray-600 leading-relaxed">
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">1. Parter</h2>
-              <p>Dessa allmänna villkor gäller mellan Nordic Stängsel AB (org.nr 559582-1900), nedan kallat "Leverantören", och kunden som beställer tjänster.</p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">1. Offert och projektupplägg</h2>
+              <p>
+                Varje uppdrag bedöms utifrån platsens förutsättningar, omfattning och önskad lösning. Detaljer om pris,
+                innehåll, tidplan och genomförande lämnas i samband med offert och vidare projektgenomgång.
+              </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">2. Offerter och beställningar</h2>
-              <p>En offert är giltig i 30 dagar från utfärdandedatum om inget annat anges. Beställning är bindande när kunden skriftligen accepterat offerten och Leverantören bekräftat beställningen.</p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">2. Skriftligt underlag</h2>
+              <p>
+                För att skapa tydlighet dokumenteras relevanta delar av uppdraget skriftligt innan genomförande, så att
+                omfattning och praktiska förutsättningar är tydliga för båda parter.
+              </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">3. Priser och betalning</h2>
-              <p>Alla priser anges exklusive moms om inte annat anges. Betalningsvillkor är 30 dagar netto från fakturadatum. Vid försenad betalning tillkommer dröjsmålsränta enligt räntelagen.</p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">3. Förändringar i projekt</h2>
+              <p>
+                Om förutsättningarna förändras under projektets gång behöver lösning, omfattning eller tidplan ibland
+                justeras. Sådana frågor hanteras i dialog och förtydligas innan ändringen genomförs.
+              </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">4. Leverans och installation</h2>
-              <p>Leveranstider är vägledande och inte bindande om inte uttryckligen avtalats. Leverantören ansvarar för fackmannamässig installation i enlighet med gällande branschstandard.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">5. Garanti och reklamation</h2>
-              <p>Leverantören lämnar två (2) års garanti på utfört arbete. Material följer respektive tillverkares garantivillkor. Reklamation ska göras skriftligen inom skälig tid efter att felet upptäckts.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">6. Ansvarsbegränsning</h2>
-              <p>Leverantörens skadeståndsansvar är begränsat till det belopp kunden betalat för det aktuella uppdraget. Leverantören ansvarar inte för indirekta skador.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">7. Tvistelösning</h2>
-              <p>Tvist i anledning av detta avtal ska avgöras av svensk domstol med Uppsala tingsrätt som första instans. Svensk rätt ska tillämpas.</p>
+              <h2 className="text-xl font-semibold text-[#0f1f2e] mb-3">4. Kontakt kring aktuella villkor</h2>
+              <p>
+                Om du vill ta del av aktuella villkor för ett planerat uppdrag är du välkommen att kontakta oss i samband
+                med din förfrågan, så går vi igenom vad som gäller för just ditt projekt.
+              </p>
             </section>
           </div>
         </motion.div>
