@@ -91,6 +91,9 @@ export default function Projects() {
                     src={project.image}
                     alt={project.type}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    sizes="(min-width: 1024px) 40vw, 100vw"
                   />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-[#0f1f2e] text-xs font-semibold px-3 py-1 uppercase tracking-wider">
                     {project.segment}
