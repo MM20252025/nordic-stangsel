@@ -101,19 +101,19 @@ export default function Services() {
 
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100">
             {services.map((service, i) => (
               <motion.div
                 key={service.id}
-                className="p-8 border border-gray-100 bg-gray-50/50 flex flex-col h-full"
+                className="p-8 bg-white flex flex-col h-full group hover:bg-gray-50 transition-colors duration-200"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
+                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
               >
-                <service.icon className="h-10 w-10 text-[#0f1f2e] mb-6 stroke-[1.5]" />
-                <h2 className="text-2xl font-serif text-[#0f1f2e] mb-4">{service.title}</h2>
-                <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+                <service.icon className="h-8 w-8 text-[#0f1f2e]/40 mb-6 stroke-[1.5]" />
+                <h2 className="text-xl font-serif text-[#0f1f2e] mb-3">{service.title}</h2>
+                <p className="text-gray-500 text-sm leading-relaxed flex-grow">
                   {service.desc}
                 </p>
               </motion.div>
@@ -122,15 +122,16 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="py-24 bg-gray-100 text-center">
+      <section className="py-24 bg-[#0f1f2e] text-center">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e] mb-6">Redo att påbörja ditt projekt?</h2>
-            <p className="text-gray-600 mb-10 leading-relaxed">
-              Kontakta oss för en kostnadsfri konsultation och offert. Vi hjälper dig att hitta rätt lösning för dina specifika behov.
+            <span className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4 block">Kostnadsfri konsultation</span>
+            <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">Redo att påbörja ditt projekt?</h2>
+            <p className="text-white/60 mb-10 leading-relaxed max-w-xl mx-auto">
+              Vi hjälper dig att hitta rätt lösning för dina specifika behov.
             </p>
             <Link href="/kontakt">
-              <Button size="lg" className="bg-[#0f1f2e] hover:bg-[#1a2f45] text-white rounded-none h-14 px-8 text-base tracking-wide">
+              <Button size="lg" className="bg-white text-[#0f1f2e] hover:bg-white/90 rounded-none h-13 px-10 text-sm tracking-widest uppercase">
                 Begär offert
               </Button>
             </Link>

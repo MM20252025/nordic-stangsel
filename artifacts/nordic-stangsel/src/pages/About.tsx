@@ -107,8 +107,8 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <div className="mx-auto w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-6">
-                  <val.icon className="h-8 w-8 text-[#0f1f2e] stroke-[1.5]" />
+                <div className="mx-auto w-14 h-14 bg-gray-50 border border-gray-100 flex items-center justify-center mb-6">
+                  <val.icon className="h-7 w-7 text-[#0f1f2e]/60 stroke-[1.5]" />
                 </div>
                 <h3 className="text-xl font-serif text-[#0f1f2e] mb-3">{val.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{val.desc}</p>

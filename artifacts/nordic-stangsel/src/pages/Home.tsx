@@ -68,56 +68,28 @@ export default function Home() {
       </section>
 
       {/* 2. Trust section */}
-      <section className="py-24 bg-white border-t border-gray-100">
+      <section className="py-20 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <motion.div 
-              className="flex flex-col items-start p-6 bg-white border-b-2 border-transparent hover:border-[#0f1f2e] transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0 }}
-            >
-              <Hammer className="h-8 w-8 text-[#0f1f2e] mb-4 stroke-[1.5]" />
-              <h3 className="font-semibold text-lg text-[#0f1f2e] mb-2 font-serif">Professionell montering</h3>
-              <p className="text-gray-500 text-sm">Erfarna montörer säkerställer högsta kvalitet.</p>
-            </motion.div>
-            
-            <motion.div 
-              className="flex flex-col items-start p-6 bg-white border-b-2 border-transparent hover:border-[#0f1f2e] transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <MapPin className="h-8 w-8 text-[#0f1f2e] mb-4 stroke-[1.5]" />
-              <h3 className="font-semibold text-lg text-[#0f1f2e] mb-2 font-serif">Hela Sverige</h3>
-              <p className="text-gray-500 text-sm">Lokala kontor i Uppsala och Stockholm, rikstäckande.</p>
-            </motion.div>
-
-            <motion.div 
-              className="flex flex-col items-start p-6 bg-white border-b-2 border-transparent hover:border-[#0f1f2e] transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <ShieldCheck className="h-8 w-8 text-[#0f1f2e] mb-4 stroke-[1.5]" />
-              <h3 className="font-semibold text-lg text-[#0f1f2e] mb-2 font-serif">Hållbara material</h3>
-              <p className="text-gray-500 text-sm">Svensk kvalitet byggd för nordiskt klimat.</p>
-            </motion.div>
-
-            <motion.div 
-              className="flex flex-col items-start p-6 bg-white border-b-2 border-transparent hover:border-[#0f1f2e] transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Clock className="h-8 w-8 text-[#0f1f2e] mb-4 stroke-[1.5]" />
-              <h3 className="font-semibold text-lg text-[#0f1f2e] mb-2 font-serif">Snabb offert</h3>
-              <p className="text-gray-500 text-sm">Tydliga priser och snabb återkoppling.</p>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+            {[
+              { icon: Hammer, title: "Professionell montering", desc: "Erfarna montörer säkerställer högsta kvalitet." },
+              { icon: MapPin, title: "Hela Sverige", desc: "Kontor i Uppsala och Stockholm — rikstäckande." },
+              { icon: ShieldCheck, title: "Hållbara material", desc: "Svensk kvalitet byggd för nordiskt klimat." },
+              { icon: Clock, title: "Snabb offert", desc: "Tydliga priser och snabb återkoppling." },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                className="flex flex-col items-start px-8 py-10 first:pl-0 last:pr-0 group"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                <item.icon className="h-7 w-7 text-[#0f1f2e]/50 mb-5 stroke-[1.5]" />
+                <h3 className="font-serif text-base text-[#0f1f2e] mb-2 leading-snug">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -127,7 +99,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="max-w-2xl">
-              <span className="text-xs uppercase tracking-[0.2em] text-gray-300 mb-4 block">Expertis</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Expertis</span>
               <h2 className="text-3xl md:text-5xl font-serif text-[#0f1f2e]">Våra tjänster</h2>
             </div>
             <Link href="/tjanster">
@@ -300,7 +272,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
                   >
-                    <div className="hidden md:flex absolute left-0 top-0 w-12 h-12 rounded-full bg-[#1a2f45] border border-white/20 items-center justify-center font-serif text-lg z-10">
+                    <div className="hidden md:flex absolute left-0 top-0 w-12 h-12 bg-[#1a2f45] border border-white/20 items-center justify-center font-serif text-lg z-10">
                       {item.step}
                     </div>
                     <div className="md:hidden text-2xl font-serif text-white/30 pt-1">
@@ -320,14 +292,14 @@ export default function Home() {
       </section>
 
       {/* 8. Reviews */}
-      <section className="py-24 bg-white border-b border-gray-100">
+      <section className="py-24 bg-gray-50 border-t border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Omdömen</span>
-            <h2 className="text-3xl md:text-5xl font-serif text-[#0f1f2e]">Vad säger våra kunder?</h2>
+            <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e]">Vad säger våra kunder?</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 text: "Mycket professionellt utförande från start till mål. Stängslet kring vår logistikanläggning levererades enligt tidplan och kvaliteten är över förväntan.",
@@ -347,20 +319,19 @@ export default function Home() {
             ].map((review, i) => (
               <motion.div 
                 key={i}
-                className="bg-white p-8 border border-gray-100 border-l-2 border-l-[#0f1f2e]/10 relative"
+                className="bg-white p-8 border border-gray-100 flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <span className="text-6xl text-gray-100 font-serif absolute -top-2 left-4 leading-none select-none">"</span>
-                <div className="flex gap-1 mb-6 text-[#0f1f2e]">
-                  {[...Array(5)].map((_, j) => <Star key={j} className="h-4 w-4 fill-current" />)}
+                <div className="flex gap-1 mb-6 text-[#0f1f2e]/70">
+                  {[...Array(5)].map((_, j) => <Star key={j} className="h-3.5 w-3.5 fill-current" />)}
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-8 italic relative z-10">"{review.text}"</p>
-                <div className="relative z-10">
-                  <p className="font-semibold text-[#0f1f2e] text-sm">{review.role}</p>
-                  <p className="text-xs text-gray-500">{review.company}</p>
+                <p className="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">"{review.text}"</p>
+                <div className="border-t border-gray-100 pt-5">
+                  <p className="font-medium text-[#0f1f2e] text-sm">{review.role}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">{review.company}</p>
                 </div>
               </motion.div>
             ))}
@@ -369,9 +340,13 @@ export default function Home() {
       </section>
 
       {/* 7. Quote Section */}
-      <section className="py-24 bg-gray-100">
+      <section className="py-24 bg-[#0f1f2e]">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-12 text-center">
+              <span className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4 block">Kostnadsfri offert</span>
+              <h2 className="text-3xl md:text-4xl font-serif text-white">Begär offert</h2>
+            </div>
             <QuoteForm />
           </div>
         </div>
