@@ -293,15 +293,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. Reviews / Trust & Cooperation section */}
+      {/* 8. Reviews section */}
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Samarbete & Kvalitetslöfte</span>
-              <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e] mb-6">Vad ni kan förvänta er</h2>
+              <span className="text-xs uppercase tracking-[0.2em] text-gray-400 mb-4 block">Referenser & omdömen</span>
+              <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e] mb-6">Underlag för ett tryggt beslut</h2>
               <p className="text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-                Vi arbetar systematiskt och transparent. Varje uppdrag dokumenteras och varje leverans följs upp — det är så vi bygger långsiktiga relationer med våra uppdragsgivare.
+                Vi delar referenser från relevanta uppdrag i samband med dialog och offert, så att ni kan bedöma vår
+                arbetsform, leveransnivå och erfarenhet i rätt kontext.
               </p>
             </div>
 
@@ -309,18 +310,18 @@ export default function Home() {
               {[
                 {
                   icon: FileText,
-                  title: "Referenser på begäran",
-                  desc: "Vi delar gärna kontaktuppgifter till tidigare uppdragsgivare inom motsvarande sektor — direkt i offertskedet, efter samtycke.",
+                  title: "Referenser för liknande uppdrag",
+                  desc: "Vid förfrågan går vi igenom referensmaterial och tidigare projekt som är relevanta för er typ av miljö och kravbild.",
                 },
                 {
                   icon: Handshake,
-                  title: "Tydlig avtalsstruktur",
-                  desc: "Skriftlig offert med specifikation, fast pris där det är möjligt, och definierade leveranstider. Inga överraskningar i efterhand.",
+                  title: "Tydlig dialog genom projektet",
+                  desc: "Ni får en rak genomgång av lösning, omfattning och praktiska förutsättningar innan genomförandet planeras vidare.",
                 },
                 {
                   icon: Wrench,
-                  title: "Garanti & uppföljning",
-                  desc: "Materialgaranti enligt tillverkare och garanti på utfört montagearbete. Vi följer upp leveransen efter slutbesiktning.",
+                  title: "Uppföljning efter leverans",
+                  desc: "Efter avslutat montage följer vi upp resultatet tillsammans, så att funktion och slututförande stämmer med projektets mål.",
                 },
               ].map((item, i) => (
                 <motion.div
@@ -340,7 +341,8 @@ export default function Home() {
 
             <div className="mt-16 text-center">
               <p className="text-sm text-gray-500 mb-6 max-w-xl mx-auto font-light leading-relaxed">
-                Vill ni tala med någon av våra tidigare uppdragsgivare innan beslut? Hör av er — vi förmedlar gärna referenser inom er sektor.
+                Vill ni se referenser från en liknande typ av anläggning eller verksamhet? Hör av er så sätter vi rätt
+                underlag i rätt sammanhang.
               </p>
               <Link href="/kontakt">
                 <Button className="bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-12 px-8 text-sm tracking-widest uppercase">
