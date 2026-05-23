@@ -7,12 +7,11 @@ import heroSrc from "../assets/images/hero-om-oss.png";
 export default function About() {
   return (
     <main className="w-full pt-20">
-      {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] w-full flex items-center bg-[#1a3349]">
         <div className="absolute inset-0 z-0">
-          <img 
-            src={heroSrc} 
-            alt="Om Nordic Stängsel" 
+          <img
+            src={heroSrc}
+            alt="Om Nordic Stängsel"
             className="w-full h-full object-cover object-center opacity-40 mix-blend-overlay"
           />
         </div>
@@ -23,13 +22,12 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl text-center mx-auto"
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-white/70 mb-4 block">Företaget</span>
-            <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Om Nordic Stängsel</h1>
+            <span className="text-xs uppercase tracking-[0.2em] text-white/70 mb-4 block">Om oss</span>
+            <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Nordic Stängsel</h1>
           </motion.div>
         </div>
       </section>
 
-      {/* Story */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
@@ -39,16 +37,16 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-serif text-[#0f1f2e] mb-8">Vi bygger säkerhet över hela Sverige</h2>
+              <h2 className="text-3xl font-serif text-[#0f1f2e] mb-8">En professionell partner för stängsel och grindar</h2>
               <div className="prose prose-lg text-gray-600 font-sans max-w-none">
                 <p>
-                  Nordic Stängsel etablerades med en tydlig övertygelse: stängsel och grindar är inte bara funktionella avskärmningar, de är infrastrukturella investeringar som kräver högsta grad av professionalism och materialkännedom.
+                  Nordic Stängsel arbetar med stängsel- och grindlösningar för företag, skolor, idrottsanläggningar, kommuner, bostadsrättsföreningar och privata villakunder.
                 </p>
                 <p>
-                  Vi är ett premium installationsföretag som vänder sig till kunder med höga krav på kvalitet, leveranssäkerhet och estetik. Med kontor i Uppsala och Stockholm hanterar vi entreprenader över hela landet — från avancerade högsäkerhetsanläggningar för industri, till skräddarsydda smideslösningar för privata fastigheter.
+                  Vår roll är att hjälpa kunder att välja en lösning som fungerar i praktiken, passar platsens förutsättningar och håller ihop både tekniskt och visuellt.
                 </p>
                 <p>
-                  Vår styrka ligger i helheten. Vi hanterar hela kedjan från första projektering och riskbedömning, genom markarbete och installation, fram till färdigbesiktning. Våra montörer förstår vikten av noggrannhet och fackmannamässighet, oavsett om det handlar om en enskild villagrind eller ett storskaligt industristängsel.
+                  Vi lägger stor vikt vid tydlig projektdialog, genomtänkt planering och ett montage som känns färdigt i varje detalj. Det är så vi vill att Nordic Stängsel ska upplevas som samarbetspartner.
                 </p>
               </div>
             </motion.div>
@@ -56,7 +54,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
       <section className="py-24 bg-gray-50 border-y border-gray-200">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl mx-auto">
@@ -66,9 +63,9 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-serif text-[#0f1f2e] mb-4">Vår vision</h3>
+              <h3 className="text-2xl font-serif text-[#0f1f2e] mb-4">Hur vi arbetar</h3>
               <p className="text-gray-600 leading-relaxed">
-                Att vara Sveriges mest pålitliga och kvalitetsmedvetna leverantör av områdesskydd. Vi ska driva branschstandarden framåt gällande montagekvalitet, säkerhet och kundupplevelse.
+                Vi börjar med platsens behov och förutsättningar. Därefter konkretiserar vi lösning, omfattning och genomförande på ett sätt som gör projektet lätt att förstå och lättare att besluta om.
               </p>
             </motion.div>
             <motion.div
@@ -77,31 +74,30 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-2xl font-serif text-[#0f1f2e] mb-4">Vårt uppdrag</h3>
+              <h3 className="text-2xl font-serif text-[#0f1f2e] mb-4">Vad som är viktigt för oss</h3>
               <p className="text-gray-600 leading-relaxed">
-                Att erbjuda trygga, hållbara och estetiskt tilltalande lösningar som skyddar människor, egendom och värden. Vi levererar säkerhet som håller för framtiden.
+                Ett bra resultat kräver tydliga beslut, relevant materialval och ett montage som fungerar över tid. Därför prioriterar vi struktur, precision och ett lugnt samarbete genom hela processen.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e]">Våra Kärnvärden</h2>
+            <h2 className="text-3xl md:text-4xl font-serif text-[#0f1f2e]">Våra arbetssätt</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: ShieldCheck, title: "Kvalitet", desc: "Vi kompromissar aldrig med materialval eller utförande. Rätt från början." },
-              { icon: Target, title: "Pålitlighet", desc: "Vi håller vad vi lovar, levererar i tid och kommunicerar rakt och ärligt." },
-              { icon: Leaf, title: "Hållbarhet", desc: "Svenska stålprodukter byggda för att klara nordiskt klimat under decennier." },
-              { icon: Users, title: "Professionalism", desc: "Våra montörer uppträder alltid med högsta yrkesheder ute hos kund." }
-            ].map((val, i) => (
-              <motion.div 
-                key={i}
+              { icon: ShieldCheck, title: "Kvalitet", desc: "Vi väljer lösningar och utförande med långsiktig funktion och tydlig finish i fokus." },
+              { icon: Target, title: "Noggrannhet", desc: "Vi planerar utifrån platsens verkliga förutsättningar i stället för generella standardlösningar." },
+              { icon: Leaf, title: "Hållbarhet", desc: "Vi prioriterar lösningar som fungerar i vardagen och är rimliga att förvalta över tid." },
+              { icon: Users, title: "Professionalism", desc: "Kommunikation, närvaro på plats och genomförande ska kännas ordnat från start till överlämning." },
+            ].map((value, i) => (
+              <motion.div
+                key={value.title}
                 className="text-center p-8 bg-white border border-gray-100 hover:shadow-md transition-shadow"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -109,34 +105,31 @@ export default function About() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
                 <div className="mx-auto w-14 h-14 bg-gray-50 border border-gray-100 flex items-center justify-center mb-6">
-                  <val.icon className="h-7 w-7 text-[#0f1f2e]/60 stroke-[1.5]" />
+                  <value.icon className="h-7 w-7 text-[#0f1f2e]/60 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-serif text-[#0f1f2e] mb-3">{val.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{val.desc}</p>
+                <h3 className="text-xl font-serif text-[#0f1f2e] mb-3">{value.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{value.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Customers & Details */}
       <section className="py-24 bg-[#1a3349] text-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-            
             <div>
               <h3 className="text-2xl font-serif mb-6">Vilka vi arbetar för</h3>
               <p className="text-white/70 mb-8 leading-relaxed">
-                Vi har kapacitet att hantera projekt i alla storlekar. Våra uppdragsgivare återfinns inom både privat och offentlig sektor.
+                Våra uppdrag spänner över både offentlig och privat miljö, med olika krav på säkerhet, uttryck, flöden och långsiktig funktion.
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white/80 text-sm">
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Byggföretag & Entreprenörer</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Kommuner & Myndigheter</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Industrier & Logistik</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Skolor & Förskolor</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Idrottsföreningar</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Fastighetsbolag & BRF</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40"></div> Privata villaägare</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Skolor</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Kommuner</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Idrottsanläggningar</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Företag</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Bostadsrättsföreningar</li>
+                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Privata villakunder</li>
               </ul>
             </div>
 
@@ -144,16 +137,16 @@ export default function About() {
               <h3 className="text-2xl font-serif mb-6">Företagsuppgifter</h3>
               <div className="space-y-6 text-white/80">
                 <div>
-                  <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Huvudkontor</span>
+                  <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Adress</span>
                   <p>Segerstavägen 7B, 741 43 Knivsta</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Region Uppsala</span>
+                    <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Uppsala</span>
                     <p>+46 18 34 61 11</p>
                   </div>
                   <div>
-                    <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Region Stockholm</span>
+                    <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Stockholm</span>
                     <p>+46 8 35 63 66</p>
                   </div>
                 </div>
@@ -170,7 +163,6 @@ export default function About() {
                 </Link>
               </div>
             </div>
-
           </div>
         </div>
       </section>
