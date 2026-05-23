@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Shield, MapPin, Clock, Hammer, ShieldCheck, Factory, School, Home as HomeIcon, ChevronRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuoteForm } from "@/components/QuoteForm";
-import logoTransparentSrc from "../assets/images/nordic_logo_transparent.png";
+import logoTransparentSrc from "../assets/images/nordic_logo_white_transparent.png";
 
 export default function Home() {
   return (
