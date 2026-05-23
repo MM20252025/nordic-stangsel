@@ -16,9 +16,8 @@ export default function Home() {
             alt="Professionell stängselmontering" 
             className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-[#0c1824]/40"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c1824] via-[#0c1824]/75 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c1824]/60 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-[#0c1824]/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/30 via-transparent to-[#0c1824]/50"></div>
         </div>
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
@@ -37,7 +36,7 @@ export default function Home() {
             <div className="w-10 h-[1px] bg-white/30 mb-10"></div>
 
             <h1 className="text-[2rem] leading-[1.2] md:text-[3rem] md:leading-[1.1] lg:text-[3.75rem] lg:leading-[1.05] font-serif font-medium text-white mb-5 max-w-2xl">
-              Premium stängsel och grindar
+              Stängsel med nordisk precision
             </h1>
 
             <p className="text-sm md:text-base text-white/60 font-light max-w-sm mb-12 leading-relaxed tracking-wide">
