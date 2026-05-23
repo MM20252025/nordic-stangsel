@@ -13,6 +13,8 @@ export default function About() {
             src={heroSrc}
             alt="Om Nordic Stängsel"
             className="w-full h-full object-cover object-center opacity-40 mix-blend-overlay"
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
