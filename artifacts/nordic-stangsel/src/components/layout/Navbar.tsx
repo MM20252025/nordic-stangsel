@@ -4,19 +4,33 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoWhiteSrc from "../../assets/images/nordic_logo_white_transparent.png";
 import logoLightSrc from "../../assets/images/nordic_logo_horizontal.png";
-
-const navLinks = [
-  { href: "/", label: "Start" },
-  { href: "/tjanster", label: "Tjänster" },
-  { href: "/projekt", label: "Projekt" },
-  { href: "/om-oss", label: "Om oss" },
-  { href: "/kontakt", label: "Kontakt" },
-];
+import { useLanguage } from "@/lib/language";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const { language, setLanguage } = useLanguage();
+
+  const navLinks = language === "sv"
+    ? [
+        { href: "/", label: "Start" },
+        { href: "/tjanster", label: "Tjänster" },
+        { href: "/projekt", label: "Projekt" },
+        { href: "/om-oss", label: "Om oss" },
+        { href: "/kontakt", label: "Kontakt" },
+      ]
+    : [
+        { href: "/", label: "Home" },
+        { href: "/tjanster", label: "Services" },
+        { href: "/projekt", label: "Projects" },
+        { href: "/om-oss", label: "About" },
+        { href: "/kontakt", label: "Contact" },
+      ];
+
+  const ctaLabel = language === "sv" ? "Få kostnadsfri offert inom 24 timmar" : "Get a free quote within 24 hours";
+  const openLabel = language === "sv" ? "Öppna meny" : "Open menu";
+  const closeLabel = language === "sv" ? "Stäng meny" : "Close menu";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY >= 40);
@@ -52,10 +66,12 @@ export function Navbar() {
   const activeLinkClass = scrolled
     ? "text-[#0f1f2e] border-b-2 border-[#0f1f2e] pb-1"
     : "text-white border-b-2 border-white pb-1";
+  const switcherBase = scrolled ? "border-gray-300 bg-white text-[#0f1f2e]" : "border-white/30 bg-white/5 text-white";
+  const switcherActive = scrolled ? "bg-[#1a3349] text-white border-[#1a3349]" : "bg-white text-[#0f1f2e] border-white";
 
   return (
     <header className={headerClass} data-testid="navbar">
-      <div className="container mx-auto px-4 md:px-6 h-[80px] flex items-center justify-between">
+      <div className="container mx-auto flex h-[80px] items-center justify-between px-4 md:px-6">
         <Link href="/" className="inline-block" data-testid="link-logo">
           {scrolled ? (
             <img src={logoLightSrc} alt="Nordic Stängsel" className="h-10 w-auto" />
@@ -64,7 +80,7 @@ export function Navbar() {
           )}
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden items-center gap-8 md:flex">
           <ul className="flex items-center gap-6">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -80,41 +96,78 @@ export function Navbar() {
               </li>
             ))}
           </ul>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setLanguage("sv")}
+              className={`min-w-10 border px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${switcherBase} ${language === "sv" ? switcherActive : ""}`}
+              aria-pressed={language === "sv"}
+            >
+              SV
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage("en")}
+              className={`min-w-10 border px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${switcherBase} ${language === "en" ? switcherActive : ""}`}
+              aria-pressed={language === "en"}
+            >
+              EN
+            </button>
+          </div>
+
           <Link href="/kontakt" data-testid="link-nav-cta">
             {scrolled ? (
-              <Button className="bg-[#1a3349] text-white hover:bg-[#264056] rounded-none transition-all duration-200">
-                Få kostnadsfri offert inom 24 timmar
+              <Button className="rounded-none bg-[#1a3349] text-white transition-all duration-200 hover:bg-[#264056]">
+                {ctaLabel}
               </Button>
             ) : (
-              <Button variant="outline" className="bg-transparent text-white border-white/50 hover:bg-white hover:text-[#0f1f2e] rounded-none transition-all duration-200">
-                Få kostnadsfri offert inom 24 timmar
+              <Button variant="outline" className="rounded-none border-white/50 bg-transparent text-white transition-all duration-200 hover:bg-white hover:text-[#0f1f2e]">
+                {ctaLabel}
               </Button>
             )}
           </Link>
         </nav>
 
         <button
-          className={`md:hidden p-2 -mr-2 ${scrolled ? "text-[#0f1f2e]" : "text-white"}`}
+          className={`-mr-2 p-2 md:hidden ${scrolled ? "text-[#0f1f2e]" : "text-white"}`}
           onClick={() => setIsOpen(!isOpen)}
           data-testid="button-mobile-menu"
           aria-expanded={isOpen}
-          aria-label={isOpen ? "Stäng meny" : "Öppna meny"}
+          aria-label={isOpen ? closeLabel : openLabel}
         >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 top-20 bg-[#1a3349] z-40 flex flex-col p-6 animate-in slide-in-from-top-2 md:hidden">
-          <ul className="flex flex-col gap-6 text-center mt-8">
+        <div className="fixed inset-0 top-20 z-40 flex flex-col bg-[#1a3349] p-6 animate-in slide-in-from-top-2 md:hidden">
+          <div className="mb-8 flex items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={() => setLanguage("sv")}
+              className={`min-w-12 border px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${language === "sv" ? "border-white bg-white text-[#0f1f2e]" : "border-white/30 bg-white/5 text-white"}`}
+              aria-pressed={language === "sv"}
+            >
+              SV
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage("en")}
+              className={`min-w-12 border px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${language === "en" ? "border-white bg-white text-[#0f1f2e]" : "border-white/30 bg-white/5 text-white"}`}
+              aria-pressed={language === "en"}
+            >
+              EN
+            </button>
+          </div>
+
+          <ul className="mt-8 flex flex-col gap-6 text-center">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`text-2xl font-medium ${
-                    location === link.href ? "text-white" : "text-white/70"
-                  }`}
+                  className={`text-2xl font-medium ${location === link.href ? "text-white" : "text-white/70"}`}
                 >
                   {link.label}
                 </Link>
@@ -123,8 +176,8 @@ export function Navbar() {
           </ul>
           <div className="mt-12 text-center">
             <Link href="/kontakt" onClick={() => setIsOpen(false)}>
-              <Button size="lg" className="w-full bg-white text-[#0f1f2e] hover:bg-white/90 rounded-none text-lg whitespace-normal leading-snug py-4 h-auto min-h-14">
-                Få kostnadsfri offert inom 24 timmar
+              <Button size="lg" className="h-auto min-h-14 w-full whitespace-normal rounded-none bg-white py-4 text-lg leading-snug text-[#0f1f2e] hover:bg-white/90">
+                {ctaLabel}
               </Button>
             </Link>
           </div>
