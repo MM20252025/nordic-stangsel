@@ -5,11 +5,16 @@ import { useLanguage } from "@/lib/language";
 export function Footer() {
   const { language, localizePath } = useLanguage();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  };
+
   const content = language === "sv"
     ? {
         description: "Premium stängsel och grindlösningar för företag, kommuner och villor i Stockholm, Uppsala och Mälardalen.",
         contact: "Kontakt",
         headOffice: "HUVUDKONTOR",
+        email: "E-POST",
         services: "Tjänster",
         company: "Företag",
         about: "Om oss",
@@ -24,6 +29,7 @@ export function Footer() {
         description: "Premium fencing and gate solutions for companies, municipalities and villas in Stockholm, Uppsala and the Mälardalen region.",
         contact: "Contact",
         headOffice: "HEAD OFFICE",
+        email: "EMAIL",
         services: "Services",
         company: "Company",
         about: "About",
@@ -44,7 +50,7 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-4">
           <div className="col-span-1 md:col-span-1">
-            <Link href={localizePath("/")} className="mb-6 inline-block">
+            <Link href={localizePath("/")} className="mb-6 inline-block" onClick={scrollToTop}>
               <img src={logoSrc} alt="Nordic Stängsel" className="h-10 w-auto brightness-110" />
             </Link>
             <p className="max-w-xs text-sm leading-relaxed text-white/60">{content.description}</p>
@@ -55,7 +61,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-white/70">
               <li>
                 <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">{content.headOffice}</span>
-                Segerstavägen 7B<br />
+                Vårsångsvägen 4<br />
                 741 43 Knivsta
               </li>
               <li>
@@ -65,6 +71,10 @@ export function Footer() {
               <li>
                 <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">STOCKHOLM</span>
                 +46 8 35 63 66
+              </li>
+              <li>
+                <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">{content.email}</span>
+                <a href="mailto:info@nordicstangsel.com" className="transition-colors hover:text-white">info@nordicstangsel.com</a>
               </li>
               <li>
                 <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">ORG.NR</span>
@@ -78,7 +88,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-white/70">
               {serviceLinks.map((label) => (
                 <li key={label}>
-                  <Link href={localizePath("/tjanster")} className="transition-colors hover:text-white">{label}</Link>
+                  <Link href={localizePath("/tjanster")} className="transition-colors hover:text-white" onClick={scrollToTop}>{label}</Link>
                 </li>
               ))}
             </ul>
@@ -87,10 +97,10 @@ export function Footer() {
           <div>
             <h4 className="mb-6 font-serif text-lg font-semibold">{content.company}</h4>
             <ul className="space-y-3 text-sm text-white/70">
-              <li><Link href={localizePath("/om-oss")} className="transition-colors hover:text-white">{content.about}</Link></li>
-              <li><Link href={localizePath("/projekt")} className="transition-colors hover:text-white">{content.projects}</Link></li>
-              <li><Link href={localizePath("/kontakt")} className="transition-colors hover:text-white">{content.quote}</Link></li>
-              <li><Link href={localizePath("/kontakt")} className="transition-colors hover:text-white">{content.contactUs}</Link></li>
+              <li><Link href={localizePath("/om-oss")} className="transition-colors hover:text-white" onClick={scrollToTop}>{content.about}</Link></li>
+              <li><Link href={localizePath("/projekt")} className="transition-colors hover:text-white" onClick={scrollToTop}>{content.projects}</Link></li>
+              <li><Link href={localizePath("/kontakt")} className="transition-colors hover:text-white" onClick={scrollToTop}>{content.quote}</Link></li>
+              <li><Link href={localizePath("/kontakt")} className="transition-colors hover:text-white" onClick={scrollToTop}>{content.contactUs}</Link></li>
             </ul>
           </div>
         </div>
@@ -98,8 +108,8 @@ export function Footer() {
         <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 text-center text-xs text-white/40 md:flex-row md:text-left">
           <p>© {new Date().getFullYear()} Nordic Stängsel AB. {content.rights}</p>
           <div className="mt-4 space-x-4 md:mt-0">
-            <Link href={localizePath("/integritetspolicy")} className="transition-colors hover:text-white/80">{content.privacy}</Link>
-            <Link href={localizePath("/villkor")} className="transition-colors hover:text-white/80">{content.terms}</Link>
+            <Link href={localizePath("/integritetspolicy")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.privacy}</Link>
+            <Link href={localizePath("/villkor")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.terms}</Link>
           </div>
         </div>
       </div>
