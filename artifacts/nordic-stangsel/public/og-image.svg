@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0f1f2e"/>
+  <rect x="54" y="54" width="1092" height="522" rx="28" fill="#173149" stroke="#d8e1e8" stroke-opacity="0.18"/>
+  <rect x="96" y="110" width="160" height="12" rx="6" fill="#d4dde4" fill-opacity="0.55"/>
+  <rect x="96" y="152" width="448" height="96" rx="12" fill="#f7fafc" fill-opacity="0.06"/>
+  <rect x="96" y="280" width="620" height="18" rx="9" fill="#d4dde4" fill-opacity="0.75"/>
+  <rect x="96" y="316" width="574" height="18" rx="9" fill="#d4dde4" fill-opacity="0.38"/>
+  <rect x="96" y="352" width="598" height="18" rx="9" fill="#d4dde4" fill-opacity="0.38"/>
+  <rect x="96" y="432" width="250" height="66" rx="8" fill="#f3f6f8"/>
+  <text x="96" y="238" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="700">Nordic Stängsel</text>
+  <text x="96" y="486" fill="#0f1f2e" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Professionella stängsel och grindlösningar</text>
+  <text x="96" y="548" fill="#d4dde4" font-family="Arial, Helvetica, sans-serif" font-size="28">För företag, skolor, idrottsanläggningar och villor i hela Sverige</text>
+  <circle cx="980" cy="182" r="74" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="1030" cy="354" r="126" fill="#ffffff" fill-opacity="0.05"/>
+  <circle cx="902" cy="442" r="58" fill="#ffffff" fill-opacity="0.08"/>
+  <path d="M862 177H1058" stroke="#f3f6f8" stroke-width="12" stroke-linecap="round" stroke-opacity="0.9"/>
+  <path d="M862 245H1058" stroke="#f3f6f8" stroke-width="12" stroke-linecap="round" stroke-opacity="0.6"/>
+  <path d="M900 313H1096" stroke="#f3f6f8" stroke-width="12" stroke-linecap="round" stroke-opacity="0.5"/>
+  <path d="M824 381H1020" stroke="#f3f6f8" stroke-width="12" stroke-linecap="round" stroke-opacity="0.8"/>
+  <path d="M900 449H1096" stroke="#f3f6f8" stroke-width="12" stroke-linecap="round" stroke-opacity="0.45"/>
+</svg>
