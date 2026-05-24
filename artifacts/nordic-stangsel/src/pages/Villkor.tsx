@@ -50,7 +50,7 @@ export default function Villkor() {
             <section>
               <h2 className="mb-3 text-xl font-semibold text-[#0f1f2e]">{isSv ? "8. Kontakt" : "8. Contact"}</h2>
               <p>
-                {isSv ? "Frågor om dessa villkor besvaras av Nordic Stängsel AB, Segerstavägen 7B, 741 43 Knivsta." : "Questions about these terms are answered by Nordic Stängsel AB, Segerstavägen 7B, 741 43 Knivsta."}
+                {isSv ? "Frågor om dessa villkor besvaras av Nordic Stängsel AB, Vårsångsvägen 4, 741 43 Knivsta." : "Questions about these terms are answered by Nordic Stängsel AB, Vårsångsvägen 4, 741 43 Knivsta."}
                 <br />
                 E-post: <a href="mailto:info@nordicstangsel.com" className="text-[#1a3349] underline underline-offset-2">info@nordicstangsel.com</a>
               </p>
