@@ -489,7 +489,7 @@ export default function Home() {
                 <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-gray-400">Omdömen & referenser</span>
                 <h2 className="mb-5 font-serif text-3xl text-[#0f1f2e] md:mb-6 md:text-4xl">Vi låter vårt arbete tala</h2>
                 <p className="mb-5 font-light leading-relaxed text-gray-500 md:mb-6">
-                  Vi publicerar inga anonyma omdömen. I stället delar vi gärna kontaktuppgifter do tidigare uppdragsgivare inom er sektor direkt under offertdialogen, med deras samtycke.
+                  Vi publicerar inga anonyma omdömen. I stället delar vi gärna kontaktuppgifter till tidigare uppdragsgivare inom er sektor direkt under offertdialogen, med deras samtycke.
                 </p>
                 <p className="mb-7 font-light leading-relaxed text-gray-500 md:mb-10">
                   Det ger er möjlighet att ställa direkta frågor om vår arbetsprocess, leveransprecision och hur samarbetet fungerade i praktiken.
