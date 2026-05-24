@@ -181,7 +181,7 @@ export default function Home() {
         { icon: PhoneCall, label: "Direct contact with the installation team" },
       ];
 
-  // Hero copy intentionally restored to the earlier approved headline. Change only on explicit request.
+  // Hero copy intentionally restored and tightened. Change only on explicit request.
   const copy = isSv
     ? {
         heroTitle: "Stängsel, grindar och områdesskydd för företag, skolor, fastigheter och villor",
