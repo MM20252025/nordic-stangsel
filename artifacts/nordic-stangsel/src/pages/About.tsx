@@ -42,7 +42,7 @@ export default function About() {
               <h2 className="text-3xl font-serif text-[#0f1f2e] mb-8">En professionell partner för stängsel och grindar</h2>
               <div className="prose prose-lg text-gray-600 font-sans max-w-none">
                 <p>
-                  Nordic Stängsel arbetar med stängsel- och grindlösningar för företag, skolor, idrottsanläggningar, kommuner, bostadsrättsföreningar och privata villakunder.
+                  Nordic Stängsel arbetar med stängsel- och grindlösningar för företag, skolor, idrottsanläggningar, kommuner, bostadsrättsföreningar och privata villakunder i Stockholm, Uppsala, Gävle och Västerås.
                 </p>
                 <p>
                   Vår roll är att hjälpa kunder att välja en lösning som fungerar i praktiken, passar platsens förutsättningar och håller ihop både tekniskt och visuellt.
@@ -118,54 +118,26 @@ export default function About() {
       </section>
 
       <section className="py-24 bg-[#1a3349] text-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-            <div>
-              <h3 className="text-2xl font-serif mb-6">Vilka vi arbetar för</h3>
-              <p className="text-white/70 mb-8 leading-relaxed">
-                Våra uppdrag spänner över både offentlig och privat miljö, med olika krav på säkerhet, uttryck, flöden och långsiktig funktion.
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white/80 text-sm">
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Skolor</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Kommuner</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Idrottsanläggningar</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Företag</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Bostadsrättsföreningar</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-white/40" /> Privata villakunder</li>
-              </ul>
-            </div>
-
-            <div className="bg-white/5 p-8 border border-white/10">
-              <h3 className="text-2xl font-serif mb-6">Företagsuppgifter</h3>
-              <div className="space-y-6 text-white/80">
-                <div>
-                  <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Adress</span>
-                  <p>Segerstavägen 7B, 741 43 Knivsta</p>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Uppsala</span>
-                    <p>+46 18 34 61 11</p>
-                  </div>
-                  <div>
-                    <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Stockholm</span>
-                    <p>+46 8 35 63 66</p>
-                  </div>
-                </div>
-                <div>
-                  <span className="block text-white/40 text-xs uppercase tracking-wider mb-1">Organisationsnummer</span>
-                  <p>559582-1900</p>
-                </div>
-              </div>
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <Link href="/kontakt">
-                  <Button variant="outline" className="w-full bg-transparent text-white border-white hover:bg-white hover:text-[#0f1f2e] rounded-none h-12">
-                    Kontakta oss <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
+        <div className="container mx-auto px-4 md:px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto"
+          >
+            <span className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4 block">Nästa steg</span>
+            <h2 className="text-3xl md:text-4xl font-serif mb-6">Vill du diskutera ett projekt?</h2>
+            <p className="text-white/60 mb-10 leading-relaxed">
+              Vi hjälper dig gärna vidare med rätt lösning för platsen, användningen och de krav projektet ställer.
+            </p>
+            <Link href="/kontakt">
+              <Button className="bg-white text-[#0f1f2e] hover:bg-white/90 rounded-none h-12 px-8 text-sm tracking-widest uppercase">
+                Kontakta oss
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </section>
     </main>
