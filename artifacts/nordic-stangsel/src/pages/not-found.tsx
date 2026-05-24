@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 
 export default function NotFound() {
-  const { language } = useLanguage();
+  const { language, localizePath } = useLanguage();
   const isSv = language === "sv";
 
   return (
@@ -14,7 +14,7 @@ export default function NotFound() {
         <p className="mx-auto mb-10 max-w-md text-lg font-light text-gray-500">
           {isSv ? "Sidan du letar efter existerar inte eller har flyttats. Gå tillbaka till startsidan och försök igen." : "The page you are looking for does not exist or has moved. Go back to the homepage and try again."}
         </p>
-        <Link href="/" className="inline-flex items-center gap-2 bg-[#1a3349] px-8 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#264056]">
+        <Link href={localizePath("/")} className="inline-flex items-center gap-2 bg-[#1a3349] px-8 py-3 text-sm tracking-wide text-white transition-colors hover:bg-[#264056]">
           <ArrowLeft className="h-4 w-4" />
           {isSv ? "Tillbaka till startsidan" : "Back to homepage"}
         </Link>
