@@ -1,70 +1,105 @@
 import { Link } from "wouter";
 import logoSrc from "../../assets/images/nordic_logo_white_transparent.png";
+import { useLanguage } from "@/lib/language";
 
 export function Footer() {
+  const { language } = useLanguage();
+
+  const content = language === "sv"
+    ? {
+        description: "Premium stängsel och grindlösningar för företag, kommuner och villor i Stockholm, Uppsala och Mälardalen.",
+        contact: "Kontakt",
+        headOffice: "HUVUDKONTOR",
+        services: "Tjänster",
+        company: "Företag",
+        about: "Om oss",
+        projects: "Våra projekt",
+        quote: "Få kostnadsfri offert inom 24 timmar",
+        contactUs: "Kontakta oss",
+        privacy: "Integritetspolicy",
+        terms: "Villkor",
+        rights: "Alla rättigheter förbehållna.",
+      }
+    : {
+        description: "Premium fencing and gate solutions for companies, municipalities and villas in Stockholm, Uppsala and the Mälardalen region.",
+        contact: "Contact",
+        headOffice: "HEAD OFFICE",
+        services: "Services",
+        company: "Company",
+        about: "About",
+        projects: "Our projects",
+        quote: "Get a free quote within 24 hours",
+        contactUs: "Contact us",
+        privacy: "Privacy Policy",
+        terms: "Terms",
+        rights: "All rights reserved.",
+      };
+
+  const serviceLinks = language === "sv"
+    ? ["Industristängsel", "Skolstängsel", "Idrottsanläggningar", "Säkerhetsstängsel", "Automatiska grindar"]
+    : ["Industrial fencing", "School fencing", "Sports facilities", "Security fencing", "Automatic gates"];
+
   return (
-    <footer className="bg-[#1a3349] text-white pt-16 pb-8 border-t border-white/10" data-testid="footer">
+    <footer className="border-t border-white/10 bg-[#1a3349] pb-8 pt-16 text-white" data-testid="footer">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-4">
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="inline-block mb-6">
+            <Link href="/" className="mb-6 inline-block">
               <img src={logoSrc} alt="Nordic Stängsel" className="h-10 w-auto brightness-110" />
             </Link>
-            <p className="text-white/60 text-sm leading-relaxed max-w-xs">
-              Premium stängsel och grindlösningar för företag, kommuner och villor i Stockholm, Uppsala, Gävle och Västerås.
-            </p>
+            <p className="max-w-xs text-sm leading-relaxed text-white/60">{content.description}</p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-6 font-serif">Kontakt</h4>
+            <h4 className="mb-6 font-serif text-lg font-semibold">{content.contact}</h4>
             <ul className="space-y-4 text-sm text-white/70">
               <li>
-                <span className="block text-white/40 text-xs mb-1 uppercase tracking-wider">HUVUDKONTOR</span>
+                <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">{content.headOffice}</span>
                 Segerstavägen 7B<br />
                 741 43 Knivsta
               </li>
               <li>
-                <span className="block text-white/40 text-xs mb-1 uppercase tracking-wider">UPPSALA</span>
+                <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">UPPSALA</span>
                 +46 18 34 61 11
               </li>
               <li>
-                <span className="block text-white/40 text-xs mb-1 uppercase tracking-wider">STOCKHOLM</span>
+                <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">STOCKHOLM</span>
                 +46 8 35 63 66
               </li>
               <li>
-                <span className="block text-white/40 text-xs mb-1 uppercase tracking-wider">ORG.NR</span>
+                <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">ORG.NR</span>
                 559582-1900
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-6 font-serif">Tjänster</h4>
+            <h4 className="mb-6 font-serif text-lg font-semibold">{content.services}</h4>
             <ul className="space-y-3 text-sm text-white/70">
-              <li><Link href="/tjanster" className="hover:text-white transition-colors">Industristängsel</Link></li>
-              <li><Link href="/tjanster" className="hover:text-white transition-colors">Skolstängsel</Link></li>
-              <li><Link href="/tjanster" className="hover:text-white transition-colors">Idrottsanläggningar</Link></li>
-              <li><Link href="/tjanster" className="hover:text-white transition-colors">Säkerhetsstängsel</Link></li>
-              <li><Link href="/tjanster" className="hover:text-white transition-colors">Automatiska grindar</Link></li>
+              {serviceLinks.map((label) => (
+                <li key={label}>
+                  <Link href="/tjanster" className="transition-colors hover:text-white">{label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg mb-6 font-serif">Företag</h4>
+            <h4 className="mb-6 font-serif text-lg font-semibold">{content.company}</h4>
             <ul className="space-y-3 text-sm text-white/70">
-              <li><Link href="/om-oss" className="hover:text-white transition-colors">Om oss</Link></li>
-              <li><Link href="/projekt" className="hover:text-white transition-colors">Våra projekt</Link></li>
-              <li><Link href="/kontakt" className="hover:text-white transition-colors">Få kostnadsfri offert inom 24 timmar</Link></li>
-              <li><Link href="/kontakt" className="hover:text-white transition-colors">Kontakta oss</Link></li>
+              <li><Link href="/om-oss" className="transition-colors hover:text-white">{content.about}</Link></li>
+              <li><Link href="/projekt" className="transition-colors hover:text-white">{content.projects}</Link></li>
+              <li><Link href="/kontakt" className="transition-colors hover:text-white">{content.quote}</Link></li>
+              <li><Link href="/kontakt" className="transition-colors hover:text-white">{content.contactUs}</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-white/40">
-          <p>© {new Date().getFullYear()} Nordic Stängsel AB. Alla rättigheter förbehållna.</p>
-          <div className="mt-4 md:mt-0 space-x-4">
-            <Link href="/integritetspolicy" className="hover:text-white/80 transition-colors">Integritetspolicy</Link>
-            <Link href="/villkor" className="hover:text-white/80 transition-colors">Villkor</Link>
+        <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 text-center text-xs text-white/40 md:flex-row md:text-left">
+          <p>© {new Date().getFullYear()} Nordic Stängsel AB. {content.rights}</p>
+          <div className="mt-4 space-x-4 md:mt-0">
+            <Link href="/integritetspolicy" className="transition-colors hover:text-white/80">{content.privacy}</Link>
+            <Link href="/villkor" className="transition-colors hover:text-white/80">{content.terms}</Link>
           </div>
         </div>
       </div>
