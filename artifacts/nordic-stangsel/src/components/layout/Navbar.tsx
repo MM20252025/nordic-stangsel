@@ -12,6 +12,10 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { language, setLanguage, localizePath } = useLanguage();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  };
+
   const navLinks = language === "sv"
     ? [
         { href: "/", label: "Start" },
@@ -72,7 +76,7 @@ export function Navbar() {
   return (
     <header className={headerClass} data-testid="navbar">
       <div className="container mx-auto flex h-[80px] items-center justify-between px-4 md:px-6">
-        <Link href={localizePath("/")} className="inline-block" data-testid="link-logo">
+        <Link href={localizePath("/")} className="inline-block" data-testid="link-logo" onClick={scrollToTop}>
           {scrolled ? (
             <img src={logoLightSrc} alt="Nordic Stängsel" className="h-10 w-auto" />
           ) : (
@@ -89,6 +93,7 @@ export function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={localizedHref}
+                    onClick={scrollToTop}
                     className={`text-sm font-medium transition-colors ${
                       location === localizedHref ? activeLinkClass : linkClass
                     }`}
@@ -120,7 +125,7 @@ export function Navbar() {
             </button>
           </div>
 
-          <Link href={localizePath("/kontakt")} data-testid="link-nav-cta">
+          <Link href={localizePath("/kontakt")} data-testid="link-nav-cta" onClick={scrollToTop}>
             {scrolled ? (
               <Button className="rounded-none bg-[#1a3349] text-white transition-all duration-200 hover:bg-[#264056]">
                 {ctaLabel}
@@ -173,7 +178,10 @@ export function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={localizedHref}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      scrollToTop();
+                      setIsOpen(false);
+                    }}
                     className={`text-2xl font-medium ${location === localizedHref ? "text-white" : "text-white/70"}`}
                   >
                     {link.label}
@@ -183,7 +191,10 @@ export function Navbar() {
             })}
           </ul>
           <div className="mt-12 text-center">
-            <Link href={localizePath("/kontakt")} onClick={() => setIsOpen(false)}>
+            <Link href={localizePath("/kontakt")} onClick={() => {
+              scrollToTop();
+              setIsOpen(false);
+            }}>
               <Button size="lg" className="h-auto min-h-14 w-full whitespace-normal rounded-none bg-white py-4 text-lg leading-snug text-[#0f1f2e] hover:bg-white/90">
                 {ctaLabel}
               </Button>
