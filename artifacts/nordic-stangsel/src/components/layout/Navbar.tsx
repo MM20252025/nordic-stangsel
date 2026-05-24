@@ -83,11 +83,11 @@ export function Navbar() {
           <Link href="/kontakt" data-testid="link-nav-cta">
             {scrolled ? (
               <Button className="bg-[#1a3349] text-white hover:bg-[#264056] rounded-none transition-all duration-200">
-                Begär offert
+                Få kostnadsfri offert inom 24 timmar
               </Button>
             ) : (
               <Button variant="outline" className="bg-transparent text-white border-white/50 hover:bg-white hover:text-[#0f1f2e] rounded-none transition-all duration-200">
-                Begär offert
+                Få kostnadsfri offert inom 24 timmar
               </Button>
             )}
           </Link>
@@ -123,8 +123,8 @@ export function Navbar() {
           </ul>
           <div className="mt-12 text-center">
             <Link href="/kontakt" onClick={() => setIsOpen(false)}>
-              <Button size="lg" className="w-full bg-white text-[#0f1f2e] hover:bg-white/90 rounded-none text-lg">
-                Begär offert
+              <Button size="lg" className="w-full bg-white text-[#0f1f2e] hover:bg-white/90 rounded-none text-lg whitespace-normal leading-snug py-4 h-auto min-h-14">
+                Få kostnadsfri offert inom 24 timmar
               </Button>
             </Link>
           </div>
