@@ -77,17 +77,6 @@ const seoByRoute = {
   },
 } as const;
 
-function upsertMeta(selector: string, attribute: "name" | "property", value: string) {
-  let element = document.head.querySelector<HTMLMetaElement>(selector);
-  if (!element) {
-    element = document.createElement("meta");
-    element.setAttribute(attribute, selector.includes("[") ? "" : value);
-    document.head.appendChild(element);
-  }
-  element.setAttribute(attribute, selector.match(/\"(.+)\"/)?.[1] ?? value);
-  element.setAttribute("content", value);
-}
-
 function upsertNamedMeta(name: string, content: string) {
   let element = document.head.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
   if (!element) {
@@ -150,6 +139,7 @@ export function SeoManager() {
     upsertPropertyMeta("og:description", localizedSeo.description);
     upsertPropertyMeta("og:url", canonicalUrl);
     upsertPropertyMeta("og:locale", language === "sv" ? "sv_SE" : "en_GB");
+    upsertPropertyMeta("og:locale:alternate", language === "sv" ? "en_GB" : "sv_SE");
 
     upsertLink("canonical", canonicalUrl);
     upsertLink("alternate", svUrl, "sv");
