@@ -11,7 +11,7 @@ export function Footer() {
               <img src={logoSrc} alt="Nordic Stängsel" className="h-10 w-auto brightness-110" />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-xs">
-              Premium stängsel och grindlösningar för företag, kommuner och villor över hela Sverige.
+              Premium stängsel och grindlösningar för företag, kommuner och villor i Stockholm, Uppsala, Gävle och Västerås.
             </p>
           </div>
 
