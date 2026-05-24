@@ -13,6 +13,8 @@ import {
   MoveHorizontal,
   MapPin,
   MessageSquare,
+  BadgeCheck,
+  PhoneCall,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -40,8 +42,8 @@ const trustItems = [
   },
   {
     icon: Clock,
-    title: "Snabb offert",
-    desc: "Tydliga priser och snabb återkoppling.",
+    title: "Offert inom 24 timmar",
+    desc: "Snabb återkoppling så att projektet kan gå vidare direkt.",
   },
 ];
 
@@ -104,8 +106,8 @@ const projectHighlights = [
 
 const reasons = [
   {
-    title: "Kompromisslös kvalitet",
-    desc: "Vi arbetar med material och lösningar anpassade för hög belastning och lång livslängd.",
+    title: "Tydlig offert snabbt",
+    desc: "Ni får en snabb första bedömning och en konkret väg vidare utan onödigt vänteläge.",
   },
   {
     title: "Regional närvaro",
@@ -125,12 +127,12 @@ const processSteps = [
   {
     step: "01",
     title: "Kontakt & Offert",
-    desc: "En första genomgång av era behov följt av ett tydligt prisförslag.",
+    desc: "Ni beskriver behovet och får snabb återkoppling med rätt nästa steg.",
   },
   {
     step: "02",
-    title: "Projektering",
-    desc: "Mätning på plats, materialval och planering av genomförande.",
+    title: "Platsbedömning",
+    desc: "Vi går igenom mått, miljö och krav så att lösningen passar i praktiken.",
   },
   {
     step: "03",
@@ -141,6 +143,21 @@ const processSteps = [
     step: "04",
     title: "Slutbesiktning",
     desc: "Gemensam genomgång av leveransen för att säkerställa högsta kvalitet.",
+  },
+];
+
+const salesPoints = [
+  {
+    icon: Clock,
+    label: "Svar inom 24 timmar",
+  },
+  {
+    icon: BadgeCheck,
+    label: "Kostnadsfri första bedömning",
+  },
+  {
+    icon: PhoneCall,
+    label: "Direkt kontakt med montörsteamet",
   },
 ];
 
@@ -173,12 +190,12 @@ export default function Home() {
 
             <div className="mb-6 h-[1px] w-10 bg-white/30 md:mb-8"></div>
 
-            <h1 className="mb-5 max-w-4xl font-serif text-[1.875rem] font-medium leading-[1.2] text-white md:mb-6 md:text-[2.75rem] md:leading-[1.1] lg:text-[3.5rem] lg:leading-[1.08]">
-              Professionella stängsel och grindlösningar för företag, skolor, idrottsanläggningar och villor
+            <h1 className="mb-5 max-w-5xl font-serif text-[1.95rem] font-medium leading-[1.15] text-white md:mb-6 md:text-[2.9rem] md:leading-[1.08] lg:text-[3.7rem] lg:leading-[1.04]">
+              Stängsel, grindar och områdesskydd för företag, skolor, fastigheter och villor
             </h1>
 
-            <p className="mb-10 max-w-xl text-sm font-light leading-relaxed tracking-wide text-white/70 md:mb-12 md:text-base">
-              Moderna, säkra och hållbara lösningar med professionell montering i Stockholm, Uppsala, Gävle och Västerås.
+            <p className="mb-8 max-w-2xl text-sm font-light leading-relaxed tracking-wide text-white/80 md:mb-10 md:text-base">
+              Få kostnadsfri offert inom 24 timmar. Vi projekterar och monterar hållbara lösningar i Stockholm, Uppsala, Gävle och Västerås för industri, kommun, BRF och privat fastighet.
             </p>
 
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -192,9 +209,21 @@ export default function Home() {
                   variant="outline"
                   className="h-12 w-full rounded-none border border-white/30 bg-transparent px-8 text-sm uppercase tracking-widest text-white transition-all duration-200 hover:border-white/70 hover:bg-white/5 sm:w-auto"
                 >
-                  Våra projekt
+                  Se utförda projekt
                 </Button>
               </Link>
+            </div>
+
+            <div className="mt-6 grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
+              {salesPoints.map((point) => (
+                <div
+                  key={point.label}
+                  className="flex items-center justify-center gap-2 border border-white/15 bg-white/5 px-4 py-3 text-xs uppercase tracking-[0.16em] text-white/75"
+                >
+                  <point.icon className="h-4 w-4 text-white/55" />
+                  <span>{point.label}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -234,9 +263,12 @@ export default function Home() {
       <section className="bg-white py-14 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mb-8 flex flex-col gap-3 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-6">
-            <div className="max-w-2xl">
+            <div className="max-w-3xl">
               <span className="mb-3 block text-xs uppercase tracking-[0.2em] text-gray-400 md:mb-4">Expertis</span>
-              <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">Våra tjänster</h2>
+              <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">Tjänster som snabbt leder till rätt lösning</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500 md:text-base">
+                Vi hjälper företag, skolor, BRF:er och privatkunder att välja rätt stängsel, grindar och områdesskydd utifrån plats, säkerhetsnivå och budget.
+              </p>
             </div>
             <Link href="/tjanster">
               <Button variant="ghost" className="group w-fit p-0 text-[#0f1f2e] hover:bg-transparent hover:text-[#1a2f45]">
@@ -292,9 +324,12 @@ export default function Home() {
       <section className="bg-gray-50 py-14 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mb-8 flex flex-col gap-3 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-6">
-            <div className="max-w-2xl">
+            <div className="max-w-3xl">
               <span className="mb-3 block text-xs uppercase tracking-[0.2em] text-gray-400 md:mb-4">Referenser</span>
-              <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">Utvalda projekt</h2>
+              <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">Projekt som bygger förtroende</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500 md:text-base">
+                Utförda uppdrag hjälper nya kunder att snabbt förstå vår nivå, vårt arbetssätt och vilken typ av miljöer vi arbetar i.
+              </p>
             </div>
             <Link href="/projekt">
               <Button variant="ghost" className="group w-fit p-0 text-[#0f1f2e] hover:bg-transparent hover:text-[#1a2f45]">
@@ -373,7 +408,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-24">
             <div>
               <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/50">Fördelar</span>
-              <h2 className="mb-7 font-serif text-3xl md:mb-10 md:text-5xl">Varför Nordic Stängsel?</h2>
+              <h2 className="mb-7 font-serif text-3xl md:mb-10 md:text-5xl">Varför kunder väljer Nordic Stängsel?</h2>
 
               <ul className="space-y-5 md:space-y-8">
                 {reasons.map((item, i) => (
@@ -398,7 +433,7 @@ export default function Home() {
             <div className="relative">
               <div className="absolute bottom-0 left-6 top-0 hidden w-[1px] bg-white/10 md:block"></div>
               <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/50">Arbetsgång</span>
-              <h2 className="mb-7 font-serif text-3xl md:mb-10 md:text-5xl">Vår arbetsprocess</h2>
+              <h2 className="mb-7 font-serif text-3xl md:mb-10 md:text-5xl">Så går det till</h2>
 
               <div className="space-y-6 md:space-y-12">
                 {processSteps.map((item, i) => (
@@ -431,7 +466,10 @@ export default function Home() {
           <div className="mx-auto max-w-4xl">
             <div className="mb-8 text-center md:mb-12">
               <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/40">Kostnadsfri offert</span>
-              <h2 className="font-serif text-3xl text-white md:text-4xl">Begär offert</h2>
+              <h2 className="font-serif text-3xl text-white md:text-4xl">Få kostnadsfri offert inom 24 timmar</h2>
+              <p className="mt-4 text-sm leading-relaxed text-white/65 md:text-base">
+                Beskriv projektet kort. Vi återkommer snabbt med rekommendation, nästa steg och offertunderlag.
+              </p>
             </div>
             <QuoteForm />
           </div>
@@ -451,7 +489,7 @@ export default function Home() {
                 <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-gray-400">Omdömen & referenser</span>
                 <h2 className="mb-5 font-serif text-3xl text-[#0f1f2e] md:mb-6 md:text-4xl">Vi låter vårt arbete tala</h2>
                 <p className="mb-5 font-light leading-relaxed text-gray-500 md:mb-6">
-                  Vi publicerar inga anonyma omdömen. I stället delar vi gärna kontaktuppgifter till tidigare uppdragsgivare inom er sektor direkt under offertdialogen, med deras samtycke.
+                  Vi publicerar inga anonyma omdömen. I stället delar vi gärna kontaktuppgifter do tidigare uppdragsgivare inom er sektor direkt under offertdialogen, med deras samtycke.
                 </p>
                 <p className="mb-7 font-light leading-relaxed text-gray-500 md:mb-10">
                   Det ger er möjlighet att ställa direkta frågor om vår arbetsprocess, leveransprecision och hur samarbetet fungerade i praktiken.
