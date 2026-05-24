@@ -67,7 +67,7 @@ export default function Contact() {
                     <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-gray-400" />
                     <div>
                       <span className="mb-1 block text-xs uppercase tracking-wider text-gray-500">{copy.address}</span>
-                      <p className="text-sm text-gray-800">Segerstavägen 7B<br />741 43 Knivsta</p>
+                      <p className="text-sm text-gray-800">Vårsångsvägen 4<br />741 43 Knivsta</p>
                     </div>
                   </div>
 
@@ -120,14 +120,14 @@ export default function Contact() {
 
               <div className="overflow-hidden border border-gray-200 bg-white">
                 <div className="relative aspect-[4/3] w-full bg-gray-100">
-                  <iframe title="Nordic Stängsel — Segerstavägen 7B, Knivsta" src="https://www.openstreetmap.org/export/embed.html?bbox=17.74,59.72,17.80,59.75&layer=mapnik&marker=59.7325,17.770" className="h-full w-full border-0" loading="lazy" allowFullScreen />
+                  <iframe title="Nordic Stängsel — Vårsångsvägen 4, Knivsta" src="https://www.google.com/maps?q=V%C3%A5rs%C3%A5ngsv%C3%A4gen+4,+741+43+Knivsta&output=embed" className="h-full w-full border-0" loading="lazy" allowFullScreen />
                 </div>
                 <div className="flex items-start justify-between gap-4 p-4">
                   <div>
-                    <p className="mb-0.5 text-xs font-semibold uppercase tracking-wider text-[#0f1f2e]">Segerstavägen 7B</p>
+                    <p className="mb-0.5 text-xs font-semibold uppercase tracking-wider text-[#0f1f2e]">Vårsångsvägen 4</p>
                     <p className="text-xs text-gray-500">741 43 Knivsta</p>
                   </div>
-                  <a href="https://www.google.com/maps/dir/?api=1&destination=Segerstavägen+7B,+741+43+Knivsta,+Sweden" target="_blank" rel="noopener noreferrer" className="shrink-0 whitespace-nowrap border border-gray-300 px-3 py-1.5 text-xs font-medium text-[#0f1f2e] transition-colors hover:border-[#0f1f2e] hover:bg-gray-50">
+                  <a href="https://www.google.com/maps/dir/?api=1&destination=V%C3%A5rs%C3%A5ngsv%C3%A4gen+4,+741+43+Knivsta,+Sweden" target="_blank" rel="noopener noreferrer" className="shrink-0 whitespace-nowrap border border-gray-300 px-3 py-1.5 text-xs font-medium text-[#0f1f2e] transition-colors hover:border-[#0f1f2e] hover:bg-gray-50">
                     {copy.route} →
                   </a>
                 </div>
