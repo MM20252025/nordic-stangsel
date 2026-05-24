@@ -181,6 +181,7 @@ export default function Home() {
         { icon: PhoneCall, label: "Direct contact with the installation team" },
       ];
 
+  // User-locked hero copy. Keep unchanged unless explicitly requested.
   const copy = isSv
     ? {
         heroTitle: "Stängsel, grindar och områdesskydd för företag, skolor, fastigheter och villor",
