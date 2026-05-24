@@ -11,7 +11,7 @@ import project5Src from "../assets/images/project-5.png";
 import project6Src from "../assets/images/project-6.png";
 
 export default function Projects() {
-  const { language } = useLanguage();
+  const { language, localizePath } = useLanguage();
   const isSv = language === "sv";
 
   const projects = isSv
@@ -87,7 +87,7 @@ export default function Projects() {
                   <h2 className="mb-4 text-2xl font-serif text-[#0f1f2e] md:text-3xl">{project.type}</h2>
                   <p className="mb-8 flex-grow text-sm leading-relaxed text-gray-600">{project.desc}</p>
                   <div className="mt-auto border-t border-gray-100 pt-6">
-                    <Link href="/kontakt" className="inline-flex items-center text-sm font-semibold uppercase tracking-wider text-[#0f1f2e] transition-colors hover:text-blue-700">
+                    <Link href={localizePath("/kontakt")} className="inline-flex items-center text-sm font-semibold uppercase tracking-wider text-[#0f1f2e] transition-colors hover:text-blue-700">
                       {copy.link} <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </div>
@@ -103,7 +103,7 @@ export default function Projects() {
           <div className="mx-auto max-w-2xl border border-gray-200 p-12 md:p-16">
             <h2 className="mb-6 text-3xl font-serif text-[#0f1f2e] md:text-4xl">{copy.ctaTitle}</h2>
             <p className="mb-10 leading-relaxed text-gray-600">{copy.ctaBody}</p>
-            <Link href="/kontakt">
+            <Link href={localizePath("/kontakt")}>
               <Button size="lg" className="h-14 rounded-none bg-[#1a3349] px-8 text-base tracking-wide text-white hover:bg-[#264056]">
                 {copy.cta}
               </Button>
