@@ -184,7 +184,7 @@ export default function Home() {
   // User-locked hero copy. Keep unchanged unless explicitly requested.
   const copy = isSv
     ? {
-        heroTitle: "Premium stängsel och grindlösningar för företag, kommuner och villor i Stockholm, Uppsala och Mälardalen.",
+        heroTitle: "Stängsel, grindar och områdesskydd för företag, skolor, fastigheter och villor",
         heroBody: "Få kostnadsfri offert inom 24 timmar. Vi projekterar och monterar hållbara lösningar i Stockholm, Uppsala och Mälardalen för industri, kommun, BRF och privat fastighet.",
         heroPrimary: "Få kostnadsfri offert inom 24 timmar",
         heroSecondary: "Se utförda projekt",
