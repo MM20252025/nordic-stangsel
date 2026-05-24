@@ -183,10 +183,10 @@ export default function Home() {
 
   const copy = isSv
     ? {
-        heroTitle: "Professionella stängsel och grindlösningar för företag, skolor, idrottsanläggningar och villor",
-        heroBody: "Moderna, säkra och hållbara lösningar med professionell montering i hela Sverige.",
-        heroPrimary: "Begär offert",
-        heroSecondary: "Våra projekt",
+        heroTitle: "Stängsel, grindar och områdesskydd för företag, skolor, fastigheter och villor",
+        heroBody: "Få kostnadsfri offert inom 24 timmar. Vi projekterar och monterar hållbara lösningar i Stockholm, Uppsala och Mälardalen för industri, kommun, BRF och privat fastighet.",
+        heroPrimary: "Få kostnadsfri offert inom 24 timmar",
+        heroSecondary: "Se utförda projekt",
         expertise: "Expertis",
         servicesTitle: "Tjänster som snabbt leder till rätt lösning",
         servicesBody: "Vi hjälper företag, skolor, BRF:er och privatkunder att välja rätt stängsel, grindar och områdesskydd utifrån plats, säkerhetsnivå och budget.",
@@ -212,10 +212,10 @@ export default function Home() {
         quoteText: "Vi värdesätter transparens. En kund som kan tala direkt med ett referensuppdrag lär sig mer om oss på tio minuter än vad en hemsida kan förmedla.",
       }
     : {
-        heroTitle: "Professional fencing and gate solutions for companies, schools, sports facilities and villas",
-        heroBody: "Modern, secure and durable solutions with professional installation across Sweden.",
-        heroPrimary: "Request a quote",
-        heroSecondary: "Our projects",
+        heroTitle: "Fencing, gates and perimeter protection for companies, schools, properties and villas",
+        heroBody: "Get a free quote within 24 hours. We design and install durable solutions in Stockholm, Uppsala and the Mälardalen region for industry, municipalities, housing associations and private properties.",
+        heroPrimary: "Get a free quote within 24 hours",
+        heroSecondary: "See completed projects",
         expertise: "Expertise",
         servicesTitle: "Services that quickly lead to the right solution",
         servicesBody: "We help companies, schools, housing associations and private customers choose the right fencing, gates and perimeter protection based on site, security level and budget.",
