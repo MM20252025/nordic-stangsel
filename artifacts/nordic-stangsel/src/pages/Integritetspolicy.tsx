@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 
 export default function Integritetspolicy() {
-  const { language } = useLanguage();
+  const { language, localizePath } = useLanguage();
   const isSv = language === "sv";
 
   const sections = isSv
@@ -27,7 +27,7 @@ export default function Integritetspolicy() {
     <main className="min-h-screen w-full bg-white pb-24 pt-32">
       <div className="container mx-auto max-w-3xl px-4 md:px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <Link href="/" className="mb-10 inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-[#0f1f2e]">
+          <Link href={localizePath("/")} className="mb-10 inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-[#0f1f2e]">
             <ArrowLeft className="h-4 w-4" />
             {isSv ? "Tillbaka" : "Back"}
           </Link>
