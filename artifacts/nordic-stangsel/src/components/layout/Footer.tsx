@@ -54,7 +54,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-white/70">
               <li><Link href="/om-oss" className="hover:text-white transition-colors">Om oss</Link></li>
               <li><Link href="/projekt" className="hover:text-white transition-colors">Våra projekt</Link></li>
-              <li><Link href="/kontakt" className="hover:text-white transition-colors">Begär offert</Link></li>
+              <li><Link href="/kontakt" className="hover:text-white transition-colors">Få kostnadsfri offert inom 24 timmar</Link></li>
               <li><Link href="/kontakt" className="hover:text-white transition-colors">Kontakta oss</Link></li>
             </ul>
           </div>
