@@ -183,8 +183,8 @@ export default function Home() {
 
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <Link href="/kontakt">
-                <Button className="h-12 w-full rounded-none bg-white px-8 text-sm font-medium uppercase tracking-widest text-[#0c1824] transition-all duration-200 hover:bg-white/90 sm:w-auto">
-                  Begär offert
+                <Button className="h-auto min-h-12 w-full rounded-none bg-white px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#0c1824] transition-all duration-200 hover:bg-white/90 sm:w-auto sm:whitespace-nowrap">
+                  Få kostnadsfri offert inom 24 timmar
                 </Button>
               </Link>
               <Link href="/projekt">
