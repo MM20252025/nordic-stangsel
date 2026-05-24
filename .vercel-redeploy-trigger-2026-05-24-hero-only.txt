@@ -1,0 +1,1 @@
+Triggered on 2026-05-24T21:33:30Z to deploy the current main branch state where only the homepage hero headline was restored.
