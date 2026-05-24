@@ -13,6 +13,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Integritetspolicy from "@/pages/Integritetspolicy";
 import Villkor from "@/pages/Villkor";
+import { LanguageProvider } from "@/lib/language";
 
 const queryClient = new QueryClient();
 
@@ -35,15 +36,17 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <div className="min-h-screen flex flex-col font-sans">
-            <Navbar />
-            <div className="flex-1 flex flex-col">
-              <Router />
+        <LanguageProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <div className="min-h-screen flex flex-col font-sans">
+              <Navbar />
+              <div className="flex-1 flex flex-col">
+                <Router />
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </WouterRouter>
+          </WouterRouter>
+        </LanguageProvider>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
