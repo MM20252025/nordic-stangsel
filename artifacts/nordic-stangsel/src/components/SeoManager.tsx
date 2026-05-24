@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { buildLocalizedPath, stripLanguagePrefix, useLanguage } from "@/lib/language";
 
-const SITE_URL = "https://nordicstangsel.se";
+const SITE_URL = "https://nordicstangsel.com";
 
 const seoByRoute = {
   "/": {
