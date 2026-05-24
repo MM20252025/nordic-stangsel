@@ -50,16 +50,27 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const language = detectLanguage(location);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(STORAGE_KEY, language);
+    if (typeof window === "undefined") {
+      return;
     }
+
+    const hasExplicitEnglishPath = location === "/en" || location.startsWith("/en/");
+    const rememberedLanguage = window.localStorage.getItem(STORAGE_KEY);
+
+    if (!hasExplicitEnglishPath && rememberedLanguage === "en") {
+      navigate(buildLocalizedPath(location, "en"), { replace: true });
+      return;
+    }
+
+    window.localStorage.setItem(STORAGE_KEY, language);
     document.documentElement.lang = language;
-  }, [language]);
+  }, [language, location, navigate]);
 
   const setLanguage = (nextLanguage: Language) => {
     if (typeof window !== "undefined") {
       window.localStorage.setItem(STORAGE_KEY, nextLanguage);
     }
+
     navigate(buildLocalizedPath(location, nextLanguage));
   };
 
