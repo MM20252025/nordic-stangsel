@@ -1,27 +1,53 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, type ReactNode } from "react";
+import { useLocation } from "wouter";
 
 export type Language = "sv" | "en";
 
 type LanguageContextValue = {
   language: Language;
   setLanguage: (language: Language) => void;
+  localizePath: (path: string, languageOverride?: Language) => string;
 };
 
 const STORAGE_KEY = "nordic-language";
-
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
-function getInitialLanguage(): Language {
-  if (typeof window === "undefined") {
-    return "sv";
+function ensureLeadingSlash(path: string) {
+  return path.startsWith("/") ? path : `/${path}`;
+}
+
+export function stripLanguagePrefix(path: string) {
+  const normalized = ensureLeadingSlash(path);
+
+  if (normalized === "/en") {
+    return "/";
   }
 
-  const saved = window.localStorage.getItem(STORAGE_KEY);
-  return saved === "en" ? "en" : "sv";
+  if (normalized.startsWith("/en/")) {
+    return normalized.slice(3);
+  }
+
+  return normalized;
+}
+
+function detectLanguage(path: string): Language {
+  const normalized = ensureLeadingSlash(path);
+  return normalized === "/en" || normalized.startsWith("/en/") ? "en" : "sv";
+}
+
+export function buildLocalizedPath(path: string, language: Language) {
+  const stripped = stripLanguagePrefix(path);
+
+  if (language === "en") {
+    return stripped === "/" ? "/en" : `/en${stripped}`;
+  }
+
+  return stripped;
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(getInitialLanguage);
+  const [location, navigate] = useLocation();
+  const language = detectLanguage(location);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -30,7 +56,21 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = language;
   }, [language]);
 
-  return <LanguageContext.Provider value={{ language, setLanguage }}>{children}</LanguageContext.Provider>;
+  const setLanguage = (nextLanguage: Language) => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(STORAGE_KEY, nextLanguage);
+    }
+    navigate(buildLocalizedPath(location, nextLanguage));
+  };
+
+  const localizePath = (path: string, languageOverride?: Language) =>
+    buildLocalizedPath(path, languageOverride ?? language);
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, localizePath }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useLanguage() {
