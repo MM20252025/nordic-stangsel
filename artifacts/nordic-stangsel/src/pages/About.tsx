@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/language";
 import heroSrc from "../assets/images/hero-om-oss.png";
 
 export default function About() {
-  const { language } = useLanguage();
+  const { language, localizePath } = useLanguage();
   const isSv = language === "sv";
 
   const values = isSv
@@ -136,7 +136,7 @@ export default function About() {
             <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/40">{copy.nextStep}</span>
             <h2 className="mb-6 text-3xl font-serif md:text-4xl">{copy.ctaTitle}</h2>
             <p className="mb-10 leading-relaxed text-white/60">{copy.ctaBody}</p>
-            <Link href="/kontakt">
+            <Link href={localizePath("/kontakt")}>
               <Button className="h-12 rounded-none bg-white px-8 text-sm uppercase tracking-widest text-[#0f1f2e] hover:bg-white/90">
                 {copy.cta}
                 <ArrowRight className="ml-2 h-4 w-4" />
