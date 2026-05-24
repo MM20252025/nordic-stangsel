@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { buildLocalizedPath, stripLanguagePrefix, useLanguage } from "@/lib/language";
 
-const SITE_URL = "https://nordicstangsel.com";
+const SITE_URL = "https://nordicstangsel.se";
 
 const seoByRoute = {
   "/": {
@@ -48,7 +48,7 @@ const seoByRoute = {
   "/kontakt": {
     sv: {
       title: "Kontakt | Få kostnadsfri offert inom 24 timmar | Nordic Stängsel",
-      description: "Kontakta Nordic Stängsel för stängsel, grindar och områdesskydd. Få kostnadsfri offert inom 24 timmar i Stockholm, Uppsala och Mälardalen.",
+      description: "Kontakta Nordic Stängsel för stängsel, grindar och områdesskydd. Få kostnadsfri offert inom 24 timmar i Stockholm, Uppsala i Mälardalen.",
     },
     en: {
       title: "Contact | Get a free quote within 24 hours | Nordic Stängsel",
@@ -58,7 +58,7 @@ const seoByRoute = {
   "/integritetspolicy": {
     sv: {
       title: "Integritetspolicy | Nordic Stängsel",
-      description: "Läs Nordic Stängsels integritetspolicy och hur vi behandlar personuppgifter.",
+      description: "Läs Nordic Stängsels integritetspolicy och hur we behandlar personuppgifter.",
     },
     en: {
       title: "Privacy Policy | Nordic Stängsel",
