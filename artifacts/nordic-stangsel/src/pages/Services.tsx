@@ -106,9 +106,9 @@ export default function Services() {
             className="max-w-3xl"
           >
             <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/70">Expertis</span>
-            <h1 className="mb-5 font-serif text-4xl text-white md:mb-6 md:text-6xl">Tjänster & Lösningar</h1>
+            <h1 className="mb-5 font-serif text-4xl text-white md:mb-6 md:text-6xl">Stängsel och grindlösningar för riktiga projekt</h1>
             <p className="max-w-2xl text-base font-light leading-relaxed text-white/80 md:text-lg">
-              I Stockholm, Uppsala, Gävle och Västerås levererar vi premiumlösningar inom områdesskydd, från komplexa industristängsel till eleganta villagrindar.
+              I Stockholm, Uppsala, Gävle och Västerås hjälper vi företag, skolor, kommuner, BRF:er och villakunder att välja rätt lösning och få offert inom 24 timmar.
             </p>
           </motion.div>
         </div>
@@ -116,6 +116,13 @@ export default function Services() {
 
       <section className="bg-white py-14 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
+          <div className="mb-10 max-w-3xl md:mb-14">
+            <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-4xl">Från första behov till färdig installation</h2>
+            <p className="mt-4 text-sm leading-relaxed text-gray-500 md:text-base">
+              Varje tjänst är utformad för att göra beslutet enklare: rätt nivå av områdesskydd, rätt typ av grind och ett genomförande som fungerar i vardagen efter installation.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 gap-px bg-gray-100 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, i) => (
               <motion.div
@@ -139,9 +146,9 @@ export default function Services() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl">
             <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/40">Kostnadsfri konsultation</span>
-            <h2 className="mb-6 font-serif text-3xl text-white md:text-4xl">Redo att påbörja ditt projekt?</h2>
+            <h2 className="mb-6 font-serif text-3xl text-white md:text-4xl">Få rätt lösning och kostnadsfri offert inom 24 timmar</h2>
             <p className="mx-auto mb-8 max-w-xl leading-relaxed text-white/60 md:mb-10">
-              Vi hjälper dig att hitta rätt lösning för dina specifika behov.
+              Vi hjälper dig att snabbt komma vidare med rätt rekommendation för platsen, användningen och säkerhetsnivån.
             </p>
             <Link href="/kontakt">
               <Button size="lg" className="h-auto min-h-12 rounded-none bg-white px-10 py-3 text-sm uppercase tracking-widest text-[#0f1f2e] hover:bg-white/90 md:h-13 md:whitespace-nowrap">
