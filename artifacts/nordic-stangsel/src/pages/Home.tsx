@@ -78,10 +78,76 @@ const featuredServices = [
   },
 ];
 
+const projectHighlights = [
+  {
+    img: project1Src,
+    alt: "Industristängsel",
+    segment: "Industrifastighet",
+    title: "Säkerhetsstängsel",
+    desc: "Komplett installation av 2.4m högt säkerhetsstängsel med motoriserad skjutgrind för logistikcenter.",
+  },
+  {
+    img: project2Src,
+    alt: "Skolfencing",
+    segment: "Kommunal skola",
+    title: "Panelstängsel",
+    desc: "Säker inhägnad av nybyggd förskola med barnsäkra grindar och robusta nätpaneler.",
+  },
+  {
+    img: project3Src,
+    alt: "Idrottsanläggning",
+    segment: "Sport & Fritid",
+    title: "Bollfångarnät",
+    desc: "Höga stängsel för ny utomhusarena inklusive specialanpassade publikgrindar och entréer.",
+  },
+];
+
+const reasons = [
+  {
+    title: "Kompromisslös kvalitet",
+    desc: "Vi arbetar med material och lösningar anpassade för hög belastning och lång livslängd.",
+  },
+  {
+    title: "Regional närvaro",
+    desc: "Med utgångspunkt i Stockholm, Uppsala, Gävle och Västerås hanterar vi projekt med bättre närvaro på plats.",
+  },
+  {
+    title: "Lång erfarenhet",
+    desc: "Våra montörer har den kunskap som krävs för både komplexa och krävande installationer.",
+  },
+  {
+    title: "Totalentreprenad",
+    desc: "Från första projektering till slutbesiktning tar vi ett tydligt helhetsansvar för installationen.",
+  },
+];
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Kontakt & Offert",
+    desc: "En första genomgång av era behov följt av ett tydligt prisförslag.",
+  },
+  {
+    step: "02",
+    title: "Projektering",
+    desc: "Mätning på plats, materialval och planering av genomförande.",
+  },
+  {
+    step: "03",
+    title: "Montering",
+    desc: "Effektivt och fackmannamässigt montage utfört av våra egna team.",
+  },
+  {
+    step: "04",
+    title: "Slutbesiktning",
+    desc: "Gemensam genomgång av leveransen för att säkerställa högsta kvalitet.",
+  },
+];
+
 export default function Home() {
   return (
     <main className="w-full">
-      <section className="relative flex min-h-[600px] h-[100vh] w-full items-center bg-[#1a3349]">
+      <section className="relative flex h-[100vh] min-h-[600px] w-full items-center bg-[#1a3349]">
         <div className="absolute inset-0 z-0">
           <img
             src={heroSrc}
@@ -165,9 +231,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-16 md:py-28">
+      <section className="bg-white py-14 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-10 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-6">
+          <div className="mb-8 flex flex-col gap-3 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-6">
             <div className="max-w-2xl">
               <span className="mb-3 block text-xs uppercase tracking-[0.2em] text-gray-400 md:mb-4">Expertis</span>
               <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">Våra tjänster</h2>
@@ -180,7 +246,26 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          <div className="grid grid-cols-2 gap-3 sm:hidden">
+            {featuredServices.map((service, i) => (
+              <Link key={service.title} href="/tjanster">
+                <motion.div
+                  className="group h-full cursor-pointer border border-gray-100 bg-white p-4 transition-all hover:border-[#0f1f2e] hover:bg-[#1a3349]"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: i * 0.05 }}
+                >
+                  <service.icon className="mb-4 h-5 w-5 text-gray-400 transition-colors group-hover:text-white" />
+                  <h3 className="font-serif text-lg leading-snug text-[#0f1f2e] transition-colors group-hover:text-white">
+                    {service.title}
+                  </h3>
+                </motion.div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="hidden grid-cols-2 gap-4 sm:grid lg:grid-cols-3 lg:gap-6">
             {featuredServices.map((service, i) => (
               <Link key={service.title} href="/tjanster">
                 <motion.div
@@ -204,9 +289,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gray-50 py-16 md:py-24">
+      <section className="bg-gray-50 py-14 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-10 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-6">
+          <div className="mb-8 flex flex-col gap-3 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-6">
             <div className="max-w-2xl">
               <span className="mb-3 block text-xs uppercase tracking-[0.2em] text-gray-400 md:mb-4">Referenser</span>
               <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">Utvalda projekt</h2>
@@ -219,30 +304,39 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                img: project1Src,
-                alt: "Industristängsel",
-                segment: "Industrifastighet",
-                title: "Säkerhetsstängsel",
-                desc: "Komplett installation av 2.4m högt säkerhetsstängsel med motoriserad skjutgrind för logistikcenter.",
-              },
-              {
-                img: project2Src,
-                alt: "Skolfencing",
-                segment: "Kommunal skola",
-                title: "Panelstängsel",
-                desc: "Säker inhägnad av nybyggd förskola med barnsäkra grindar och robusta nätpaneler.",
-              },
-              {
-                img: project3Src,
-                alt: "Idrottsanläggning",
-                segment: "Sport & Fritid",
-                title: "Bollfångarnät",
-                desc: "Höga stängsel för ny utomhusarena inklusive specialanpassade publikgrindar och entréer.",
-              },
-            ].map((p, i) => (
+          <div className="grid grid-cols-1 gap-6 md:hidden">
+            {projectHighlights.slice(0, 2).map((p, i) => (
+              <motion.div
+                key={p.title}
+                className="group cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
+              >
+                <Link href="/projekt">
+                  <div className="relative mb-4 aspect-[3/2] overflow-hidden bg-gray-200">
+                    <div className="absolute inset-0 z-10 bg-[#1a3349]/0 transition-all duration-500 group-hover:bg-[#1a3349]/20"></div>
+                    <img
+                      src={p.img}
+                      alt={p.alt}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <span className="mb-2 block text-xs uppercase tracking-wider text-gray-500">{p.segment}</span>
+                  <h3 className="mb-2 font-serif text-[1.75rem] text-[#0f1f2e]">{p.title}</h3>
+                  <p className="mb-3 text-sm leading-relaxed text-gray-600">{p.desc}</p>
+                  <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] transition-colors">
+                    Se fler projekt
+                    <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-2" />
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="hidden grid-cols-1 gap-8 md:grid md:grid-cols-3">
+            {projectHighlights.map((p, i) => (
               <motion.div
                 key={p.title}
                 className="group cursor-pointer"
@@ -274,32 +368,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-[#1a3349] py-16 text-white md:py-24">
+      <section className="overflow-hidden bg-[#1a3349] py-14 text-white md:py-24">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-24">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-24">
             <div>
               <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/50">Fördelar</span>
-              <h2 className="mb-8 font-serif text-3xl md:mb-10 md:text-5xl">Varför Nordic Stängsel?</h2>
+              <h2 className="mb-7 font-serif text-3xl md:mb-10 md:text-5xl">Varför Nordic Stängsel?</h2>
 
-              <ul className="space-y-6 md:space-y-8">
-                {[
-                  {
-                    title: "Kompromisslös kvalitet",
-                    desc: "Vi arbetar med material och lösningar anpassade för hög belastning och lång livslängd.",
-                  },
-                  {
-                    title: "Regional närvaro",
-                    desc: "Med utgångspunkt i Stockholm, Uppsala, Gävle och Västerås hanterar vi projekt med bättre närvaro på plats.",
-                  },
-                  {
-                    title: "Lång erfarenhet",
-                    desc: "Våra montörer har den kunskap som krävs för både komplexa och krävande installationer.",
-                  },
-                  {
-                    title: "Totalentreprenad",
-                    desc: "Från första projektering till slutbesiktning tar vi ett tydligt helhetsansvar för installationen.",
-                  },
-                ].map((item, i) => (
+              <ul className="space-y-5 md:space-y-8">
+                {reasons.map((item, i) => (
                   <motion.li
                     key={item.title}
                     className="flex gap-4"
@@ -321,34 +398,13 @@ export default function Home() {
             <div className="relative">
               <div className="absolute bottom-0 left-6 top-0 hidden w-[1px] bg-white/10 md:block"></div>
               <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/50">Arbetsgång</span>
-              <h2 className="mb-8 font-serif text-3xl md:mb-10 md:text-5xl">Vår arbetsprocess</h2>
+              <h2 className="mb-7 font-serif text-3xl md:mb-10 md:text-5xl">Vår arbetsprocess</h2>
 
-              <div className="space-y-8 md:space-y-12">
-                {[
-                  {
-                    step: "01",
-                    title: "Kontakt & Offert",
-                    desc: "En första genomgång av era behov följt av ett tydligt prisförslag.",
-                  },
-                  {
-                    step: "02",
-                    title: "Projektering",
-                    desc: "Mätning på plats, materialval och planering av genomförande.",
-                  },
-                  {
-                    step: "03",
-                    title: "Montering",
-                    desc: "Effektivt och fackmannamässigt montage utfört av våra egna team.",
-                  },
-                  {
-                    step: "04",
-                    title: "Slutbesiktning",
-                    desc: "Gemensam genomgång av leveransen för att säkerställa högsta kvalitet.",
-                  },
-                ].map((item, i) => (
+              <div className="space-y-6 md:space-y-12">
+                {processSteps.map((item, i) => (
                   <motion.div
                     key={item.step}
-                    className="relative flex gap-6 md:pl-16 md:gap-8"
+                    className="relative flex gap-5 md:gap-8 md:pl-16"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -370,10 +426,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#1a3349] py-16 md:py-24">
+      <section className="bg-[#1a3349] py-14 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
-            <div className="mb-10 text-center md:mb-12">
+            <div className="mb-8 text-center md:mb-12">
               <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/40">Kostnadsfri offert</span>
               <h2 className="font-serif text-3xl text-white md:text-4xl">Begär offert</h2>
             </div>
@@ -382,10 +438,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-gray-100 bg-white py-16 md:py-24">
+      <section className="border-t border-gray-100 bg-white py-14 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
-            <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -393,11 +449,11 @@ export default function Home() {
                 transition={{ duration: 0.6 }}
               >
                 <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-gray-400">Omdömen & referenser</span>
-                <h2 className="mb-6 font-serif text-3xl text-[#0f1f2e] md:text-4xl">Vi låter vårt arbete tala</h2>
-                <p className="mb-6 font-light leading-relaxed text-gray-500">
+                <h2 className="mb-5 font-serif text-3xl text-[#0f1f2e] md:mb-6 md:text-4xl">Vi låter vårt arbete tala</h2>
+                <p className="mb-5 font-light leading-relaxed text-gray-500 md:mb-6">
                   Vi publicerar inga anonyma omdömen. I stället delar vi gärna kontaktuppgifter till tidigare uppdragsgivare inom er sektor direkt under offertdialogen, med deras samtycke.
                 </p>
-                <p className="mb-8 font-light leading-relaxed text-gray-500 md:mb-10">
+                <p className="mb-7 font-light leading-relaxed text-gray-500 md:mb-10">
                   Det ger er möjlighet att ställa direkta frågor om vår arbetsprocess, leveransprecision och hur samarbetet fungerade i praktiken.
                 </p>
                 <Link href="/kontakt">
@@ -412,10 +468,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.15 }}
-                className="border border-gray-100 bg-gray-50 p-7 md:p-8"
+                className="border border-gray-100 bg-gray-50 p-6 md:p-8"
               >
-                <MessageSquare className="mb-6 h-7 w-7 text-[#0f1f2e]/30 stroke-[1.5]" />
-                <p className="mb-6 font-serif text-lg leading-relaxed text-[#0f1f2e]">
+                <MessageSquare className="mb-5 h-7 w-7 text-[#0f1f2e]/30 stroke-[1.5] md:mb-6" />
+                <p className="mb-5 font-serif text-lg leading-relaxed text-[#0f1f2e] md:mb-6">
                   "Vi värdesätter transparens. En kund som kan tala direkt med ett referensuppdrag lär sig mer om oss på tio minuter än vad en hemsida kan förmedla."
                 </p>
                 <div className="border-t border-gray-200 pt-5">
