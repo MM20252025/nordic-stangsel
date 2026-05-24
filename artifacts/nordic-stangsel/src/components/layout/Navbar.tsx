@@ -10,7 +10,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
   const [scrolled, setScrolled] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, localizePath } = useLanguage();
 
   const navLinks = language === "sv"
     ? [
@@ -72,7 +72,7 @@ export function Navbar() {
   return (
     <header className={headerClass} data-testid="navbar">
       <div className="container mx-auto flex h-[80px] items-center justify-between px-4 md:px-6">
-        <Link href="/" className="inline-block" data-testid="link-logo">
+        <Link href={localizePath("/")} className="inline-block" data-testid="link-logo">
           {scrolled ? (
             <img src={logoLightSrc} alt="Nordic Stängsel" className="h-10 w-auto" />
           ) : (
@@ -82,19 +82,23 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-8 md:flex">
           <ul className="flex items-center gap-6">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`text-sm font-medium transition-colors ${
-                    location === link.href ? activeLinkClass : linkClass
-                  }`}
-                  data-testid={`link-nav-${link.label.toLowerCase()}`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const localizedHref = localizePath(link.href);
+
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={localizedHref}
+                    className={`text-sm font-medium transition-colors ${
+                      location === localizedHref ? activeLinkClass : linkClass
+                    }`}
+                    data-testid={`link-nav-${link.label.toLowerCase()}`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           <div className="flex items-center gap-2">
@@ -116,7 +120,7 @@ export function Navbar() {
             </button>
           </div>
 
-          <Link href="/kontakt" data-testid="link-nav-cta">
+          <Link href={localizePath("/kontakt")} data-testid="link-nav-cta">
             {scrolled ? (
               <Button className="rounded-none bg-[#1a3349] text-white transition-all duration-200 hover:bg-[#264056]">
                 {ctaLabel}
@@ -162,20 +166,24 @@ export function Navbar() {
           </div>
 
           <ul className="mt-8 flex flex-col gap-6 text-center">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`text-2xl font-medium ${location === link.href ? "text-white" : "text-white/70"}`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const localizedHref = localizePath(link.href);
+
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={localizedHref}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-2xl font-medium ${location === localizedHref ? "text-white" : "text-white/70"}`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <div className="mt-12 text-center">
-            <Link href="/kontakt" onClick={() => setIsOpen(false)}>
+            <Link href={localizePath("/kontakt")} onClick={() => setIsOpen(false)}>
               <Button size="lg" className="h-auto min-h-14 w-full whitespace-normal rounded-none bg-white py-4 text-lg leading-snug text-[#0f1f2e] hover:bg-white/90">
                 {ctaLabel}
               </Button>
