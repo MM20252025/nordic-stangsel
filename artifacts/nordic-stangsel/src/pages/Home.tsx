@@ -185,7 +185,7 @@ export default function Home() {
   const copy = isSv
     ? {
         heroTitle: "Stängsel, grindar och områdesskydd för företag, skolor, fastigheter och villor",
-        heroBody: "Få kostnadsfri offert inom 24 timmar. Vi projekterar och monterar hållbara lösningar i Stockholm, Uppsala och Mälardalen för industri, kommun, BRF och privat fastighet.",
+        heroBody: "Vi projekterar och monterar hållbara lösningar i Stockholm, Uppsala och Mälardalen.",
         heroPrimary: "Få kostnadsfri offert inom 24 timmar",
         heroSecondary: "Se utförda projekt",
         expertise: "Expertis",
@@ -214,7 +214,7 @@ export default function Home() {
       }
     : {
         heroTitle: "Fencing, gates and perimeter protection for companies, schools, properties and villas",
-        heroBody: "Get a free quote within 24 hours. We design and install durable solutions in Stockholm, Uppsala and the Mälardalen region for industry, municipalities, housing associations and private properties.",
+        heroBody: "We design and install durable solutions in Stockholm, Uppsala and the Mälardalen region.",
         heroPrimary: "Get a free quote within 24 hours",
         heroSecondary: "See completed projects",
         expertise: "Expertise",
