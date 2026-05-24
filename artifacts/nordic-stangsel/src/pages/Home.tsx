@@ -26,7 +26,7 @@ import project2Src from "../assets/images/project-2.png";
 import project3Src from "../assets/images/project-3.png";
 
 export default function Home() {
-  const { language } = useLanguage();
+  const { language, localizePath } = useLanguage();
   const isSv = language === "sv";
 
   const trustItems = isSv
@@ -262,12 +262,12 @@ export default function Home() {
             </p>
 
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-              <Link href="/kontakt">
+              <Link href={localizePath("/kontakt")}>
                 <Button className="h-auto min-h-12 w-full rounded-none bg-white px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#0c1824] transition-all duration-200 hover:bg-white/90 sm:w-auto sm:whitespace-nowrap">
                   {copy.heroPrimary}
                 </Button>
               </Link>
-              <Link href="/projekt">
+              <Link href={localizePath("/projekt")}>
                 <Button variant="outline" className="h-12 w-full rounded-none border border-white/30 bg-transparent px-8 text-sm uppercase tracking-widest text-white transition-all duration-200 hover:border-white/70 hover:bg-white/5 sm:w-auto">
                   {copy.heroSecondary}
                 </Button>
@@ -316,7 +316,7 @@ export default function Home() {
               <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">{copy.servicesTitle}</h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500 md:text-base">{copy.servicesBody}</p>
             </div>
-            <Link href="/tjanster">
+            <Link href={localizePath("/tjanster")}>
               <Button variant="ghost" className="group w-fit p-0 text-[#0f1f2e] hover:bg-transparent hover:text-[#1a2f45]">
                 {copy.allServices}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -326,7 +326,7 @@ export default function Home() {
 
           <div className="grid grid-cols-2 gap-3 sm:hidden">
             {featuredServices.map((service, i) => (
-              <Link key={service.title} href="/tjanster">
+              <Link key={service.title} href={localizePath("/tjanster")}>
                 <motion.div className="group h-full cursor-pointer border border-gray-100 bg-white p-4 transition-all hover:border-[#0f1f2e] hover:bg-[#1a3349]" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.05 }}>
                   <service.icon className="mb-4 h-5 w-5 text-gray-400 transition-colors group-hover:text-white" />
                   <h3 className="font-serif text-lg leading-snug text-[#0f1f2e] transition-colors group-hover:text-white">{service.title}</h3>
@@ -337,7 +337,7 @@ export default function Home() {
 
           <div className="hidden grid-cols-2 gap-4 sm:grid lg:grid-cols-3 lg:gap-6">
             {featuredServices.map((service, i) => (
-              <Link key={service.title} href="/tjanster">
+              <Link key={service.title} href={localizePath("/tjanster")}>
                 <motion.div className="group h-full cursor-pointer border border-gray-100 bg-white p-6 transition-all hover:border-[#0f1f2e] hover:bg-[#1a3349] sm:p-7" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.06 }}>
                   <service.icon className="mb-5 h-7 w-7 text-gray-400 transition-colors group-hover:text-white sm:h-8 sm:w-8" />
                   <h3 className="mb-3 font-serif text-2xl text-[#0f1f2e] transition-colors group-hover:text-white">{service.title}</h3>
@@ -357,7 +357,7 @@ export default function Home() {
               <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">{copy.projectsTitle}</h2>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500 md:text-base">{copy.projectsBody}</p>
             </div>
-            <Link href="/projekt">
+            <Link href={localizePath("/projekt")}>
               <Button variant="ghost" className="group w-fit p-0 text-[#0f1f2e] hover:bg-transparent hover:text-[#1a2f45]">
                 {copy.allProjects}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -368,7 +368,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-6 md:hidden">
             {projectHighlights.slice(0, 2).map((p, i) => (
               <motion.div key={p.title} className="group cursor-pointer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }}>
-                <Link href="/projekt">
+                <Link href={localizePath("/projekt")}>
                   <div className="relative mb-4 aspect-[3/2] overflow-hidden bg-gray-200">
                     <div className="absolute inset-0 z-10 bg-[#1a3349]/0 transition-all duration-500 group-hover:bg-[#1a3349]/20"></div>
                     <img src={p.img} alt={p.alt} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -388,7 +388,7 @@ export default function Home() {
           <div className="hidden grid-cols-1 gap-8 md:grid md:grid-cols-3">
             {projectHighlights.map((p, i) => (
               <motion.div key={p.title} className="group cursor-pointer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }}>
-                <Link href="/projekt">
+                <Link href={localizePath("/projekt")}>
                   <div className="relative mb-5 aspect-[3/2] overflow-hidden bg-gray-200 md:mb-6">
                     <div className="absolute inset-0 z-10 bg-[#1a3349]/0 transition-all duration-500 group-hover:bg-[#1a3349]/20"></div>
                     <img src={p.img} alt={p.alt} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -469,7 +469,7 @@ export default function Home() {
                 <h2 className="mb-5 font-serif text-3xl text-[#0f1f2e] md:mb-6 md:text-4xl">{copy.referencesHeadline}</h2>
                 <p className="mb-5 font-light leading-relaxed text-gray-500 md:mb-6">{copy.referencesBody1}</p>
                 <p className="mb-7 font-light leading-relaxed text-gray-500 md:mb-10">{copy.referencesBody2}</p>
-                <Link href="/kontakt">
+                <Link href={localizePath("/kontakt")}>
                   <Button className="h-12 rounded-none bg-[#1a3349] px-8 text-sm uppercase tracking-widest text-white hover:bg-[#264056]">
                     {copy.requestRefs}
                   </Button>
