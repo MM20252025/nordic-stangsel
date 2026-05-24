@@ -18,7 +18,7 @@ import { useLanguage } from "@/lib/language";
 import heroSrc from "../assets/images/hero-tjanster.png";
 
 export default function Services() {
-  const { language } = useLanguage();
+  const { language, localizePath } = useLanguage();
   const isSv = language === "sv";
 
   const services = isSv
@@ -113,7 +113,7 @@ export default function Services() {
             <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/40">{copy.ctaBadge}</span>
             <h2 className="mb-6 font-serif text-3xl text-white md:text-4xl">{copy.ctaTitle}</h2>
             <p className="mx-auto mb-8 max-w-xl leading-relaxed text-white/60 md:mb-10">{copy.ctaBody}</p>
-            <Link href="/kontakt">
+            <Link href={localizePath("/kontakt")}>
               <Button size="lg" className="h-auto min-h-12 rounded-none bg-white px-10 py-3 text-sm uppercase tracking-widest text-[#0f1f2e] hover:bg-white/90 md:h-13 md:whitespace-nowrap">
                 {copy.cta}
               </Button>
