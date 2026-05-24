@@ -172,7 +172,7 @@ export function QuoteForm() {
 
   return (
     <div className="bg-white p-8 md:p-10 border border-gray-100 shadow-sm" data-testid="quote-form">
-      <h3 className="text-2xl font-serif mb-8 text-[#0f1f2e]">Begär offert</h3>
+      <h3 className="text-2xl font-serif mb-8 text-[#0f1f2e]">Få kostnadsfri offert inom 24 timmar</h3>
 
       {submitError && (
         <div className="bg-red-50 border border-red-100 p-5 mb-6 text-sm" data-testid="quote-error">
@@ -363,11 +363,11 @@ export function QuoteForm() {
           <Button
             type="submit"
             size="lg"
-            className="w-full bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-14 text-base tracking-wide"
+            className="w-full bg-[#1a3349] hover:bg-[#264056] text-white rounded-none h-auto min-h-14 py-3 text-base tracking-wide whitespace-normal leading-snug"
             disabled={form.formState.isSubmitting}
             data-testid="button-submit-quote"
           >
-            {form.formState.isSubmitting ? "Skickar..." : "Skicka offertförfrågan"}
+            {form.formState.isSubmitting ? "Skickar..." : "Få kostnadsfri offert inom 24 timmar"}
           </Button>
         </form>
       </Form>
