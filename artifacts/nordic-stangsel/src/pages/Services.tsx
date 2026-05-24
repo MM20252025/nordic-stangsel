@@ -144,8 +144,8 @@ export default function Services() {
               Vi hjälper dig att hitta rätt lösning för dina specifika behov.
             </p>
             <Link href="/kontakt">
-              <Button size="lg" className="h-12 rounded-none bg-white px-10 text-sm uppercase tracking-widest text-[#0f1f2e] hover:bg-white/90 md:h-13">
-                Begär offert
+              <Button size="lg" className="h-auto min-h-12 rounded-none bg-white px-10 py-3 text-sm uppercase tracking-widest text-[#0f1f2e] hover:bg-white/90 md:h-13 md:whitespace-nowrap">
+                Få kostnadsfri offert inom 24 timmar
               </Button>
             </Link>
           </div>
