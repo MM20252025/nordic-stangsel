@@ -75,6 +75,26 @@ const seoByRoute = {
       description: "Fencing for housing associations that improves safety, order and the overall impression. Get a quote for the right solution for courtyards, entrances and access points.",
     },
   },
+  "/industristangsel": {
+    sv: {
+      title: "Industristängsel | Nordic Stängsel",
+      description: "Industristängsel för lager, logistik, verksamheter och tekniska anläggningar. Få rätt lösning för säkerhet, drift och tydlig avgränsning.",
+    },
+    en: {
+      title: "Industrial Fencing | Nordic Stängsel",
+      description: "Industrial fencing for warehouses, logistics, operations and technical facilities. Get the right solution for security, daily operations and clear perimeter control.",
+    },
+  },
+  "/villastangsel-grindar": {
+    sv: {
+      title: "Villastängsel och grindar | Nordic Stängsel",
+      description: "Villastängsel och grindar för trygghet, estetik och smidig passage. Få offert på rätt lösning för tomt, infart och entré.",
+    },
+    en: {
+      title: "Villa Fencing and Gates | Nordic Stängsel",
+      description: "Villa fencing and gates for safety, aesthetics and smooth access. Get a quote for the right solution for your plot, driveway and entrance.",
+    },
+  },
   "/tjanster": {
     sv: {
       title: "Tjänster | Stängsel, grindar och områdesskydd | Nordic Stängsel",
