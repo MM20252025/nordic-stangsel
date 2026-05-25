@@ -15,6 +15,46 @@ const seoByRoute = {
       description: "Fencing, gates and perimeter protection for companies, schools, housing associations and villas. Get a free quote within 24 hours in Stockholm, Uppsala and the Mälardalen region.",
     },
   },
+  "/stangsel-stockholm": {
+    sv: {
+      title: "Stängsel Stockholm | Nordic Stängsel",
+      description: "Stängsel i Stockholm för företag, BRF, kommuner och villor. Få rätt lösning och offert för stängsel med lokal projektering och montering.",
+    },
+    en: {
+      title: "Fencing Stockholm | Nordic Stängsel",
+      description: "Fencing in Stockholm for companies, housing associations, municipalities and villas. Get the right solution and a quote with local planning and installation.",
+    },
+  },
+  "/stangsel-uppsala": {
+    sv: {
+      title: "Stängsel Uppsala | Nordic Stängsel",
+      description: "Stängsel i Uppsala för fastigheter, skolor, företag och villor. Få offert på en hållbar lösning anpassad till plats och användning.",
+    },
+    en: {
+      title: "Fencing Uppsala | Nordic Stängsel",
+      description: "Fencing in Uppsala for properties, schools, companies and villas. Get a quote for a durable solution adapted to the site and use case.",
+    },
+  },
+  "/grindar-stockholm": {
+    sv: {
+      title: "Grindar Stockholm | Nordic Stängsel",
+      description: "Grindar i Stockholm för infarter, fastigheter och verksamheter. Automatiska grindar, skjutgrindar och lösningar för tydlig inpassering.",
+    },
+    en: {
+      title: "Gates Stockholm | Nordic Stängsel",
+      description: "Gates in Stockholm for entrances, properties and business sites. Automatic gates, sliding gates and access solutions with clear daily function.",
+    },
+  },
+  "/grindar-uppsala": {
+    sv: {
+      title: "Grindar Uppsala | Nordic Stängsel",
+      description: "Grindar i Uppsala för företag, fastigheter, BRF och villor. Få rätt grindlösning för funktion, flöde och långsiktig användning.",
+    },
+    en: {
+      title: "Gates Uppsala | Nordic Stängsel",
+      description: "Gates in Uppsala for companies, properties, housing associations and villas. Get the right gate solution for flow, function and long-term use.",
+    },
+  },
   "/tjanster": {
     sv: {
       title: "Tjänster | Stängsel, grindar och områdesskydd | Nordic Stängsel",
