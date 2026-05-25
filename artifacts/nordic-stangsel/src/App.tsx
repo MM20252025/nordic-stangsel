@@ -21,6 +21,7 @@ import {
   StangselStockholmPage,
   StangselUppsalaPage,
 } from "@/pages/LocationPages";
+import { OmradesskyddForetagPage, StangselBrfPage } from "@/pages/AudiencePages";
 import { LanguageProvider } from "@/lib/language";
 
 const queryClient = new QueryClient();
@@ -48,6 +49,10 @@ function Router() {
       <Route path="/en/grindar-stockholm" component={GrindarStockholmPage} />
       <Route path="/grindar-uppsala" component={GrindarUppsalaPage} />
       <Route path="/en/grindar-uppsala" component={GrindarUppsalaPage} />
+      <Route path="/omradesskydd-foretag" component={OmradesskyddForetagPage} />
+      <Route path="/en/omradesskydd-foretag" component={OmradesskyddForetagPage} />
+      <Route path="/stangsel-brf" component={StangselBrfPage} />
+      <Route path="/en/stangsel-brf" component={StangselBrfPage} />
       <Route path="/tjanster" component={Services} />
       <Route path="/en/tjanster" component={Services} />
       <Route path="/projekt" component={Projects} />
