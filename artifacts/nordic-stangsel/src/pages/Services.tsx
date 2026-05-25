@@ -93,6 +93,26 @@ export default function Services() {
           title: "Villastängsel och grindar",
           description: "Sida för villaägare som vill förbättra trygghet, entré och tomtens helhetsintryck.",
         },
+        {
+          href: "/skolstangsel",
+          title: "Skolstängsel",
+          description: "Högintentsida för skolor, förskolor och kommuner som behöver trygg avgränsning.",
+        },
+        {
+          href: "/panelstangsel",
+          title: "Panelstängsel",
+          description: "Sida för projekt där ordning, överblick och modernt uttryck är viktiga beslutsfaktorer.",
+        },
+        {
+          href: "/automatgrindar",
+          title: "Automatgrindar",
+          description: "Produktsida för smidig inpassering, kontroll och driftsäker passage i vardagen.",
+        },
+        {
+          href: "/skjutgrindar",
+          title: "Skjutgrindar",
+          description: "Sida för breda infarter och miljöer där platsutnyttjande och robust funktion väger tungt.",
+        },
       ]
     : [
         {
@@ -135,6 +155,26 @@ export default function Services() {
           title: "Villa Fencing and Gates",
           description: "Page for homeowners improving safety, access and the overall expression of the plot.",
         },
+        {
+          href: "/skolstangsel",
+          title: "School Fencing",
+          description: "High-intent page for schools, preschools and municipalities that need safer boundaries.",
+        },
+        {
+          href: "/panelstangsel",
+          title: "Panel Fencing",
+          description: "Page for projects where order, visibility and a modern expression drive the decision.",
+        },
+        {
+          href: "/automatgrindar",
+          title: "Automatic Gates",
+          description: "Product page for smooth access, control and dependable daily passage.",
+        },
+        {
+          href: "/skjutgrindar",
+          title: "Sliding Gates",
+          description: "Page for wide entrances and sites where space efficiency and robust function matter.",
+        },
       ];
 
   const copy = isSv
@@ -144,7 +184,7 @@ export default function Services() {
         heroBody: "I Stockholm, Uppsala och Mälardalen hjälper vi företag, skolor, kommuner, BRF:er och villakunder att välja rätt lösning och få offert inom 24 timmar.",
         localPagesBadge: "Lokala, målgruppsstyrda och produktspecifika sidor",
         localPagesTitle: "Snabb väg till rätt sida för område, målgrupp eller lösning",
-        localPagesBody: "Vi har samlat åtta sidor för högintenta sökningar inom stängsel, grindar och områdesskydd. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
+        localPagesBody: "Vi har samlat tolv sidor för högintenta sökningar inom stängsel, grindar och områdesskydd. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
         localPagesCta: "Öppna sida",
         sectionTitle: "Från första behov till färdig installation",
         sectionBody: "Varje tjänst är utformad för att göra beslutet enklare: rätt nivå av områdesskydd, rätt typ av grind och ett genomförande som fungerar i vardagen efter installation.",
@@ -159,7 +199,7 @@ export default function Services() {
         heroBody: "In Stockholm, Uppsala and the Mälardalen region, we help companies, schools, municipalities, housing associations and villa owners choose the right solution and get a quote within 24 hours.",
         localPagesBadge: "Local, audience and product pages",
         localPagesTitle: "Fast route to the right page for area, audience or solution",
-        localPagesBody: "We have grouped eight high-intent pages for fencing, gates and perimeter protection. They help both visitors and search engines find the right offer faster.",
+        localPagesBody: "We have grouped twelve high-intent pages for fencing, gates and perimeter protection. They help both visitors and search engines find the right offer faster.",
         localPagesCta: "Open page",
         sectionTitle: "From first need to completed installation",
         sectionBody: "Each service is designed to make the decision easier: the right level of perimeter protection, the right type of gate and a delivery that works in everyday use after installation.",
