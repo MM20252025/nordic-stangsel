@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import {
+  ArrowRight,
   Factory,
   School,
   Shield,
@@ -11,6 +12,7 @@ import {
   RefreshCcw,
   Wrench,
   Focus,
+  MapPin,
 } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -49,11 +51,61 @@ export default function Services() {
         { id: 11, title: "Repair and maintenance", icon: Wrench, desc: "We offer service agreements, repairs after impact or vandalism, and general maintenance of existing fencing and automation to ensure long-term performance." },
       ];
 
+  const landingPages = isSv
+    ? [
+        {
+          href: "/stangsel-stockholm",
+          title: "Stängsel Stockholm",
+          description: "Säljsida för företag, BRF, kommuner och villor i Stockholm.",
+        },
+        {
+          href: "/stangsel-uppsala",
+          title: "Stängsel Uppsala",
+          description: "Fokuserad undersida för stängselprojekt i Uppsala och närområdet.",
+        },
+        {
+          href: "/grindar-stockholm",
+          title: "Grindar Stockholm",
+          description: "Lokal sida för grindar, inpassering och drift i Stockholm.",
+        },
+        {
+          href: "/grindar-uppsala",
+          title: "Grindar Uppsala",
+          description: "Sida för grindlösningar i Uppsala för fastigheter, BRF och företag.",
+        },
+      ]
+    : [
+        {
+          href: "/stangsel-stockholm",
+          title: "Fencing Stockholm",
+          description: "Sales page for companies, housing associations, municipalities and villas in Stockholm.",
+        },
+        {
+          href: "/stangsel-uppsala",
+          title: "Fencing Uppsala",
+          description: "Focused landing page for fencing projects in Uppsala and nearby areas.",
+        },
+        {
+          href: "/grindar-stockholm",
+          title: "Gates Stockholm",
+          description: "Local page for gates, access control and operations in Stockholm.",
+        },
+        {
+          href: "/grindar-uppsala",
+          title: "Gates Uppsala",
+          description: "Page for gate solutions in Uppsala for properties, housing associations and companies.",
+        },
+      ];
+
   const copy = isSv
     ? {
         badge: "Expertis",
         heroTitle: "Stängsel och grindlösningar för riktiga projekt",
         heroBody: "I Stockholm, Uppsala och Mälardalen hjälper vi företag, skolor, kommuner, BRF:er och villakunder att välja rätt lösning och få offert inom 24 timmar.",
+        localPagesBadge: "Lokala sidor",
+        localPagesTitle: "Snabb väg till rätt sida för ditt område",
+        localPagesBody: "Vi har samlat fyra sidor för högintenta sökningar inom stängsel och grindar i Stockholm och Uppsala. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
+        localPagesCta: "Öppna sida",
         sectionTitle: "Från första behov till färdig installation",
         sectionBody: "Varje tjänst är utformad för att göra beslutet enklare: rätt nivå av områdesskydd, rätt typ av grind och ett genomförande som fungerar i vardagen efter installation.",
         ctaBadge: "Kostnadsfri konsultation",
@@ -65,6 +117,10 @@ export default function Services() {
         badge: "Expertise",
         heroTitle: "Fencing and gate solutions for real projects",
         heroBody: "In Stockholm, Uppsala and the Mälardalen region, we help companies, schools, municipalities, housing associations and villa owners choose the right solution and get a quote within 24 hours.",
+        localPagesBadge: "Local pages",
+        localPagesTitle: "Fast route to the right page for your area",
+        localPagesBody: "We have grouped four high-intent pages for fencing and gates in Stockholm and Uppsala. They help both visitors and search engines find the right offer faster.",
+        localPagesCta: "Open page",
         sectionTitle: "From first need to completed installation",
         sectionBody: "Each service is designed to make the decision easier: the right level of perimeter protection, the right type of gate and a delivery that works in everyday use after installation.",
         ctaBadge: "Free consultation",
@@ -85,6 +141,42 @@ export default function Services() {
             <h1 className="mb-5 font-serif text-4xl text-white md:mb-6 md:text-6xl">{copy.heroTitle}</h1>
             <p className="max-w-2xl text-base font-light leading-relaxed text-white/80 md:text-lg">{copy.heroBody}</p>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="border-b border-gray-100 bg-[#f8fafb] py-12 md:py-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mb-8 max-w-3xl md:mb-10">
+            <span className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#7d8993]">
+              <MapPin className="h-4 w-4" />
+              {copy.localPagesBadge}
+            </span>
+            <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-4xl">{copy.localPagesTitle}</h2>
+            <p className="mt-4 text-sm leading-7 text-[#51606c] md:text-base">{copy.localPagesBody}</p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {landingPages.map((page, index) => (
+              <Link key={page.href} href={localizePath(page.href)}>
+                <motion.article
+                  className="group flex h-full items-center justify-between gap-5 border border-[#e4e8ec] bg-white px-5 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#1a3349]/30 hover:shadow-[0_20px_50px_rgba(10,24,38,0.08)] md:px-6"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                >
+                  <div>
+                    <h3 className="font-serif text-[1.45rem] leading-tight text-[#0f1f2e]">{page.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-[#51606c]">{page.description}</p>
+                  </div>
+                  <div className="inline-flex items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[#1a3349]">
+                    <span>{copy.localPagesCta}</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </div>
+                </motion.article>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
