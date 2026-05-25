@@ -162,6 +162,48 @@ export default function Home() {
         { step: "04", title: "Final inspection", desc: "A joint review of the delivery to ensure the highest quality." },
       ];
 
+  const caseStudies = isSv
+    ? [
+        {
+          title: "Logistikcenter med högre krav på kontroll",
+          location: "Knivsta",
+          scope: "Industristängsel, skjutgrind och tydlig zonindelning",
+          result: "Säkrare infart, bättre styrning av fordonstrafik och tydligare områdeslogik för vardagsdriften.",
+        },
+        {
+          title: "Skolgård med behov av tryggare passager",
+          location: "Uppsala",
+          scope: "Panelstängsel, barnsäkra grindar och lugn avgränsning",
+          result: "Tydligare gränser, bättre orienterbarhet och en lösning som fungerar för barn, personal och vårdnadshavare.",
+        },
+        {
+          title: "Idrottsanläggning med stora flöden",
+          location: "Stockholm",
+          scope: "Bollfångarnät, publikgrindar och robusta stängselpartier",
+          result: "Bättre publikflöden, högre slitstyrka och ett mer sammanhållet intryck runt hela anläggningen.",
+        },
+      ]
+    : [
+        {
+          title: "Logistics centre with higher control requirements",
+          location: "Knivsta",
+          scope: "Industrial fencing, sliding gate and clear site zoning",
+          result: "Safer entrance control, better vehicle-flow management and clearer site logic for daily operations.",
+        },
+        {
+          title: "Schoolyard with a need for safer passage points",
+          location: "Uppsala",
+          scope: "Panel fencing, child-safe gates and calm boundary design",
+          result: "Clearer boundaries, better orientation and a solution that works for children, staff and guardians.",
+        },
+        {
+          title: "Sports facility with heavy movement flows",
+          location: "Stockholm",
+          scope: "Ball-stop netting, audience gates and robust fence sections",
+          result: "Better audience flows, higher durability and a more coherent overall impression around the full venue.",
+        },
+      ];
+
   const copy = isSv
     ? {
         heroTitle: "Premium stängsel och grindlösningar för företag, kommuner och villor i Stockholm, Uppsala och Mälardalen.",
@@ -184,13 +226,15 @@ export default function Home() {
         freeQuote: "Kostnadsfri offert",
         quoteTitle: "Få kostnadsfri offert inom 24 timmar",
         quoteBody: "Beskriv projektet kort. Vi återkommer snabbt med rekommendation, nästa steg och offertunderlag.",
-        testimonials: "Omdömen & referenser",
-        referencesHeadline: "Vi låter vårt arbete tala",
-        referencesBody1: "Vi publicerar inga anonyma omdömen. I stället delar vi gärna kontaktuppgifter till tidigare uppdragsgivare inom er sektor direkt under offertdialogen, med deras samtycke.",
-        referencesBody2: "Det ger er möjlighet att ställa direkta frågor om vår arbetsprocess, leveransprecision och hur samarbetet fungerade i praktiken.",
-        requestRefs: "Begär referenser",
-        quoteCard: "Nordic Stängsel AB — om vårt sätt att arbeta",
-        quoteText: "Vi värdesätter transparens. En kund som kan tala direkt med ett referensuppdrag lär sig mer om oss på tio minuter än vad en hemsida kan förmedla.",
+        testimonials: "Referenser & case studies",
+        referencesHeadline: "Konkreta projektmiljöer, inte bara allmänna löften",
+        referencesIntro: "När kunder väljer leverantör vill de förstå hur lösningen fungerade i en verklig miljö. Därför lyfter vi fram typiska case studies som visar vad som faktiskt blev viktigt i projektet.",
+        referencesCta: "Begär liknande referens",
+        referencesMore: "Se fler projekt",
+        caseScope: "Omfattning",
+        caseResult: "Resultat",
+        quoteCard: "Nordic Stängsel AB — om referenser",
+        quoteText: "Vi tror mer på tydliga projektmiljöer och riktiga referensdialoger än på generiska superlativ. Det gör det lättare att bedöma om vi är rätt partner för just ert uppdrag.",
       }
     : {
         heroTitle: "Premium fencing and gate solutions for companies, municipalities and villas in Stockholm, Uppsala and the Mälardalen region.",
@@ -213,13 +257,15 @@ export default function Home() {
         freeQuote: "Free quote",
         quoteTitle: "Get a free quote within 24 hours",
         quoteBody: "Briefly describe the project. We will come back quickly with a recommendation, the next step and a quote basis.",
-        testimonials: "Reviews & references",
-        referencesHeadline: "We let our work speak for itself",
-        referencesBody1: "We do not publish anonymous reviews. Instead, we are happy to share contact details for previous clients in your sector during the quote dialogue, with their consent.",
-        referencesBody2: "That gives you the opportunity to ask direct questions about our process, delivery precision and how the collaboration worked in practice.",
-        requestRefs: "Request references",
-        quoteCard: "Nordic Stängsel AB — about our way of working",
-        quoteText: "We value transparency. A customer who can speak directly with a reference project learns more about us in ten minutes than a website can ever convey.",
+        testimonials: "References & case studies",
+        referencesHeadline: "Concrete project environments, not just generic promises",
+        referencesIntro: "When customers choose a supplier, they want to understand how the solution worked in a real environment. That is why we highlight typical case studies that show what actually mattered in the project.",
+        referencesCta: "Request a similar reference",
+        referencesMore: "See more projects",
+        caseScope: "Scope",
+        caseResult: "Result",
+        quoteCard: "Nordic Stängsel AB — about references",
+        quoteText: "We believe more in clear project environments and real reference dialogues than in generic superlatives. It makes it easier to assess whether we are the right partner for your assignment.",
       };
 
   const primaryButtonClass =
@@ -478,26 +524,72 @@ export default function Home() {
 
       <section className="border-t border-gray-100 bg-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-4xl">
-            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-                <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-gray-400">{copy.testimonials}</span>
-                <h2 className="mb-5 font-serif text-3xl text-[#0f1f2e] md:mb-6 md:text-4xl">{copy.referencesHeadline}</h2>
-                <p className="mb-5 font-light leading-relaxed text-gray-500 md:mb-6">{copy.referencesBody1}</p>
-                <p className="mb-7 font-light leading-relaxed text-gray-500 md:mb-10">{copy.referencesBody2}</p>
-                <Link href={localizePath("/kontakt")}>
-                  <Button className={primaryButtonClass}>{copy.requestRefs}</Button>
-                </Link>
-              </motion.div>
+          <div className="mb-10 max-w-3xl md:mb-12">
+            <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-gray-400">{copy.testimonials}</span>
+            <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-4xl">{copy.referencesHeadline}</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#51606c] md:text-base">{copy.referencesIntro}</p>
+          </div>
 
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }} className="border border-gray-100 bg-gray-50 p-6 md:p-8">
-                <MessageSquare className="mb-5 h-7 w-7 text-[#0f1f2e]/30 stroke-[1.5] md:mb-6" />
-                <p className="mb-5 font-serif text-lg leading-relaxed text-[#0f1f2e] md:mb-6">&quot;{copy.quoteText}&quot;</p>
-                <div className="border-t border-gray-200 pt-5">
-                  <p className="text-xs uppercase tracking-wider text-gray-400">{copy.quoteCard}</p>
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+            {caseStudies.map((study, index) => (
+              <motion.article
+                key={study.title}
+                className="border border-[#e4e8ec] bg-[#f8fafb] px-5 py-6 md:px-6 md:py-7"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.06 }}
+              >
+                <div className="mb-4 flex items-center gap-3 text-[0.68rem] uppercase tracking-[0.18em] text-[#51606c]">
+                  <span className="border border-[#dbe1e6] px-3 py-1">{study.location}</span>
                 </div>
-              </motion.div>
-            </div>
+                <h3 className="font-serif text-[1.5rem] leading-tight text-[#0f1f2e]">{study.title}</h3>
+                <div className="mt-5 border-t border-[#dbe1e6] pt-5">
+                  <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#7d8993]">{copy.caseScope}</p>
+                  <p className="mt-2 text-sm leading-7 text-[#51606c]">{study.scope}</p>
+                </div>
+                <div className="mt-5 border-t border-[#dbe1e6] pt-5">
+                  <p className="text-[0.68rem] uppercase tracking-[0.18em] text-[#7d8993]">{copy.caseResult}</p>
+                  <p className="mt-2 text-sm leading-7 text-[#51606c]">{study.result}</p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="border border-[#e4e8ec] bg-white px-6 py-6 md:px-8 md:py-8"
+            >
+              <MessageSquare className="mb-5 h-7 w-7 text-[#0f1f2e]/30 stroke-[1.5]" />
+              <p className="font-serif text-lg leading-relaxed text-[#0f1f2e]">&quot;{copy.quoteText}&quot;</p>
+              <div className="mt-6 border-t border-[#e4e8ec] pt-5 text-xs uppercase tracking-[0.18em] text-[#7d8993]">
+                {copy.quoteCard}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex flex-col gap-4"
+            >
+              <Link href={localizePath("/kontakt")}>
+                <Button className={`${primaryButtonClass} w-full`}>{copy.referencesCta}</Button>
+              </Link>
+              <Link href={localizePath("/projekt")}>
+                <Button
+                  variant="outline"
+                  className={`${secondaryButtonClass} w-full border-[#1a3349]/20 text-[#0f1f2e] hover:border-[#1a3349] hover:bg-[#1a3349] hover:text-white`}
+                >
+                  {copy.referencesMore}
+                </Button>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
