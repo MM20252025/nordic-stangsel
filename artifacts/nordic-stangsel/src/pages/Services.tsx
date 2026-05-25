@@ -83,6 +83,16 @@ export default function Services() {
           title: "Stängsel för BRF",
           description: "Undersida för bostadsrättsföreningar som vill förbättra ordning, trygghet och helhetsintryck.",
         },
+        {
+          href: "/industristangsel",
+          title: "Industristängsel",
+          description: "Produktsida för verksamheter som behöver robust avgränsning, kontroll och lång livslängd.",
+        },
+        {
+          href: "/villastangsel-grindar",
+          title: "Villastängsel och grindar",
+          description: "Sida för villaägare som vill förbättra trygghet, entré och tomtens helhetsintryck.",
+        },
       ]
     : [
         {
@@ -115,6 +125,16 @@ export default function Services() {
           title: "Fencing for Housing Associations",
           description: "Dedicated page for housing associations improving safety, order and curb appeal.",
         },
+        {
+          href: "/industristangsel",
+          title: "Industrial Fencing",
+          description: "Product page for operations that need robust boundaries, control and long service life.",
+        },
+        {
+          href: "/villastangsel-grindar",
+          title: "Villa Fencing and Gates",
+          description: "Page for homeowners improving safety, access and the overall expression of the plot.",
+        },
       ];
 
   const copy = isSv
@@ -122,9 +142,9 @@ export default function Services() {
         badge: "Expertis",
         heroTitle: "Stängsel och grindlösningar för riktiga projekt",
         heroBody: "I Stockholm, Uppsala och Mälardalen hjälper vi företag, skolor, kommuner, BRF:er och villakunder att välja rätt lösning och få offert inom 24 timmar.",
-        localPagesBadge: "Lokala och målgruppsstyrda sidor",
-        localPagesTitle: "Snabb väg till rätt sida för område eller målgrupp",
-        localPagesBody: "Vi har samlat sex sidor för högintenta sökningar inom stängsel, grindar och områdesskydd. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
+        localPagesBadge: "Lokala, målgruppsstyrda och produktspecifika sidor",
+        localPagesTitle: "Snabb väg till rätt sida för område, målgrupp eller lösning",
+        localPagesBody: "Vi har samlat åtta sidor för högintenta sökningar inom stängsel, grindar och områdesskydd. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
         localPagesCta: "Öppna sida",
         sectionTitle: "Från första behov till färdig installation",
         sectionBody: "Varje tjänst är utformad för att göra beslutet enklare: rätt nivå av områdesskydd, rätt typ av grind och ett genomförande som fungerar i vardagen efter installation.",
@@ -137,9 +157,9 @@ export default function Services() {
         badge: "Expertise",
         heroTitle: "Fencing and gate solutions for real projects",
         heroBody: "In Stockholm, Uppsala and the Mälardalen region, we help companies, schools, municipalities, housing associations and villa owners choose the right solution and get a quote within 24 hours.",
-        localPagesBadge: "Local and audience pages",
-        localPagesTitle: "Fast route to the right page for area or audience",
-        localPagesBody: "We have grouped six high-intent pages for fencing, gates and perimeter protection. They help both visitors and search engines find the right offer faster.",
+        localPagesBadge: "Local, audience and product pages",
+        localPagesTitle: "Fast route to the right page for area, audience or solution",
+        localPagesBody: "We have grouped eight high-intent pages for fencing, gates and perimeter protection. They help both visitors and search engines find the right offer faster.",
         localPagesCta: "Open page",
         sectionTitle: "From first need to completed installation",
         sectionBody: "Each service is designed to make the decision easier: the right level of perimeter protection, the right type of gate and a delivery that works in everyday use after installation.",
