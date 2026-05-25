@@ -29,6 +29,12 @@ import {
   SkjutgrindarPage,
   SkolstangselPage,
 } from "@/pages/ServiceFocusPages";
+import {
+  OmradesskyddStockholmPage,
+  OmradesskyddUppsalaPage,
+  StangselBrfStockholmPage,
+  StangselBrfUppsalaPage,
+} from "@/pages/AudienceLocationPages";
 import { LanguageProvider } from "@/lib/language";
 
 const queryClient = new QueryClient();
@@ -72,6 +78,14 @@ function Router() {
       <Route path="/en/automatgrindar" component={AutomatgrindarPage} />
       <Route path="/skjutgrindar" component={SkjutgrindarPage} />
       <Route path="/en/skjutgrindar" component={SkjutgrindarPage} />
+      <Route path="/stangsel-brf-stockholm" component={StangselBrfStockholmPage} />
+      <Route path="/en/stangsel-brf-stockholm" component={StangselBrfStockholmPage} />
+      <Route path="/stangsel-brf-uppsala" component={StangselBrfUppsalaPage} />
+      <Route path="/en/stangsel-brf-uppsala" component={StangselBrfUppsalaPage} />
+      <Route path="/omradesskydd-stockholm" component={OmradesskyddStockholmPage} />
+      <Route path="/en/omradesskydd-stockholm" component={OmradesskyddStockholmPage} />
+      <Route path="/omradesskydd-uppsala" component={OmradesskyddUppsalaPage} />
+      <Route path="/en/omradesskydd-uppsala" component={OmradesskyddUppsalaPage} />
       <Route path="/tjanster" component={Services} />
       <Route path="/en/tjanster" component={Services} />
       <Route path="/projekt" component={Projects} />
