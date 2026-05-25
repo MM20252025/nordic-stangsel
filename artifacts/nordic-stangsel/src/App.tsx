@@ -22,6 +22,7 @@ import {
   StangselUppsalaPage,
 } from "@/pages/LocationPages";
 import { OmradesskyddForetagPage, StangselBrfPage } from "@/pages/AudiencePages";
+import { IndustristangselPage, VillastangselGrindarPage } from "@/pages/ProductPages";
 import { LanguageProvider } from "@/lib/language";
 
 const queryClient = new QueryClient();
@@ -53,6 +54,10 @@ function Router() {
       <Route path="/en/omradesskydd-foretag" component={OmradesskyddForetagPage} />
       <Route path="/stangsel-brf" component={StangselBrfPage} />
       <Route path="/en/stangsel-brf" component={StangselBrfPage} />
+      <Route path="/industristangsel" component={IndustristangselPage} />
+      <Route path="/en/industristangsel" component={IndustristangselPage} />
+      <Route path="/villastangsel-grindar" component={VillastangselGrindarPage} />
+      <Route path="/en/villastangsel-grindar" component={VillastangselGrindarPage} />
       <Route path="/tjanster" component={Services} />
       <Route path="/en/tjanster" component={Services} />
       <Route path="/projekt" component={Projects} />
