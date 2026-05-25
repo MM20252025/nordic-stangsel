@@ -15,6 +15,12 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Integritetspolicy from "@/pages/Integritetspolicy";
 import Villkor from "@/pages/Villkor";
+import {
+  GrindarStockholmPage,
+  GrindarUppsalaPage,
+  StangselStockholmPage,
+  StangselUppsalaPage,
+} from "@/pages/LocationPages";
 import { LanguageProvider } from "@/lib/language";
 
 const queryClient = new QueryClient();
@@ -34,6 +40,14 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/en" component={Home} />
+      <Route path="/stangsel-stockholm" component={StangselStockholmPage} />
+      <Route path="/en/stangsel-stockholm" component={StangselStockholmPage} />
+      <Route path="/stangsel-uppsala" component={StangselUppsalaPage} />
+      <Route path="/en/stangsel-uppsala" component={StangselUppsalaPage} />
+      <Route path="/grindar-stockholm" component={GrindarStockholmPage} />
+      <Route path="/en/grindar-stockholm" component={GrindarStockholmPage} />
+      <Route path="/grindar-uppsala" component={GrindarUppsalaPage} />
+      <Route path="/en/grindar-uppsala" component={GrindarUppsalaPage} />
       <Route path="/tjanster" component={Services} />
       <Route path="/en/tjanster" component={Services} />
       <Route path="/projekt" component={Projects} />
