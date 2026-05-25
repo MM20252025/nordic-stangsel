@@ -135,6 +135,46 @@ const seoByRoute = {
       description: "Sliding gates for industry, logistics and wide entrances. Get the right solution for space efficiency, control and robust daily function.",
     },
   },
+  "/stangsel-brf-stockholm": {
+    sv: {
+      title: "Stängsel BRF Stockholm | Nordic Stängsel",
+      description: "Stängsel för BRF i Stockholm som förbättrar trygghet, ordning och gårdsmiljö. Få offert på rätt lösning för entréer, passager och gemensamma ytor.",
+    },
+    en: {
+      title: "Housing Association Fencing Stockholm | Nordic Stängsel",
+      description: "Fencing for housing associations in Stockholm that improves safety, order and courtyard environments. Get the right quote for entrances, walkways and shared areas.",
+    },
+  },
+  "/stangsel-brf-uppsala": {
+    sv: {
+      title: "Stängsel BRF Uppsala | Nordic Stängsel",
+      description: "Stängsel för BRF i Uppsala som förbättrar trygghet, gårdsmiljö och helhetsintryck. Få offert på rätt lösning för entréer, passager och gemensamma ytor.",
+    },
+    en: {
+      title: "Housing Association Fencing Uppsala | Nordic Stängsel",
+      description: "Fencing for housing associations in Uppsala that improves safety, courtyard environments and the overall impression. Get the right quote for entrances, walkways and shared areas.",
+    },
+  },
+  "/omradesskydd-stockholm": {
+    sv: {
+      title: "Områdesskydd Stockholm | Nordic Stängsel",
+      description: "Områdesskydd i Stockholm för företag som behöver tydlig säkerhet, drift och inpassering. Få rätt lösning för verksamhetsområden och fastigheter.",
+    },
+    en: {
+      title: "Perimeter Protection Stockholm | Nordic Stängsel",
+      description: "Perimeter protection in Stockholm for companies that need clear security, operations and access control. Get the right solution for business sites and properties.",
+    },
+  },
+  "/omradesskydd-uppsala": {
+    sv: {
+      title: "Områdesskydd Uppsala | Nordic Stängsel",
+      description: "Områdesskydd i Uppsala för företag som behöver trygg drift, tydliga flöden och rätt inpassering. Få rätt lösning för verksamhetsområden och fastigheter.",
+    },
+    en: {
+      title: "Perimeter Protection Uppsala | Nordic Stängsel",
+      description: "Perimeter protection in Uppsala for companies that need reliable operations, clear flows and the right access control. Get the right solution for business sites and properties.",
+    },
+  },
   "/tjanster": {
     sv: {
       title: "Tjänster | Stängsel, grindar och områdesskydd | Nordic Stängsel",
