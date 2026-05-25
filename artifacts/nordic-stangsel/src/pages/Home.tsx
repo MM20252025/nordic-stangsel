@@ -4,7 +4,6 @@ import {
   ArrowRight,
   CheckCircle,
   Clock,
-  Hammer,
   ShieldCheck,
   Factory,
   School,
@@ -13,8 +12,6 @@ import {
   MoveHorizontal,
   MapPin,
   MessageSquare,
-  BadgeCheck,
-  PhoneCall,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -32,112 +29,108 @@ export default function Home() {
   const trustItems = isSv
     ? [
         {
-          icon: Hammer,
-          title: "Professionell montering",
-          desc: "Erfarna montörer säkerställer hög kvalitet i varje steg.",
+          icon: Clock,
+          title: "Offert inom 24 timmar",
+          desc: "Snabb återkoppling med tydligt nästa steg för projektet.",
         },
         {
           icon: MapPin,
-          title: "Stockholm, Uppsala och Mälardalen",
-          desc: "Regional närvaro med snabb samordning och platsbesök.",
+          title: "Lokal närvaro i Mälardalen",
+          desc: "Stockholm, Uppsala och närområdet med smidig samordning på plats.",
         },
         {
           icon: ShieldCheck,
-          title: "Hållbara material",
-          desc: "Svensk kvalitet byggd för nordiskt klimat.",
-        },
-        {
-          icon: Clock,
-          title: "Offert inom 24 timmar",
-          desc: "Snabb återkoppling så att projektet kan gå vidare direkt.",
+          title: "Hållbara helhetslösningar",
+          desc: "Estetik, säkerhet och lång livslängd i samma leverans.",
         },
       ]
     : [
         {
-          icon: Hammer,
-          title: "Professional installation",
-          desc: "Experienced installers ensure high quality at every stage.",
+          icon: Clock,
+          title: "Quote within 24 hours",
+          desc: "Fast follow-up with a clear next step for the project.",
         },
         {
           icon: MapPin,
-          title: "Stockholm, Uppsala and Mälardalen",
-          desc: "Regional presence with fast coordination and site visits.",
+          title: "Local presence in Mälardalen",
+          desc: "Stockholm, Uppsala and nearby areas with smooth on-site coordination.",
         },
         {
           icon: ShieldCheck,
-          title: "Durable materials",
-          desc: "Swedish quality built for the Nordic climate.",
-        },
-        {
-          icon: Clock,
-          title: "Quote within 24 hours",
-          desc: "Fast follow-up so the project can move forward right away.",
+          title: "Durable end-to-end solutions",
+          desc: "A balance of aesthetics, security and long service life.",
         },
       ];
 
   const featuredServices = isSv
     ? [
-        { title: "Industristängsel", icon: Factory, desc: "Robusta lösningar för industriområden och logistikcentra." },
-        { title: "Skolstängsel", icon: School, desc: "Säkra och hållbara stängsel för förskolor och skolor." },
-        { title: "Säkerhetsstängsel", icon: ShieldCheck, desc: "Hög säkerhetsnivå för skyddsobjekt och avgränsade miljöer." },
-        { title: "Automatiska grindar", icon: ChevronRight, desc: "Smarta grindlösningar för bekväm och säker inpassering." },
-        { title: "Skjutgrindar", icon: MoveHorizontal, desc: "Platseffektiva skjutgrindar för breda infarter och logistikytor." },
-        { title: "Villastängsel", icon: HomeIcon, desc: "Eleganta stängsel och grindar som höjer trygghet och helhetsintryck." },
+        { title: "Industristängsel", icon: Factory, desc: "Robusta lösningar för industriområden, logistikytor och tekniska miljöer.", linkLabel: "Läs mer" },
+        { title: "Skolstängsel", icon: School, desc: "Trygga och hållbara avgränsningar för skolor, förskolor och kommunala miljöer.", linkLabel: "Läs mer" },
+        { title: "Säkerhetsstängsel", icon: ShieldCheck, desc: "Högre skyddsnivå för områden där säkerhet, kontroll och tydliga gränser krävs.", linkLabel: "Läs mer" },
+        { title: "Automatiska grindar", icon: ChevronRight, desc: "Smidiga grindlösningar som förbättrar flöde, kontroll och användarvänlighet.", linkLabel: "Läs mer" },
+        { title: "Skjutgrindar", icon: MoveHorizontal, desc: "Platseffektiva grindar för breda infarter och anläggningar med höga krav på funktion.", linkLabel: "Läs mer" },
+        { title: "Villastängsel", icon: HomeIcon, desc: "Eleganta stängsel och grindar som höjer trygghet och helhetsintryck runt fastigheten.", linkLabel: "Läs mer" },
       ]
     : [
-        { title: "Industrial fencing", icon: Factory, desc: "Robust solutions for industrial sites and logistics centres." },
-        { title: "School fencing", icon: School, desc: "Safe and durable fencing for preschools and schools." },
-        { title: "Security fencing", icon: ShieldCheck, desc: "High-security solutions for protected sites and controlled environments." },
-        { title: "Automatic gates", icon: ChevronRight, desc: "Smart gate solutions for convenient and secure access." },
-        { title: "Sliding gates", icon: MoveHorizontal, desc: "Space-efficient sliding gates for wide entrances and logistics areas." },
-        { title: "Villa fencing", icon: HomeIcon, desc: "Elegant fencing and gates that improve safety and the overall impression." },
+        { title: "Industrial fencing", icon: Factory, desc: "Robust solutions for industrial sites, logistics areas and technical environments.", linkLabel: "Read more" },
+        { title: "School fencing", icon: School, desc: "Safe and durable boundaries for schools, preschools and municipal environments.", linkLabel: "Read more" },
+        { title: "Security fencing", icon: ShieldCheck, desc: "Higher protection levels for sites where security, control and clear boundaries are required.", linkLabel: "Read more" },
+        { title: "Automatic gates", icon: ChevronRight, desc: "Efficient gate solutions that improve flow, control and everyday usability.", linkLabel: "Read more" },
+        { title: "Sliding gates", icon: MoveHorizontal, desc: "Space-efficient gates for wide entrances and facilities with higher functional demands.", linkLabel: "Read more" },
+        { title: "Villa fencing", icon: HomeIcon, desc: "Elegant fencing and gates that raise safety and the overall impression of the property.", linkLabel: "Read more" },
       ];
 
   const projectHighlights = isSv
     ? [
         {
           img: project1Src,
-          alt: "Industristängsel",
-          segment: "Industrifastighet",
-          title: "Säkerhetsstängsel",
-          desc: "Komplett installation av 2.4m högt säkerhetsstängsel med motoriserad skjutgrind för logistikcenter.",
+          alt: "Säkerhetsstängsel för industrifastighet i Knivsta",
+          location: "Knivsta",
+          type: "Industrifastighet",
+          title: "Säkerhetsstängsel med motoriserad skjutgrind",
+          desc: "Komplett installation för ett logistikcenter med fokus på säker inpassering, tydlig områdesindelning och lång livslängd.",
         },
         {
           img: project2Src,
-          alt: "Skolstängsel",
-          segment: "Kommunal skola",
-          title: "Panelstängsel",
-          desc: "Säker inhägnad av nybyggd förskola med barnsäkra grindar och robusta nätpaneler.",
+          alt: "Panelstängsel för skola i Uppsala",
+          location: "Uppsala",
+          type: "Kommunal skola",
+          title: "Panelstängsel med barnsäkra grindar",
+          desc: "Ny inhägnad för skolmiljö där trygghet, orienterbarhet och slitstyrka behövde fungera tillsammans i vardagen.",
         },
         {
           img: project3Src,
-          alt: "Idrottsanläggning",
-          segment: "Sport & Fritid",
-          title: "Bollfångarnät",
-          desc: "Höga stängsel för ny utomhusarena inklusive specialanpassade publikgrindar och entréer.",
+          alt: "Bollfångarnät för idrottsanläggning i Stockholm",
+          location: "Stockholm",
+          type: "Idrottsanläggning",
+          title: "Höga bollfångarnät och publikgrindar",
+          desc: "Specialanpassad lösning för utomhusarena med tydliga entréflöden, robusta stängselpartier och premium känsla i utförandet.",
         },
       ]
     : [
         {
           img: project1Src,
-          alt: "Industrial fencing",
-          segment: "Industrial property",
-          title: "Security fencing",
-          desc: "Complete installation of 2.4 m high security fencing with a motorised sliding gate for a logistics centre.",
+          alt: "Security fencing for industrial property in Knivsta",
+          location: "Knivsta",
+          type: "Industrial property",
+          title: "Security fencing with motorised sliding gate",
+          desc: "Complete installation for a logistics centre focused on secure access, clear perimeter zoning and long service life.",
         },
         {
           img: project2Src,
-          alt: "School fencing",
-          segment: "Municipal school",
-          title: "Panel fencing",
-          desc: "Secure enclosure for a newly built preschool with child-safe gates and robust mesh panels.",
+          alt: "Panel fencing for school in Uppsala",
+          location: "Uppsala",
+          type: "Municipal school",
+          title: "Panel fencing with child-safe gates",
+          desc: "New enclosure for a school environment where safety, legibility and durability needed to work together every day.",
         },
         {
           img: project3Src,
-          alt: "Sports facility",
-          segment: "Sport & Leisure",
-          title: "Ball-stop netting",
-          desc: "Tall fencing for a new outdoor arena including custom audience gates and entrances.",
+          alt: "Ball-stop netting for sports facility in Stockholm",
+          location: "Stockholm",
+          type: "Sports facility",
+          title: "Tall ball-stop netting and audience gates",
+          desc: "A tailored solution for an outdoor arena with clear entry flows, robust fence lines and a premium finish.",
         },
       ];
 
@@ -169,34 +162,21 @@ export default function Home() {
         { step: "04", title: "Final inspection", desc: "A joint review of the delivery to ensure the highest quality." },
       ];
 
-  const salesPoints = isSv
-    ? [
-        { icon: Clock, label: "Svar inom 24 timmar" },
-        { icon: BadgeCheck, label: "Kostnadsfri första bedömning" },
-        { icon: PhoneCall, label: "Direkt kontakt med montörsteamet" },
-      ]
-    : [
-        { icon: Clock, label: "Reply within 24 hours" },
-        { icon: BadgeCheck, label: "Free initial assessment" },
-        { icon: PhoneCall, label: "Direct contact with the installation team" },
-      ];
-
-  // Hero copy intentionally restored and tightened. Change only on explicit request.
   const copy = isSv
     ? {
         heroTitle: "Premium stängsel och grindlösningar för företag, kommuner och villor i Stockholm, Uppsala och Mälardalen.",
         heroBody: "Vi projekterar och monterar hållbara lösningar med fokus på estetik, säkerhet och lång livslängd.",
-        heroPrimary: "Få kostnadsfri offert inom 24 timmar",
-        heroSecondary: "Se utförda projekt",
-        expertise: "Expertis",
-        servicesTitle: "Tjänster som snabbt leder till rätt lösning",
-        servicesBody: "Vi hjälper företag, skolor, BRF:er och privatkunder att välja rätt stängsel, grindar och områdesskydd utifrån plats, säkerhetsnivå och budget.",
+        heroPrimary: "Få offert",
+        heroSecondary: "Se projekt",
+        expertise: "Tjänster",
+        servicesTitle: "Stängsel- och grindlösningar för tydliga behov",
+        servicesBody: "Vi hjälper företag, kommuner och villaägare att välja rätt lösning utifrån plats, funktion, säkerhetsnivå och uttryck.",
         allServices: "Se alla tjänster",
-        references: "Referenser",
-        projectsTitle: "Projekt som bygger förtroende",
-        projectsBody: "Utförda uppdrag hjälper nya kunder att snabbt förstå vår nivå, vårt arbetssätt och vilken typ av miljöer vi arbetar i.",
+        references: "Projekt",
+        projectsTitle: "Utvalda realizeringar med premium känsla",
+        projectsBody: "Ett urval av uppdrag som visar hur vi arbetar med säkerhet, estetik och genomförande i olika typer av miljöer.",
         allProjects: "Se alla projekt",
-        moreProjects: "Se fler projekt",
+        moreProjects: "Visa projekt",
         advantages: "Fördelar",
         whyTitle: "Varför kunder väljer Nordic Stängsel?",
         process: "Arbetsgång",
@@ -213,19 +193,19 @@ export default function Home() {
         quoteText: "Vi värdesätter transparens. En kund som kan tala direkt med ett referensuppdrag lär sig mer om oss på tio minuter än vad en hemsida kan förmedla.",
       }
     : {
-        heroTitle: "Fencing, gates and perimeter protection for companies, schools, properties and villas",
-        heroBody: "We design and install durable solutions in Stockholm, Uppsala and the Mälardalen region.",
-        heroPrimary: "Get a free quote within 24 hours",
-        heroSecondary: "See completed projects",
-        expertise: "Expertise",
-        servicesTitle: "Services that quickly lead to the right solution",
-        servicesBody: "We help companies, schools, housing associations and private customers choose the right fencing, gates and perimeter protection based on site, security level and budget.",
+        heroTitle: "Premium fencing and gate solutions for companies, municipalities and villas in Stockholm, Uppsala and the Mälardalen region.",
+        heroBody: "We design and install durable solutions with a focus on aesthetics, security and long service life.",
+        heroPrimary: "Get a quote",
+        heroSecondary: "See projects",
+        expertise: "Services",
+        servicesTitle: "Fencing and gate solutions for clear practical needs",
+        servicesBody: "We help companies, municipalities and villa owners choose the right solution based on site, function, security level and appearance.",
         allServices: "See all services",
-        references: "References",
-        projectsTitle: "Projects that build trust",
-        projectsBody: "Completed assignments help new customers quickly understand our level, our way of working and the kinds of environments we work in.",
+        references: "Projects",
+        projectsTitle: "Selected work with a premium standard",
+        projectsBody: "A selection of assignments that show how we combine security, aesthetics and execution across different environments.",
         allProjects: "See all projects",
-        moreProjects: "See more projects",
+        moreProjects: "View project",
         advantages: "Advantages",
         whyTitle: "Why customers choose Nordic Stängsel",
         process: "Process",
@@ -242,46 +222,61 @@ export default function Home() {
         quoteText: "We value transparency. A customer who can speak directly with a reference project learns more about us in ten minutes than a website can ever convey.",
       };
 
+  const primaryButtonClass =
+    "h-12 rounded-none border border-[#d0a45e] bg-[#d0a45e] px-7 text-sm font-medium uppercase tracking-[0.18em] text-[#0c1824] transition-colors duration-200 hover:border-[#ddb875] hover:bg-[#ddb875] md:h-[54px]";
+  const secondaryButtonClass =
+    "h-12 rounded-none border px-7 text-sm font-medium uppercase tracking-[0.18em] transition-colors duration-200 md:h-[54px]";
+  const inlineLinkClass =
+    "group inline-flex items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[#0f1f2e] transition-colors duration-200 hover:text-[#1a3349]";
+
   return (
     <main className="w-full">
-      <section className="relative flex h-[100vh] min-h-[600px] w-full items-center bg-[#1a3349]">
+      <section className="relative flex min-h-[720px] w-full items-center overflow-hidden bg-[#0c1824] pb-24 pt-28 md:min-h-[860px] md:pb-32 md:pt-36">
         <div className="absolute inset-0 z-0">
-          <img src={heroSrc} alt={isSv ? "Professionell stängselmontering" : "Professional fence installation"} className="h-full w-full object-cover object-center" />
-          <div className="absolute inset-0 bg-[#0c1824]/35"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0c1824]/25 via-transparent to-[#0c1824]/55"></div>
+          <img
+            src={heroSrc}
+            alt={isSv ? "Professionell stängselmontering" : "Professional fence installation"}
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-[#07121c]/64"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07121c]/88 via-[#07121c]/56 to-[#07121c]/28"></div>
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#07121c]/72 to-transparent"></div>
         </div>
 
-        <div className="container relative z-10 mx-auto flex flex-col items-center px-4 text-center md:px-6">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: "easeOut" }} className="flex flex-col items-center">
-            <img src={logoTransparentSrc} alt="Nordic Stängsel" className="mb-10 h-20 w-auto brightness-125 drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)] md:mb-12 md:h-32 lg:h-36" />
-            <div className="mb-6 h-[1px] w-10 bg-white/30 md:mb-8"></div>
-            <h1 className="mb-5 max-w-5xl font-serif text-[1.95rem] font-medium leading-[1.15] text-white md:mb-6 md:text-[2.9rem] md:leading-[1.08] lg:text-[3.7rem] lg:leading-[1.04]">
+        <div className="container relative z-10 mx-auto px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="max-w-3xl"
+          >
+            <img
+              src={logoTransparentSrc}
+              alt="Nordic Stängsel"
+              className="mb-10 h-16 w-auto brightness-125 drop-shadow-[0_8px_28px_rgba(0,0,0,0.5)] md:mb-14 md:h-24 lg:h-28"
+            />
+            <div className="mb-8 h-px w-14 bg-white/25 md:mb-10"></div>
+            <h1 className="max-w-4xl font-serif text-[2.3rem] leading-[1.04] text-white md:text-[4rem] lg:text-[4.6rem]">
               {copy.heroTitle}
             </h1>
-            <p className="mb-8 max-w-2xl text-sm font-light leading-relaxed tracking-wide text-white/80 md:mb-10 md:text-base">
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/78 md:mt-8 md:text-lg md:leading-8">
               {copy.heroBody}
             </p>
 
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row md:mt-12">
               <Link href={localizePath("/kontakt")}>
-                <Button className="h-auto min-h-12 w-full rounded-none bg-white px-8 py-3 text-sm font-medium uppercase tracking-widest text-[#0c1824] transition-all duration-200 hover:bg-white/90 sm:w-auto sm:whitespace-nowrap">
+                <Button className={`${primaryButtonClass} w-full sm:w-auto`}>
                   {copy.heroPrimary}
                 </Button>
               </Link>
               <Link href={localizePath("/projekt")}>
-                <Button variant="outline" className="h-12 w-full rounded-none border border-white/30 bg-transparent px-8 text-sm uppercase tracking-widest text-white transition-all duration-200 hover:border-white/70 hover:bg-white/5 sm:w-auto">
+                <Button
+                  variant="outline"
+                  className={`${secondaryButtonClass} w-full border-white/35 bg-white/6 text-white hover:border-white/70 hover:bg-white/10 hover:text-white sm:w-auto`}
+                >
                   {copy.heroSecondary}
                 </Button>
               </Link>
-            </div>
-
-            <div className="mt-6 grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
-              {salesPoints.map((point) => (
-                <div key={point.label} className="flex items-center justify-center gap-2 border border-white/15 bg-white/5 px-4 py-3 text-xs uppercase tracking-[0.16em] text-white/75">
-                  <point.icon className="h-4 w-4 text-white/55" />
-                  <span>{point.label}</span>
-                </div>
-              ))}
             </div>
           </motion.div>
         </div>
@@ -295,112 +290,132 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-gray-100 bg-white py-12 md:py-20">
+      <section className="border-t border-[#e4e8ec] bg-white py-8 md:py-10">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
             {trustItems.map((item, i) => (
-              <motion.div key={item.title} className="border border-gray-100 bg-white px-5 py-6 sm:px-6 sm:py-7 lg:px-7 lg:py-8" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.06 }}>
-                <item.icon className="mb-4 h-6 w-6 text-[#0f1f2e]/45 stroke-[1.5] lg:h-7 lg:w-7" />
-                <h3 className="mb-2 font-serif text-[0.98rem] leading-snug text-[#0f1f2e] lg:text-base">{item.title}</h3>
-                <p className="text-[0.82rem] leading-relaxed text-gray-500 lg:text-sm">{item.desc}</p>
+              <motion.div
+                key={item.title}
+                className="border border-[#e4e8ec] bg-[#f7f9fb] px-5 py-5 md:px-6 md:py-6"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.06 }}
+              >
+                <div className="mb-3 flex items-center gap-3">
+                  <item.icon className="h-5 w-5 text-[#1a3349] stroke-[1.7]" />
+                  <h3 className="font-serif text-lg leading-tight text-[#0f1f2e]">{item.title}</h3>
+                </div>
+                <p className="max-w-sm text-sm leading-6 text-[#51606c]">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-14 md:py-28">
+      <section className="bg-white py-16 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8 flex flex-col gap-3 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-6">
+          <div className="mb-10 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between md:gap-8">
             <div className="max-w-3xl">
-              <span className="mb-3 block text-xs uppercase tracking-[0.2em] text-gray-400 md:mb-4">{copy.expertise}</span>
-              <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">{copy.servicesTitle}</h2>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500 md:text-base">{copy.servicesBody}</p>
+              <span className="mb-3 block text-xs uppercase tracking-[0.22em] text-[#7d8993] md:mb-4">{copy.expertise}</span>
+              <h2 className="max-w-3xl font-serif text-[2rem] leading-tight text-[#0f1f2e] md:text-[3.25rem]">
+                {copy.servicesTitle}
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#51606c] md:text-base">
+                {copy.servicesBody}
+              </p>
             </div>
             <Link href={localizePath("/tjanster")}>
-              <Button variant="ghost" className="group w-fit p-0 text-[#0f1f2e] hover:bg-transparent hover:text-[#1a2f45]">
+              <span className={inlineLinkClass}>
                 {copy.allServices}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </span>
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:hidden">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3 xl:gap-6">
             {featuredServices.map((service, i) => (
               <Link key={service.title} href={localizePath("/tjanster")}>
-                <motion.div className="group h-full cursor-pointer border border-gray-100 bg-white p-4 transition-all hover:border-[#0f1f2e] hover:bg-[#1a3349]" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.05 }}>
-                  <service.icon className="mb-4 h-5 w-5 text-gray-400 transition-colors group-hover:text-white" />
-                  <h3 className="font-serif text-lg leading-snug text-[#0f1f2e] transition-colors group-hover:text-white">{service.title}</h3>
-                </motion.div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="hidden grid-cols-2 gap-4 sm:grid lg:grid-cols-3 lg:gap-6">
-            {featuredServices.map((service, i) => (
-              <Link key={service.title} href={localizePath("/tjanster")}>
-                <motion.div className="group h-full cursor-pointer border border-gray-100 bg-white p-6 transition-all hover:border-[#0f1f2e] hover:bg-[#1a3349] sm:p-7" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.06 }}>
-                  <service.icon className="mb-5 h-7 w-7 text-gray-400 transition-colors group-hover:text-white sm:h-8 sm:w-8" />
-                  <h3 className="mb-3 font-serif text-2xl text-[#0f1f2e] transition-colors group-hover:text-white">{service.title}</h3>
-                  <p className="text-sm leading-relaxed text-gray-500 transition-colors group-hover:text-white/72">{service.desc}</p>
-                </motion.div>
+                <motion.article
+                  className="group flex h-full cursor-pointer flex-col justify-between border border-[#e4e8ec] bg-white px-5 py-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1a3349]/30 hover:shadow-[0_20px_50px_rgba(10,24,38,0.08)] md:px-6 md:py-7"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: i * 0.05 }}
+                >
+                  <div>
+                    <service.icon className="mb-5 h-6 w-6 text-[#1a3349]/70 stroke-[1.7]" />
+                    <h3 className="mb-3 font-serif text-[1.45rem] leading-tight text-[#0f1f2e] md:text-[1.6rem]">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm leading-7 text-[#51606c]">{service.desc}</p>
+                  </div>
+                  <div className="mt-6 inline-flex items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[#1a3349]">
+                    <span>{service.linkLabel}</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </div>
+                </motion.article>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-gray-50 py-14 md:py-24">
+      <section className="bg-[#f4f6f8] py-16 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-8 flex flex-col gap-3 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-6">
+          <div className="mb-10 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between md:gap-8">
             <div className="max-w-3xl">
-              <span className="mb-3 block text-xs uppercase tracking-[0.2em] text-gray-400 md:mb-4">{copy.references}</span>
-              <h2 className="font-serif text-3xl text-[#0f1f2e] md:text-5xl">{copy.projectsTitle}</h2>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-500 md:text-base">{copy.projectsBody}</p>
+              <span className="mb-3 block text-xs uppercase tracking-[0.22em] text-[#7d8993] md:mb-4">{copy.references}</span>
+              <h2 className="max-w-3xl font-serif text-[2rem] leading-tight text-[#0f1f2e] md:text-[3.25rem]">
+                {copy.projectsTitle}
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#51606c] md:text-base">
+                {copy.projectsBody}
+              </p>
             </div>
             <Link href={localizePath("/projekt")}>
-              <Button variant="ghost" className="group w-fit p-0 text-[#0f1f2e] hover:bg-transparent hover:text-[#1a2f45]">
+              <span className={inlineLinkClass}>
                 {copy.allProjects}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </span>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:hidden">
-            {projectHighlights.slice(0, 2).map((p, i) => (
-              <motion.div key={p.title} className="group cursor-pointer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }}>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-6">
+            {projectHighlights.map((project, i) => (
+              <motion.div
+                key={project.title}
+                className="group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
+              >
                 <Link href={localizePath("/projekt")}>
-                  <div className="relative mb-4 aspect-[3/2] overflow-hidden bg-gray-200">
-                    <div className="absolute inset-0 z-10 bg-[#1a3349]/0 transition-all duration-500 group-hover:bg-[#1a3349]/20"></div>
-                    <img src={p.img} alt={p.alt} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  </div>
-                  <span className="mb-2 block text-xs uppercase tracking-wider text-gray-500">{p.segment}</span>
-                  <h3 className="mb-2 font-serif text-[1.75rem] text-[#0f1f2e]">{p.title}</h3>
-                  <p className="mb-3 text-sm leading-relaxed text-gray-600">{p.desc}</p>
-                  <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] transition-colors">
-                    {copy.moreProjects}
-                    <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-2" />
-                  </span>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="hidden grid-cols-1 gap-8 md:grid md:grid-cols-3">
-            {projectHighlights.map((p, i) => (
-              <motion.div key={p.title} className="group cursor-pointer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.08 }}>
-                <Link href={localizePath("/projekt")}>
-                  <div className="relative mb-5 aspect-[3/2] overflow-hidden bg-gray-200 md:mb-6">
-                    <div className="absolute inset-0 z-10 bg-[#1a3349]/0 transition-all duration-500 group-hover:bg-[#1a3349]/20"></div>
-                    <img src={p.img} alt={p.alt} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  </div>
-                  <span className="mb-2 block text-xs uppercase tracking-wider text-gray-500">{p.segment}</span>
-                  <h3 className="mb-3 font-serif text-2xl text-[#0f1f2e]">{p.title}</h3>
-                  <p className="mb-4 text-sm leading-relaxed text-gray-600">{p.desc}</p>
-                  <span className="inline-flex items-center text-sm font-medium text-[#0f1f2e] transition-colors">
-                    {copy.moreProjects}
-                    <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-2" />
-                  </span>
+                  <article className="h-full overflow-hidden border border-[#dbe1e6] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(10,24,38,0.09)]">
+                    <div className="relative aspect-[4/5] overflow-hidden bg-[#dde4ea]">
+                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#07121c]/38 via-transparent to-transparent"></div>
+                      <img
+                        src={project.img}
+                        alt={project.alt}
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <div className="px-5 py-5 md:px-6 md:py-6">
+                      <div className="mb-4 flex flex-wrap gap-2 text-[0.68rem] uppercase tracking-[0.18em] text-[#51606c]">
+                        <span className="border border-[#dbe1e6] px-3 py-1">{project.location}</span>
+                        <span className="border border-[#dbe1e6] px-3 py-1">{project.type}</span>
+                      </div>
+                      <h3 className="mb-3 font-serif text-[1.55rem] leading-tight text-[#0f1f2e] md:text-[1.8rem]">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm leading-7 text-[#51606c]">{project.desc}</p>
+                      <div className="mt-6 inline-flex items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[#1a3349]">
+                        <span>{copy.moreProjects}</span>
+                        <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  </article>
                 </Link>
               </motion.div>
             ))}
@@ -408,7 +423,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="overflow-hidden bg-[#1a3349] py-14 text-white md:py-24">
+      <section className="overflow-hidden bg-[#1a3349] py-16 text-white md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-24">
             <div>
@@ -448,7 +463,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#1a3349] py-14 md:py-24">
+      <section className="bg-[#1a3349] py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
             <div className="mb-8 text-center md:mb-12">
@@ -461,7 +476,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-gray-100 bg-white py-14 md:py-24">
+      <section className="border-t border-gray-100 bg-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mx-auto max-w-4xl">
             <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16">
@@ -471,9 +486,7 @@ export default function Home() {
                 <p className="mb-5 font-light leading-relaxed text-gray-500 md:mb-6">{copy.referencesBody1}</p>
                 <p className="mb-7 font-light leading-relaxed text-gray-500 md:mb-10">{copy.referencesBody2}</p>
                 <Link href={localizePath("/kontakt")}>
-                  <Button className="h-12 rounded-none bg-[#1a3349] px-8 text-sm uppercase tracking-widest text-white hover:bg-[#264056]">
-                    {copy.requestRefs}
-                  </Button>
+                  <Button className={primaryButtonClass}>{copy.requestRefs}</Button>
                 </Link>
               </motion.div>
 
