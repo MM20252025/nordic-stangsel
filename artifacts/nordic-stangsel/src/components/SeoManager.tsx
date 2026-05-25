@@ -95,6 +95,46 @@ const seoByRoute = {
       description: "Villa fencing and gates for safety, aesthetics and smooth access. Get a quote for the right solution for your plot, driveway and entrance.",
     },
   },
+  "/skolstangsel": {
+    sv: {
+      title: "Skolstängsel | Nordic Stängsel",
+      description: "Skolstängsel för skolgårdar, förskolor och utbildningsmiljöer. Få rätt lösning för trygghet, tydliga gränser och daglig funktion.",
+    },
+    en: {
+      title: "School Fencing | Nordic Stängsel",
+      description: "School fencing for schoolyards, preschools and education environments. Get the right solution for safety, clear boundaries and daily function.",
+    },
+  },
+  "/panelstangsel": {
+    sv: {
+      title: "Panelstängsel | Nordic Stängsel",
+      description: "Panelstängsel för BRF, skolor, fastigheter och offentliga miljöer. Få rätt lösning för ordning, överblick och ett modernt uttryck.",
+    },
+    en: {
+      title: "Panel Fencing | Nordic Stängsel",
+      description: "Panel fencing for housing associations, schools, properties and public environments. Get the right solution for order, visibility and a modern expression.",
+    },
+  },
+  "/automatgrindar": {
+    sv: {
+      title: "Automatgrindar | Nordic Stängsel",
+      description: "Automatgrindar för företag, BRF och fastigheter. Få rätt lösning för smidig inpassering, kontroll och driftsäker användning.",
+    },
+    en: {
+      title: "Automatic Gates | Nordic Stängsel",
+      description: "Automatic gates for companies, housing associations and properties. Get the right solution for smooth access, control and dependable operation.",
+    },
+  },
+  "/skjutgrindar": {
+    sv: {
+      title: "Skjutgrindar | Nordic Stängsel",
+      description: "Skjutgrindar för industri, logistik och breda infarter. Få rätt lösning för platsutnyttjande, kontroll och robust funktion.",
+    },
+    en: {
+      title: "Sliding Gates | Nordic Stängsel",
+      description: "Sliding gates for industry, logistics and wide entrances. Get the right solution for space efficiency, control and robust daily function.",
+    },
+  },
   "/tjanster": {
     sv: {
       title: "Tjänster | Stängsel, grindar och områdesskydd | Nordic Stängsel",
