@@ -488,28 +488,28 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         title: "Automatic gates for access that needs to be clear, smooth and dependable every day",
         intro:
           "Nordic Stängsel delivers automatic gates for companies, properties, housing associations and other environments where flow, control and ease of use need to work as one coherent solution.",
-        proofTitle: "When access is an important part of everyday use",
+        proofTitle: "When the passage is an important part of everyday use",
         proofBody:
-          "An automatic gate should do more than open and close. It should support clear flow, the right level of control and a solution that works reliably over time for residents, staff, vehicles and visitors.",
+          "An automatic gate should do more than open and close. It should support clear movement flows, the right level of control and a solution that works reliably over time for residents, staff, vehicles and visitors.",
         solutionsTitle: "Common automatic gate solutions",
         solutions: [
           {
             title: "Automatic gates for companies and business environments",
-            body: "For sites where vehicles, staff and visitors need to be handled smoothly without losing control over access.",
+            body: "For sites where vehicles, staff and visitors need smooth handling without losing control over access.",
           },
           {
             title: "Automatic gates for housing associations and properties",
-            body: "For environments where daily use, safety and smooth passage need to work both practically and visually.",
+            body: "For environments where daily use, safety and easy passage need to work both practically and visually.",
           },
           {
-            title: "Solutions adapted to flow and operational demands",
-            body: "For projects where automation, opening frequency and traffic type need to be weighed from the beginning.",
+            title: "Solutions adapted to flow and operating demands",
+            body: "For projects where automation, opening frequency and traffic type need to be weighed from the start.",
           },
         ],
         trustPoints: [
-          "Automatic gates chosen around real flow, control and use",
-          "A clear relationship between the gate, fence line and everyday use of the site",
-          "Fast route to a quote and recommendation for the right automation level",
+          "Automatic gates selected around real movement flows, control and use",
+          "A clear relationship between the gate, fence line and the site's daily logic",
+          "Fast route to a quote and recommendation for the right level of automation",
         ],
         faqTitle: "Common questions about automatic gates",
         faqs: [
@@ -649,7 +649,7 @@ const pageConfigs: Record<PageKey, PageConfig> = {
           {
             href: "/kontakt",
             label: "Kontakt",
-            description: "Gå direkt till offertförfrågan lub kontaktuppgifter.",
+            description: "Gå direkt till offertförfrågan eller kontaktuppgifter.",
           },
         ],
         primaryCta: "Få offert",
