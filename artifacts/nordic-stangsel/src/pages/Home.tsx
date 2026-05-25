@@ -596,3 +596,5 @@ export default function Home() {
     </main>
   );
 }
+
+// Deploy trigger: keep homepage source in sync with the latest landing-page rollout.
