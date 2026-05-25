@@ -113,6 +113,26 @@ export default function Services() {
           title: "Skjutgrindar",
           description: "Sida för breda infarter och miljöer där platsutnyttjande och robust funktion väger tungt.",
         },
+        {
+          href: "/stangsel-brf-stockholm",
+          title: "Stängsel BRF Stockholm",
+          description: "Lokal sida för BRF i Stockholm som vill förbättra entréer, gårdar och gemensamma ytor.",
+        },
+        {
+          href: "/stangsel-brf-uppsala",
+          title: "Stängsel BRF Uppsala",
+          description: "Lokal sida för BRF i Uppsala som vill poprawić trygghet, ordning och helhetsintryck.",
+        },
+        {
+          href: "/omradesskydd-stockholm",
+          title: "Områdesskydd Stockholm",
+          description: "Lokal sida för företag i Stockholm som behöver tydlig säkerhet, drift och inpassering.",
+        },
+        {
+          href: "/omradesskydd-uppsala",
+          title: "Områdesskydd Uppsala",
+          description: "Lokal sida för företag i Uppsala som behöver rätt områdesskydd för vardagsdrift och kontroll.",
+        },
       ]
     : [
         {
@@ -175,6 +195,26 @@ export default function Services() {
           title: "Sliding Gates",
           description: "Page for wide entrances and sites where space efficiency and robust function matter.",
         },
+        {
+          href: "/stangsel-brf-stockholm",
+          title: "Housing Association Fencing Stockholm",
+          description: "Local page for housing associations in Stockholm improving courtyards, entrances and shared spaces.",
+        },
+        {
+          href: "/stangsel-brf-uppsala",
+          title: "Housing Association Fencing Uppsala",
+          description: "Local page for housing associations in Uppsala improving safety, order and the overall impression.",
+        },
+        {
+          href: "/omradesskydd-stockholm",
+          title: "Perimeter Protection Stockholm",
+          description: "Local page for Stockholm companies that need clear security, operations and access control.",
+        },
+        {
+          href: "/omradesskydd-uppsala",
+          title: "Perimeter Protection Uppsala",
+          description: "Local page for Uppsala companies that need the right perimeter protection for daily operations and control.",
+        },
       ];
 
   const copy = isSv
@@ -184,7 +224,7 @@ export default function Services() {
         heroBody: "I Stockholm, Uppsala och Mälardalen hjälper vi företag, skolor, kommuner, BRF:er och villakunder att välja rätt lösning och få offert inom 24 timmar.",
         localPagesBadge: "Lokala, målgruppsstyrda och produktspecifika sidor",
         localPagesTitle: "Snabb väg till rätt sida för område, målgrupp eller lösning",
-        localPagesBody: "Vi har samlat tolv sidor för högintenta sökningar inom stängsel, grindar och områdesskydd. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
+        localPagesBody: "Vi har samlat sexton sidor för högintenta sökningar inom stängsel, grindar och områdesskydd. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
         localPagesCta: "Öppna sida",
         sectionTitle: "Från första behov till färdig installation",
         sectionBody: "Varje tjänst är utformad för att göra beslutet enklare: rätt nivå av områdesskydd, rätt typ av grind och ett genomförande som fungerar i vardagen efter installation.",
@@ -199,7 +239,7 @@ export default function Services() {
         heroBody: "In Stockholm, Uppsala and the Mälardalen region, we help companies, schools, municipalities, housing associations and villa owners choose the right solution and get a quote within 24 hours.",
         localPagesBadge: "Local, audience and product pages",
         localPagesTitle: "Fast route to the right page for area, audience or solution",
-        localPagesBody: "We have grouped twelve high-intent pages for fencing, gates and perimeter protection. They help both visitors and search engines find the right offer faster.",
+        localPagesBody: "We have grouped sixteen high-intent pages for fencing, gates and perimeter protection. They help both visitors and search engines find the right offer faster.",
         localPagesCta: "Open page",
         sectionTitle: "From first need to completed installation",
         sectionBody: "Each service is designed to make the decision easier: the right level of perimeter protection, the right type of gate and a delivery that works in everyday use after installation.",
