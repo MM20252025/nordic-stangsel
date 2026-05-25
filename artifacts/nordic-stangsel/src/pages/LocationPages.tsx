@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
+import { QuoteForm } from "@/components/QuoteForm";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/lib/language";
 import heroSrc from "../assets/images/hero-tjanster.png";
@@ -27,7 +28,6 @@ type LocalizedPageConfig = {
   faqs: { question: string; answer: string }[];
   ctaTitle: string;
   ctaBody: string;
-  relatedLabel: string;
   relatedLinks: { href: string; label: string; description: string }[];
   primaryCta: string;
   secondaryCta: string;
@@ -100,11 +100,27 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         ctaTitle: "Behöver du stängsel i Stockholm?",
         ctaBody:
           "Beskriv projektet kort så återkommer vi med rätt nästa steg och offertunderlag för stängsel i Stockholm.",
-        relatedLabel: "Relaterade sidor",
         relatedLinks: [
-          { href: "/", label: "Start", description: "Tillbaka till hemsidan och vårt huvuderbjudande." },
-          { href: "/tjanster", label: "Tjänster", description: "Se fler lösningstyper inom stängsel och grindar." },
-          { href: "/projekt", label: "Projekt", description: "Se projektmiljöer och referensnära exempel." },
+          {
+            href: "/grindar-stockholm",
+            label: "Grindar Stockholm",
+            description: "Komplettera stängsellösningen med rätt grind och inpassering för Stockholm.",
+          },
+          {
+            href: "/stangsel-uppsala",
+            label: "Stängsel Uppsala",
+            description: "Se motsvarande sida för stängseluppdrag i Uppsala och närområdet.",
+          },
+          {
+            href: "/projekt",
+            label: "Projekt",
+            description: "Se referensmiljöer med liknande krav på funktion, uttryck och säkerhet.",
+          },
+          {
+            href: "/kontakt",
+            label: "Kontakt",
+            description: "Gå direkt till offertförfrågan eller våra kontaktuppgifter.",
+          },
         ],
         primaryCta: "Få offert",
         secondaryCta: "Kontakta oss",
@@ -159,11 +175,27 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         ctaTitle: "Need fencing in Stockholm?",
         ctaBody:
           "Briefly describe the project and we will return with the right next step and a quote basis for fencing in Stockholm.",
-        relatedLabel: "Related pages",
         relatedLinks: [
-          { href: "/", label: "Home", description: "Back to the homepage and our main offer." },
-          { href: "/tjanster", label: "Services", description: "See more fencing and gate solution types." },
-          { href: "/projekt", label: "Projects", description: "See project environments and reference-led examples." },
+          {
+            href: "/grindar-stockholm",
+            label: "Gates Stockholm",
+            description: "Complement the fencing scope with the right gate and access solution for Stockholm.",
+          },
+          {
+            href: "/stangsel-uppsala",
+            label: "Fencing Uppsala",
+            description: "See the equivalent page for fencing projects in Uppsala and nearby areas.",
+          },
+          {
+            href: "/projekt",
+            label: "Projects",
+            description: "See reference environments with similar functional, visual and security needs.",
+          },
+          {
+            href: "/kontakt",
+            label: "Contact",
+            description: "Go straight to the quote request or our contact details.",
+          },
         ],
         primaryCta: "Get a quote",
         secondaryCta: "Contact us",
@@ -227,11 +259,27 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         ctaTitle: "Planerar du stängsel i Uppsala?",
         ctaBody:
           "Skicka en kort beskrivning av platsen och behovet så återkommer vi med rekommenderad lösning och offertunderlag.",
-        relatedLabel: "Relaterade sidor",
         relatedLinks: [
-          { href: "/", label: "Start", description: "Se hela Nordic Stängsels erbjudande." },
-          { href: "/tjanster", label: "Tjänster", description: "Utforska fler stängsel- och grindlösningar." },
-          { href: "/projekt", label: "Projekt", description: "Se miljöer som liknar ditt projekt." },
+          {
+            href: "/grindar-uppsala",
+            label: "Grindar Uppsala",
+            description: "Komplettera stängsellösningen med rätt grind och inpassering i Uppsala.",
+          },
+          {
+            href: "/stangsel-stockholm",
+            label: "Stängsel Stockholm",
+            description: "Se motsvarande sida för uppdrag i Stockholm och Storstockholm.",
+          },
+          {
+            href: "/projekt",
+            label: "Projekt",
+            description: "Se referensmiljöer med liknande krav på trygghet, ordning och estetik.",
+          },
+          {
+            href: "/kontakt",
+            label: "Kontakt",
+            description: "Gå direkt till offertförfrågan eller våra kontaktuppgifter.",
+          },
         ],
         primaryCta: "Få offert",
         secondaryCta: "Kontakta oss",
@@ -286,11 +334,27 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         ctaTitle: "Planning fencing in Uppsala?",
         ctaBody:
           "Send a short description of the site and need, and we will return with a recommended solution and quote basis.",
-        relatedLabel: "Related pages",
         relatedLinks: [
-          { href: "/", label: "Home", description: "See the full Nordic Stängsel offer." },
-          { href: "/tjanster", label: "Services", description: "Explore more fencing and gate solutions." },
-          { href: "/projekt", label: "Projects", description: "See environments that resemble your project." },
+          {
+            href: "/grindar-uppsala",
+            label: "Gates Uppsala",
+            description: "Complement the fencing scope with the right gate and access solution in Uppsala.",
+          },
+          {
+            href: "/stangsel-stockholm",
+            label: "Fencing Stockholm",
+            description: "See the equivalent page for projects in Stockholm and Greater Stockholm.",
+          },
+          {
+            href: "/projekt",
+            label: "Projects",
+            description: "See reference environments with similar safety, order and aesthetic requirements.",
+          },
+          {
+            href: "/kontakt",
+            label: "Contact",
+            description: "Go straight to the quote request or our contact details.",
+          },
         ],
         primaryCta: "Get a quote",
         secondaryCta: "Contact us",
@@ -354,11 +418,27 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         ctaTitle: "Behöver du grindar i Stockholm?",
         ctaBody:
           "Berätta kort om infarten, användningen och om ni behöver automatik så hjälper vi er vidare med rätt lösning.",
-        relatedLabel: "Relaterade sidor",
         relatedLinks: [
-          { href: "/", label: "Start", description: "Se hela erbjudandet från Nordic Stängsel." },
-          { href: "/tjanster", label: "Tjänster", description: "Utforska fler grind- och stängsellösningar." },
-          { href: "/projekt", label: "Projekt", description: "Se projektmiljöer med relevanta flöden och entréer." },
+          {
+            href: "/stangsel-stockholm",
+            label: "Stängsel Stockholm",
+            description: "Se stängsellösningar för samma marknad och komplettera hela områdesskyddet.",
+          },
+          {
+            href: "/grindar-uppsala",
+            label: "Grindar Uppsala",
+            description: "Se motsvarande sida för grinduppdrag i Uppsala och närområdet.",
+          },
+          {
+            href: "/projekt",
+            label: "Projekt",
+            description: "Utforska projektmiljöer med relevanta entréer, flöden och säkerhetskrav.",
+          },
+          {
+            href: "/kontakt",
+            label: "Kontakt",
+            description: "Gå direkt till offertförfrågan eller våra kontaktuppgifter.",
+          },
         ],
         primaryCta: "Få offert",
         secondaryCta: "Kontakta oss",
@@ -413,11 +493,27 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         ctaTitle: "Need gates in Stockholm?",
         ctaBody:
           "Tell us about the entrance, the use case and whether you need automation, and we will help you move forward with the right solution.",
-        relatedLabel: "Related pages",
         relatedLinks: [
-          { href: "/", label: "Home", description: "See the full Nordic Stängsel offer." },
-          { href: "/tjanster", label: "Services", description: "Explore more gate and fencing solution types." },
-          { href: "/projekt", label: "Projects", description: "See project environments with relevant access flows." },
+          {
+            href: "/stangsel-stockholm",
+            label: "Fencing Stockholm",
+            description: "See the matching fencing pages for the same market and complete the perimeter strategy.",
+          },
+          {
+            href: "/grindar-uppsala",
+            label: "Gates Uppsala",
+            description: "See the equivalent page for gate projects in Uppsala and nearby areas.",
+          },
+          {
+            href: "/projekt",
+            label: "Projects",
+            description: "Explore project environments with relevant entrances, flows and security requirements.",
+          },
+          {
+            href: "/kontakt",
+            label: "Contact",
+            description: "Go straight to the quote request or our contact details.",
+          },
         ],
         primaryCta: "Get a quote",
         secondaryCta: "Contact us",
@@ -481,11 +577,27 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         ctaTitle: "Behöver du grindar i Uppsala?",
         ctaBody:
           "Skicka några rader om platsen och vilken typ av passage ni behöver, så återkommer vi med rekommenderad väg framåt.",
-        relatedLabel: "Relaterade sidor",
         relatedLinks: [
-          { href: "/", label: "Start", description: "Tillbaka till Nordic Stängsels startsida." },
-          { href: "/tjanster", label: "Tjänster", description: "Se fler lösningar inom grindar och stängsel." },
-          { href: "/projekt", label: "Projekt", description: "Se referensmiljöer som liknar ditt behov." },
+          {
+            href: "/stangsel-uppsala",
+            label: "Stängsel Uppsala",
+            description: "Se stängsellösningar för samma marknad och knyt ihop hela områdesskyddet.",
+          },
+          {
+            href: "/grindar-stockholm",
+            label: "Grindar Stockholm",
+            description: "Se motsvarande sida för grinduppdrag i Stockholm och Storstockholm.",
+          },
+          {
+            href: "/projekt",
+            label: "Projekt",
+            description: "Utforska referensmiljöer med liknande flöden, entréer och krav på funktion.",
+          },
+          {
+            href: "/kontakt",
+            label: "Kontakt",
+            description: "Gå direkt till offertförfrågan eller våra kontaktuppgifter.",
+          },
         ],
         primaryCta: "Få offert",
         secondaryCta: "Kontakta oss",
@@ -540,11 +652,27 @@ const pageConfigs: Record<PageKey, PageConfig> = {
         ctaTitle: "Need gates in Uppsala?",
         ctaBody:
           "Send a short note about the site and what kind of access point you need, and we will return with the recommended way forward.",
-        relatedLabel: "Related pages",
         relatedLinks: [
-          { href: "/", label: "Home", description: "Back to the Nordic Stängsel homepage." },
-          { href: "/tjanster", label: "Services", description: "See more gate and fencing solutions." },
-          { href: "/projekt", label: "Projects", description: "See reference environments that match your need." },
+          {
+            href: "/stangsel-uppsala",
+            label: "Fencing Uppsala",
+            description: "See the matching fencing pages for the same market and complete the perimeter plan.",
+          },
+          {
+            href: "/grindar-stockholm",
+            label: "Gates Stockholm",
+            description: "See the equivalent page for gate projects in Stockholm and Greater Stockholm.",
+          },
+          {
+            href: "/projekt",
+            label: "Projects",
+            description: "Explore reference environments with similar flows, entrances and functional requirements.",
+          },
+          {
+            href: "/kontakt",
+            label: "Contact",
+            description: "Go straight to the quote request or our contact details.",
+          },
         ],
         primaryCta: "Get a quote",
         secondaryCta: "Contact us",
@@ -554,11 +682,87 @@ const pageConfigs: Record<PageKey, PageConfig> = {
   },
 };
 
+const audiencesByPage: Record<PageKey, { sv: string[]; en: string[] }> = {
+  "stangsel-stockholm": {
+    sv: [
+      "Företag och verksamhetsfastigheter",
+      "BRF och bostadsområden",
+      "Kommuner och skolmiljöer",
+      "Villafastigheter i Storstockholm",
+    ],
+    en: [
+      "Companies and commercial properties",
+      "Housing associations and residential areas",
+      "Municipal and school environments",
+      "Villa properties in Greater Stockholm",
+    ],
+  },
+  "stangsel-uppsala": {
+    sv: [
+      "Skolor och förskolor",
+      "BRF och fastighetsägare",
+      "Företag och verksamhetsområden",
+      "Villor i Uppsala med omnejd",
+    ],
+    en: [
+      "Schools and preschools",
+      "Housing associations and property owners",
+      "Companies and business areas",
+      "Villas in Uppsala and nearby areas",
+    ],
+  },
+  "grindar-stockholm": {
+    sv: [
+      "Industri och logistik",
+      "Fastigheter med daglig inpassering",
+      "BRF, skolor och publika entréer",
+      "Villor med behov av tydlig passage",
+    ],
+    en: [
+      "Industry and logistics",
+      "Properties with daily access needs",
+      "Housing associations, schools and public entrances",
+      "Villas that need clear access control",
+    ],
+  },
+  "grindar-uppsala": {
+    sv: [
+      "Fastigheter och bostadsrättsföreningar",
+      "Företag och verksamhetsområden",
+      "Skolor och offentliga miljöer",
+      "Villor med infarter och gångpassager",
+    ],
+    en: [
+      "Properties and housing associations",
+      "Companies and business areas",
+      "Schools and public environments",
+      "Villas with driveways and pedestrian gates",
+    ],
+  },
+};
+
 function LocalLandingPage({ pageKey }: { pageKey: PageKey }) {
   const { language, localizePath } = useLanguage();
   const config = pageConfigs[pageKey];
   const copy = config.copy[language];
+  const audiences = audiencesByPage[pageKey][language];
   const isSv = language === "sv";
+
+  const audienceLabel = isSv ? "Passar särskilt för" : "Especially relevant for";
+  const audienceBody = isSv
+    ? "Sidan är skriven för köpare som vill hitta rätt lösning snabbt och förstå vilka typer av projekt vi oftast hjälper till med i området."
+    : "This page is written for buyers who want to find the right solution quickly and understand which project types we most often support in the area.";
+  const solutionLinkLabel = isSv ? "Diskutera lösningen" : "Discuss the solution";
+  const quoteBadge = isSv ? "Offertförfrågan" : "Quote request";
+  const quoteTitle = isSv ? "Beskriv projektet så återkommer vi snabbt" : "Describe the project and we will return quickly";
+  const directContactLabel = isSv ? "Direktkontakt" : "Direct contact";
+  const directContactBody = isSv
+    ? "Vill du prata direkt med rätt kontor kan du använda någon av kontaktvägarna här bredvid."
+    : "If you prefer a direct conversation with the right office, use one of the contact routes alongside the form.";
+  const internalLinksTitle = isSv ? "Fler relevanta sidor" : "More relevant pages";
+  const internalLinksBody = isSv
+    ? "Fortsätt till närliggande lösningar, referenser eller kontakt om du vill jämföra alternativ eller gå vidare direkt."
+    : "Continue to related solutions, references or contact if you want to compare options or move forward directly.";
 
   return (
     <main className="w-full pt-20">
@@ -619,6 +823,25 @@ function LocalLandingPage({ pageKey }: { pageKey: PageKey }) {
         </div>
       </section>
 
+      <section className="border-b border-[#e4e8ec] bg-white py-8 md:py-10">
+        <div className="container mx-auto grid gap-5 px-4 md:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+          <div>
+            <span className="mb-3 block text-xs uppercase tracking-[0.22em] text-[#7d8993]">{audienceLabel}</span>
+            <p className="max-w-xl text-sm leading-7 text-[#51606c]">{audienceBody}</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {audiences.map((audience) => (
+              <span
+                key={audience}
+                className="border border-[#dbe1e6] bg-[#f7f9fb] px-4 py-2 text-[0.7rem] uppercase tracking-[0.18em] text-[#1a3349]"
+              >
+                {audience}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mb-10 max-w-3xl md:mb-14">
@@ -634,14 +857,22 @@ function LocalLandingPage({ pageKey }: { pageKey: PageKey }) {
             {copy.solutions.map((solution, index) => (
               <motion.article
                 key={solution.title}
-                className="border border-[#e4e8ec] bg-[#f8fafb] px-6 py-7"
+                className="flex h-full flex-col justify-between border border-[#e4e8ec] bg-[#f8fafb] px-6 py-7"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
               >
-                <h3 className="font-serif text-[1.55rem] leading-tight text-[#0f1f2e]">{solution.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-[#51606c]">{solution.body}</p>
+                <div>
+                  <h3 className="font-serif text-[1.55rem] leading-tight text-[#0f1f2e]">{solution.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-[#51606c]">{solution.body}</p>
+                </div>
+                <Link href={localizePath("/kontakt")}>
+                  <span className="mt-6 inline-flex items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[#1a3349] transition-colors hover:text-[#244764]">
+                    {solutionLinkLabel}
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </Link>
               </motion.article>
             ))}
           </div>
@@ -697,25 +928,54 @@ function LocalLandingPage({ pageKey }: { pageKey: PageKey }) {
         </div>
       </section>
 
+      <section className="bg-white py-16 md:py-24">
+        <div className="container mx-auto grid gap-10 px-4 md:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+          <div>
+            <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-[#7d8993]">{quoteBadge}</span>
+            <h2 className="font-serif text-[2rem] leading-tight text-[#0f1f2e] md:text-[3rem]">{quoteTitle}</h2>
+            <p className="mt-5 max-w-xl text-sm leading-7 text-[#51606c] md:text-base">{copy.ctaBody}</p>
+
+            <div className="mt-8 border border-[#e4e8ec] bg-[#f8fafb] px-6 py-6">
+              <span className="mb-3 block text-xs uppercase tracking-[0.18em] text-[#7d8993]">{directContactLabel}</span>
+              <p className="text-sm leading-7 text-[#51606c]">{directContactBody}</p>
+              <div className="mt-5 space-y-3 text-sm text-[#0f1f2e]">
+                <a className="block transition-colors hover:text-[#244764]" href="tel:+46835633666">
+                  Stockholm: +46 8 35 63 66
+                </a>
+                <a className="block transition-colors hover:text-[#244764]" href="tel:+46183461111">
+                  Uppsala: +46 18 34 61 11
+                </a>
+                <a className="block transition-colors hover:text-[#244764]" href="mailto:info@nordicstangsel.com">
+                  info@nordicstangsel.com
+                </a>
+                <p className="pt-1 text-[#51606c]">Segerstavägen 7B, 741 43 Knivsta</p>
+              </div>
+            </div>
+          </div>
+
+          <QuoteForm />
+        </div>
+      </section>
+
       <section className="bg-[#1a3349] py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="max-w-2xl">
-              <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/45">{copy.relatedLabel}</span>
+              <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-white/45">{internalLinksTitle}</span>
               <h2 className="font-serif text-[2rem] leading-tight text-white md:text-[3rem]">{copy.ctaTitle}</h2>
-              <p className="mt-5 text-sm leading-7 text-white/68 md:text-base">{copy.ctaBody}</p>
+              <p className="mt-5 text-sm leading-7 text-white/68 md:text-base">{internalLinksBody}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link href={localizePath("/kontakt")}>
                   <Button className="h-12 rounded-none border border-[#d0a45e] bg-[#d0a45e] px-7 text-sm uppercase tracking-[0.18em] text-[#0c1824] hover:border-[#ddb875] hover:bg-[#ddb875]">
-                    {copy.primaryCta}
+                    {copy.secondaryCta}
                   </Button>
                 </Link>
-                <Link href={localizePath("/kontakt")}>
+                <Link href={localizePath("/projekt")}>
                   <Button
                     variant="outline"
                     className="h-12 rounded-none border-white/35 bg-transparent px-7 text-sm uppercase tracking-[0.18em] text-white hover:border-white/65 hover:bg-white hover:text-[#0f1f2e]"
                   >
-                    {copy.secondaryCta}
+                    {copy.projectsCta}
                   </Button>
                 </Link>
               </div>
