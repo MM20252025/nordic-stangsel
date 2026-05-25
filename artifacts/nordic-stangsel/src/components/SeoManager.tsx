@@ -55,6 +55,26 @@ const seoByRoute = {
       description: "Gates in Uppsala for companies, properties, housing associations and villas. Get the right gate solution for flow, function and long-term use.",
     },
   },
+  "/omradesskydd-foretag": {
+    sv: {
+      title: "Områdesskydd för företag | Nordic Stängsel",
+      description: "Områdesskydd för företag med stängsel, grindar och tydlig inpassering. Få rätt lösning för säkerhet, drift och professionellt helhetsintryck.",
+    },
+    en: {
+      title: "Perimeter Protection for Companies | Nordic Stängsel",
+      description: "Perimeter protection for companies with fencing, gates and clear access control. Get the right solution for security, operations and a professional overall impression.",
+    },
+  },
+  "/stangsel-brf": {
+    sv: {
+      title: "Stängsel för BRF | Nordic Stängsel",
+      description: "Stängsel för BRF som skapar trygghet, ordning och ett bättre helhetsintryck. Få offert på rätt lösning för gårdar, entréer och passager.",
+    },
+    en: {
+      title: "Fencing for Housing Associations | Nordic Stängsel",
+      description: "Fencing for housing associations that improves safety, order and the overall impression. Get a quote for the right solution for courtyards, entrances and access points.",
+    },
+  },
   "/tjanster": {
     sv: {
       title: "Tjänster | Stängsel, grindar och områdesskydd | Nordic Stängsel",
