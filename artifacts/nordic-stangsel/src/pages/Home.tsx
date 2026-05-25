@@ -173,7 +173,7 @@ export default function Home() {
         servicesBody: "Vi hjälper företag, kommuner och villaägare att välja rätt lösning utifrån plats, funktion, säkerhetsnivå och uttryck.",
         allServices: "Se alla tjänster",
         references: "Projekt",
-        projectsTitle: "Utvalda realizeringar med premium känsla",
+        projectsTitle: "Utvalda realiseringar med premium känsla",
         projectsBody: "Ett urval av uppdrag som visar hur vi arbetar med säkerhet, estetik och genomförande i olika typer av miljöer.",
         allProjects: "Se alla projekt",
         moreProjects: "Visa projekt",
