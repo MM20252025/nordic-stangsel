@@ -76,7 +76,7 @@ export default function Services() {
         {
           href: "/omradesskydd-foretag",
           title: "Områdesskydd för företag",
-          description: "Audience page för företag som behöver tydlig säkerhet, drift och inpassering.",
+          description: "Sida för företag som behöver tydlig säkerhet, drift och inpassering.",
         },
         {
           href: "/stangsel-brf",
@@ -121,7 +121,7 @@ export default function Services() {
         {
           href: "/stangsel-brf-uppsala",
           title: "Stängsel BRF Uppsala",
-          description: "Lokal sida för BRF i Uppsala som vill poprawić trygghet, ordning och helhetsintryck.",
+          description: "Lokal sida för BRF i Uppsala som vill förbättra trygghet, ordning och helhetsintryck.",
         },
         {
           href: "/omradesskydd-stockholm",
