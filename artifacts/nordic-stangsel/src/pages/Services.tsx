@@ -73,6 +73,16 @@ export default function Services() {
           title: "Grindar Uppsala",
           description: "Sida för grindlösningar i Uppsala för fastigheter, BRF och företag.",
         },
+        {
+          href: "/omradesskydd-foretag",
+          title: "Områdesskydd för företag",
+          description: "Audience page för företag som behöver tydlig säkerhet, drift och inpassering.",
+        },
+        {
+          href: "/stangsel-brf",
+          title: "Stängsel för BRF",
+          description: "Undersida för bostadsrättsföreningar som vill förbättra ordning, trygghet och helhetsintryck.",
+        },
       ]
     : [
         {
@@ -95,6 +105,16 @@ export default function Services() {
           title: "Gates Uppsala",
           description: "Page for gate solutions in Uppsala for properties, housing associations and companies.",
         },
+        {
+          href: "/omradesskydd-foretag",
+          title: "Perimeter Protection for Companies",
+          description: "Audience page for companies that need clear security, operations and access control.",
+        },
+        {
+          href: "/stangsel-brf",
+          title: "Fencing for Housing Associations",
+          description: "Dedicated page for housing associations improving safety, order and curb appeal.",
+        },
       ];
 
   const copy = isSv
@@ -102,9 +122,9 @@ export default function Services() {
         badge: "Expertis",
         heroTitle: "Stängsel och grindlösningar för riktiga projekt",
         heroBody: "I Stockholm, Uppsala och Mälardalen hjälper vi företag, skolor, kommuner, BRF:er och villakunder att välja rätt lösning och få offert inom 24 timmar.",
-        localPagesBadge: "Lokala sidor",
-        localPagesTitle: "Snabb väg till rätt sida för ditt område",
-        localPagesBody: "Vi har samlat fyra sidor för högintenta sökningar inom stängsel och grindar i Stockholm och Uppsala. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
+        localPagesBadge: "Lokala och målgruppsstyrda sidor",
+        localPagesTitle: "Snabb väg till rätt sida för område eller målgrupp",
+        localPagesBody: "Vi har samlat sex sidor för högintenta sökningar inom stängsel, grindar och områdesskydd. De hjälper både besökare och sökmotorer att hitta rätt erbjudande snabbare.",
         localPagesCta: "Öppna sida",
         sectionTitle: "Från första behov till färdig installation",
         sectionBody: "Varje tjänst är utformad för att göra beslutet enklare: rätt nivå av områdesskydd, rätt typ av grind och ett genomförande som fungerar i vardagen efter installation.",
@@ -117,9 +137,9 @@ export default function Services() {
         badge: "Expertise",
         heroTitle: "Fencing and gate solutions for real projects",
         heroBody: "In Stockholm, Uppsala and the Mälardalen region, we help companies, schools, municipalities, housing associations and villa owners choose the right solution and get a quote within 24 hours.",
-        localPagesBadge: "Local pages",
-        localPagesTitle: "Fast route to the right page for your area",
-        localPagesBody: "We have grouped four high-intent pages for fencing and gates in Stockholm and Uppsala. They help both visitors and search engines find the right offer faster.",
+        localPagesBadge: "Local and audience pages",
+        localPagesTitle: "Fast route to the right page for area or audience",
+        localPagesBody: "We have grouped six high-intent pages for fencing, gates and perimeter protection. They help both visitors and search engines find the right offer faster.",
         localPagesCta: "Open page",
         sectionTitle: "From first need to completed installation",
         sectionBody: "Each service is designed to make the decision easier: the right level of perimeter protection, the right type of gate and a delivery that works in everyday use after installation.",
@@ -155,7 +175,7 @@ export default function Services() {
             <p className="mt-4 text-sm leading-7 text-[#51606c] md:text-base">{copy.localPagesBody}</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {landingPages.map((page, index) => (
               <Link key={page.href} href={localizePath(page.href)}>
                 <motion.article
