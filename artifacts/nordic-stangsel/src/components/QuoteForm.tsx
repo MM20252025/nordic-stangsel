@@ -25,12 +25,9 @@ import { useLanguage, type Language } from "@/lib/language";
 
 const CONFIGURED_FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
 const SUPPORT_EMAIL = "info@nordicstangsel.com";
+const DEFAULT_FORM_ENDPOINT = "/api/quote-request";
 const BLOCKED_DOMAIN = "nordicstangsel.se";
-const TRUSTED_API_HOSTS = new Set([
-  "nordicstangsel.com",
-  "www.nordicstangsel.com",
-  "nordic-stangsel-api-server.vercel.app",
-]);
+const TRUSTED_API_HOSTS = new Set(["nordicstangsel.com", "www.nordicstangsel.com"]);
 
 type FormValues = {
   name: string;
@@ -46,13 +43,13 @@ function getSafeFormEndpoint() {
   const endpoint = CONFIGURED_FORM_ENDPOINT?.trim();
 
   if (!endpoint) {
-    return undefined;
+    return DEFAULT_FORM_ENDPOINT;
   }
 
   const normalizedEndpoint = endpoint.toLowerCase();
 
   if (normalizedEndpoint.includes(BLOCKED_DOMAIN)) {
-    return undefined;
+    return DEFAULT_FORM_ENDPOINT;
   }
 
   if (endpoint.startsWith("/")) {
@@ -64,17 +61,17 @@ function getSafeFormEndpoint() {
     const hostname = url.hostname.toLowerCase();
 
     if (hostname === BLOCKED_DOMAIN || hostname.endsWith(`.${BLOCKED_DOMAIN}`)) {
-      return undefined;
+      return DEFAULT_FORM_ENDPOINT;
     }
 
     if (TRUSTED_API_HOSTS.has(hostname)) {
       return endpoint;
     }
   } catch {
-    return undefined;
+    return DEFAULT_FORM_ENDPOINT;
   }
 
-  return undefined;
+  return DEFAULT_FORM_ENDPOINT;
 }
 
 const FORM_ENDPOINT = getSafeFormEndpoint();
@@ -283,37 +280,25 @@ function QuoteFormInner({ language }: { language: Language }) {
     const files = filesRef.current;
     const attachmentCount = files?.length ?? 0;
 
-    if (FORM_ENDPOINT) {
-      try {
-        const formData = new FormData();
-        formData.append("name", values.name);
-        formData.append("phone", values.phone);
-        formData.append("email", values.email);
-        formData.append("projectType", values.projectType);
-        formData.append("message", values.message);
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...values, attachmentCount }),
+      });
+      const contentType = res.headers.get("content-type") ?? "";
+      const responseBody = contentType.includes("application/json") ? await res.json().catch(() => null) : null;
 
-        if (files && files.length > 0) {
-          Array.from(files).forEach((file) => {
-            formData.append("images", file, file.name);
-          });
-        }
-
-        const res = await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          headers: { Accept: "application/json" },
-          body: formData,
-        });
-        const contentType = res.headers.get("content-type") ?? "";
-        const responseBody = contentType.includes("application/json") ? await res.json().catch(() => null) : null;
-
-        if (res.ok && isConfirmedEmailDelivery(responseBody)) {
-          setSubmissionMode("api");
-          setIsSubmitted(true);
-          return;
-        }
-      } catch {
-        // Fall through to the safe .com mail draft below.
+      if (res.ok && isConfirmedEmailDelivery(responseBody)) {
+        setSubmissionMode("api");
+        setIsSubmitted(true);
+        return;
       }
+    } catch {
+      // Fall through to the safe .com mail draft below.
     }
 
     openMailtoDraft(values, attachmentCount, language);
@@ -531,7 +516,6 @@ function QuoteFormInner({ language }: { language: Language }) {
               </label>
               {fileName && <span className="text-sm text-gray-500">{fileName}</span>}
             </div>
-            {!FORM_ENDPOINT && <p className="mt-3 text-xs text-gray-500">{content.helper.noEndpoint}</p>}
           </div>
 
           <Button
