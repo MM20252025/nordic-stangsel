@@ -1,3 +1,6 @@
+declare const process: { env: Record<string, string | undefined> };
+declare function fetch(input: string, init?: unknown): Promise<{ ok: boolean }>;
+
 const RECIPIENT_EMAIL = "info@nordicstangsel.com";
 const BLOCKED_DOMAIN = "nordicstangsel.se";
 const DEFAULT_FROM_EMAIL = "Nordic Stängsel <offerter@nordicstangsel.com>";
