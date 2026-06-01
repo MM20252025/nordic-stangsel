@@ -2,6 +2,7 @@ import express, { Router, type IRouter, type Request } from "express";
 import { logger } from "../lib/logger";
 
 const router: IRouter = Router();
+const QUOTE_RECIPIENT_EMAIL = "info@nordicstangsel.com";
 
 type QuoteRequestFields = {
   name?: string;
@@ -142,17 +143,21 @@ router.post(
       });
     }
 
-    logger.info(
+    logger.warn(
       {
         quoteRequest: {
           ...fields,
           files,
+          intendedRecipient: QUOTE_RECIPIENT_EMAIL,
         },
       },
-      "Received quote request",
+      "Quote request email delivery is not configured; falling back to direct .com contact route",
     );
 
-    return res.status(202).json({ status: "accepted" });
+    return res.status(503).json({
+      error: "Email delivery is not configured.",
+      recipient: QUOTE_RECIPIENT_EMAIL,
+    });
   },
 );
 
