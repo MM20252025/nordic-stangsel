@@ -23,8 +23,14 @@ import {
 } from "@/components/ui/select";
 import { useLanguage, type Language } from "@/lib/language";
 
-const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
+const CONFIGURED_FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
 const SUPPORT_EMAIL = "info@nordicstangsel.com";
+const BLOCKED_DOMAIN = "nordicstangsel.se";
+const TRUSTED_API_HOSTS = new Set([
+  "nordicstangsel.com",
+  "www.nordicstangsel.com",
+  "nordic-stangsel-api-server.vercel.app",
+]);
 
 type FormValues = {
   name: string;
@@ -35,6 +41,43 @@ type FormValues = {
 };
 
 type SubmissionMode = "api" | "mailto";
+
+function getSafeFormEndpoint() {
+  const endpoint = CONFIGURED_FORM_ENDPOINT?.trim();
+
+  if (!endpoint) {
+    return undefined;
+  }
+
+  const normalizedEndpoint = endpoint.toLowerCase();
+
+  if (normalizedEndpoint.includes(BLOCKED_DOMAIN)) {
+    return undefined;
+  }
+
+  if (endpoint.startsWith("/")) {
+    return endpoint;
+  }
+
+  try {
+    const url = new URL(endpoint);
+    const hostname = url.hostname.toLowerCase();
+
+    if (hostname === BLOCKED_DOMAIN || hostname.endsWith(`.${BLOCKED_DOMAIN}`)) {
+      return undefined;
+    }
+
+    if (TRUSTED_API_HOSTS.has(hostname)) {
+      return endpoint;
+    }
+  } catch {
+    return undefined;
+  }
+
+  return undefined;
+}
+
+const FORM_ENDPOINT = getSafeFormEndpoint();
 
 function getFormContent(language: Language) {
   if (language === "sv") {
@@ -190,6 +233,22 @@ function buildMailtoLink(values: FormValues, attachmentCount: number, language: 
   return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
 }
 
+function openMailtoDraft(values: FormValues, attachmentCount: number, language: Language) {
+  if (typeof window !== "undefined") {
+    window.location.href = buildMailtoLink(values, attachmentCount, language);
+  }
+}
+
+function isConfirmedEmailDelivery(response: unknown): response is { status: string; recipient: string } {
+  if (!response || typeof response !== "object") {
+    return false;
+  }
+
+  const data = response as { status?: unknown; recipient?: unknown };
+
+  return data.status === "sent" && data.recipient === SUPPORT_EMAIL;
+}
+
 function QuoteFormInner({ language }: { language: Language }) {
   const content = getFormContent(language);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -244,21 +303,20 @@ function QuoteFormInner({ language }: { language: Language }) {
           headers: { Accept: "application/json" },
           body: formData,
         });
-        if (res.ok) {
+        const contentType = res.headers.get("content-type") ?? "";
+        const responseBody = contentType.includes("application/json") ? await res.json().catch(() => null) : null;
+
+        if (res.ok && isConfirmedEmailDelivery(responseBody)) {
           setSubmissionMode("api");
           setIsSubmitted(true);
-        } else {
-          setSubmitError(true);
+          return;
         }
       } catch {
-        setSubmitError(true);
+        // Fall through to the safe .com mail draft below.
       }
-      return;
     }
 
-    if (typeof window !== "undefined") {
-      window.location.href = buildMailtoLink(values, attachmentCount, language);
-    }
+    openMailtoDraft(values, attachmentCount, language);
     setSubmissionMode("mailto");
     setIsSubmitted(true);
   }
