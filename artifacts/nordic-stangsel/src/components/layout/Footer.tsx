@@ -3,11 +3,22 @@ import logoSrc from "../../assets/images/nordic_logo_white_transparent.png";
 import { useLanguage } from "@/lib/language";
 
 const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590332861296&sk=about";
+const INSTAGRAM_URL = "https://www.instagram.com/nordic_stangselab/";
 
 function FacebookIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-current">
       <path d="M14.3 8.6V6.8c0-.5.4-.8.9-.8h1.8V3h-2.6c-2.9 0-4.4 1.7-4.4 4.2v2.4H7v3.2h3V21h3.5v-8.2h2.7l.5-3.2h-3.2Z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
     </svg>
   );
 }
@@ -25,6 +36,7 @@ export function Footer() {
         contact: "Kontakt",
         headOffice: "HUVUDKONTOR",
         email: "E-POST",
+        social: "SOCIALA MEDIER",
         services: "Tjänster",
         company: "Företag",
         about: "Om oss",
@@ -40,6 +52,7 @@ export function Footer() {
         contact: "Contact",
         headOffice: "HEAD OFFICE",
         email: "EMAIL",
+        social: "SOCIAL MEDIA",
         services: "Services",
         company: "Company",
         about: "About",
@@ -56,7 +69,8 @@ export function Footer() {
     : ["Industrial fencing", "School fencing", "Sports facilities", "Security fencing", "Automatic gates"];
 
   const footerFacebookLabel = language === "sv" ? "Nordic Stängsel på Facebook" : "Nordic Stängsel on Facebook";
-  const facebookButtonClass = "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-[#315f97] text-white shadow-sm transition-colors hover:bg-[#3c70ad] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a3349]";
+  const footerInstagramLabel = language === "sv" ? "Nordic Stängsel på Instagram" : "Nordic Stängsel on Instagram";
+  const socialButtonClass = "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-[#315f97] text-white shadow-sm transition-colors hover:bg-[#3c70ad] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a3349]";
 
   return (
     <footer className="border-t border-white/10 bg-[#1a3349] pb-8 pt-16 text-white" data-testid="footer">
@@ -90,18 +104,31 @@ export function Footer() {
                 <a href="mailto:info@nordicstangsel.com" className="transition-colors hover:text-white">info@nordicstangsel.com</a>
               </li>
               <li>
-                <span className="mb-2 block text-xs uppercase tracking-wider text-white/40">FACEBOOK</span>
-                <a
-                  href={FACEBOOK_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={footerFacebookLabel}
-                  title={footerFacebookLabel}
-                  className={facebookButtonClass}
-                  data-testid="button-footer-contact-facebook"
-                >
-                  <FacebookIcon />
-                </a>
+                <span className="mb-2 block text-xs uppercase tracking-wider text-white/40">{content.social}</span>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={FACEBOOK_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={footerFacebookLabel}
+                    title={footerFacebookLabel}
+                    className={socialButtonClass}
+                    data-testid="button-footer-contact-facebook"
+                  >
+                    <FacebookIcon />
+                  </a>
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={footerInstagramLabel}
+                    title={footerInstagramLabel}
+                    className={socialButtonClass}
+                    data-testid="button-footer-contact-instagram"
+                  >
+                    <InstagramIcon />
+                  </a>
+                </div>
               </li>
               <li>
                 <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">ORG.NR</span>
@@ -139,12 +166,23 @@ export function Footer() {
               href={FACEBOOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className={facebookButtonClass}
+              className={socialButtonClass}
               aria-label={footerFacebookLabel}
               title={footerFacebookLabel}
               data-testid="button-footer-facebook"
             >
               <FacebookIcon />
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialButtonClass}
+              aria-label={footerInstagramLabel}
+              title={footerInstagramLabel}
+              data-testid="button-footer-instagram"
+            >
+              <InstagramIcon />
             </a>
             <Link href={localizePath("/integritetspolicy")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.privacy}</Link>
             <Link href={localizePath("/villkor")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.terms}</Link>
