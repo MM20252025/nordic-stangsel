@@ -4,6 +4,14 @@ import { useLanguage } from "@/lib/language";
 
 const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590332861296&sk=about";
 
+function FacebookIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+      <path d="M14.3 8.6V6.8c0-.5.4-.8.9-.8h1.8V3h-2.6c-2.9 0-4.4 1.7-4.4 4.2v2.4H7v3.2h3V21h3.5v-8.2h2.7l.5-3.2h-3.2Z" />
+    </svg>
+  );
+}
+
 export function Footer() {
   const { language, localizePath } = useLanguage();
 
@@ -48,6 +56,7 @@ export function Footer() {
     : ["Industrial fencing", "School fencing", "Sports facilities", "Security fencing", "Automatic gates"];
 
   const footerFacebookLabel = language === "sv" ? "Nordic Stängsel på Facebook" : "Nordic Stängsel on Facebook";
+  const facebookButtonClass = "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-[#315f97] text-white shadow-sm transition-colors hover:bg-[#3c70ad] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a3349]";
 
   return (
     <footer className="border-t border-white/10 bg-[#1a3349] pb-8 pt-16 text-white" data-testid="footer">
@@ -87,10 +96,11 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={footerFacebookLabel}
-                  className="inline-flex min-h-10 items-center justify-center rounded-none border border-white bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#1a3349] transition-colors hover:bg-white/90"
+                  title={footerFacebookLabel}
+                  className={facebookButtonClass}
                   data-testid="button-footer-contact-facebook"
                 >
-                  Facebook
+                  <FacebookIcon />
                 </a>
               </li>
               <li>
@@ -129,11 +139,12 @@ export function Footer() {
               href={FACEBOOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-9 items-center justify-center rounded-none border border-white/40 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:border-white hover:bg-white hover:text-[#1a3349]"
+              className={facebookButtonClass}
               aria-label={footerFacebookLabel}
+              title={footerFacebookLabel}
               data-testid="button-footer-facebook"
             >
-              Facebook
+              <FacebookIcon />
             </a>
             <Link href={localizePath("/integritetspolicy")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.privacy}</Link>
             <Link href={localizePath("/villkor")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.terms}</Link>
