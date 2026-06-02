@@ -75,6 +75,9 @@ export function Navbar() {
     : "text-white border-b-2 border-white pb-1";
   const switcherBase = scrolled ? "border-gray-300 bg-white text-[#0f1f2e]" : "border-white/30 bg-white/5 text-white";
   const switcherActive = scrolled ? "bg-[#1a3349] text-white border-[#1a3349]" : "bg-white text-[#0f1f2e] border-white";
+  const facebookButtonClass = scrolled
+    ? "border-[#1a3349] bg-[#1a3349] text-white hover:bg-[#264056] hover:border-[#264056]"
+    : "border-white bg-white text-[#0f1f2e] hover:bg-white/90";
 
   return (
     <header className={headerClass} data-testid="navbar">
@@ -113,8 +116,8 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={facebookAriaLabel}
-                className={`text-sm font-semibold underline decoration-current/30 underline-offset-4 transition-colors ${linkClass}`}
-                data-testid="link-nav-facebook"
+                className={`inline-flex h-10 items-center justify-center rounded-none border px-4 text-sm font-semibold uppercase tracking-[0.12em] transition-colors ${facebookButtonClass}`}
+                data-testid="button-nav-facebook"
               >
                 Facebook
               </a>
@@ -159,8 +162,8 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={facebookAriaLabel}
-            className={`border px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${scrolled ? "border-[#1a3349]/25 text-[#0f1f2e]" : "border-white/40 text-white"}`}
-            data-testid="link-mobile-header-facebook"
+            className={`inline-flex h-10 items-center justify-center rounded-none border px-3 text-xs font-semibold uppercase tracking-wider transition-colors ${facebookButtonClass}`}
+            data-testid="button-mobile-header-facebook"
           >
             Facebook
           </a>
@@ -223,7 +226,8 @@ export function Navbar() {
                 rel="noopener noreferrer"
                 aria-label={facebookAriaLabel}
                 onClick={() => setIsOpen(false)}
-                className="text-2xl font-semibold text-white underline decoration-white/40 underline-offset-8"
+                className="mx-auto inline-flex h-12 min-w-40 items-center justify-center rounded-none border border-white bg-white px-6 text-sm font-semibold uppercase tracking-[0.14em] text-[#0f1f2e] transition-colors hover:bg-white/90"
+                data-testid="button-mobile-menu-facebook"
               >
                 Facebook
               </a>
