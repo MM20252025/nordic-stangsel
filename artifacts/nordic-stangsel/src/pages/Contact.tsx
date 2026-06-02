@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Building, BadgeCheck, PhoneCall } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Building, BadgeCheck, PhoneCall, ExternalLink } from "lucide-react";
 import { QuoteForm } from "@/components/QuoteForm";
 import { useLanguage } from "@/lib/language";
+
+const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590332861296&sk=about";
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -19,6 +21,8 @@ export default function Contact() {
         address: "Besöks- & postadress",
         phone: "Telefon",
         email: "E-post",
+        facebook: "Facebook",
+        facebookCta: "Besök oss på Facebook",
         hours: "Öppettider",
         route: "Vägbeskrivning",
         fastTitle: "Snabbaste vägen till offert",
@@ -31,6 +35,8 @@ export default function Contact() {
         address: "Visiting & postal address",
         phone: "Phone",
         email: "Email",
+        facebook: "Facebook",
+        facebookCta: "Visit us on Facebook",
         hours: "Opening hours",
         route: "Directions",
         fastTitle: "Fastest route to a quote",
@@ -93,6 +99,16 @@ export default function Contact() {
                     <div>
                       <span className="mb-1 block text-xs uppercase tracking-wider text-gray-500">{copy.email}</span>
                       <a href="mailto:info@nordicstangsel.com" className="text-sm font-medium text-[#0f1f2e] underline decoration-gray-300 underline-offset-2 transition-colors hover:text-[#1a3349] hover:decoration-[#1a3349]">info@nordicstangsel.com</a>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <ExternalLink className="mt-0.5 h-5 w-5 shrink-0 text-gray-400" />
+                    <div>
+                      <span className="mb-1 block text-xs uppercase tracking-wider text-gray-500">{copy.facebook}</span>
+                      <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-[#0f1f2e] underline decoration-gray-300 underline-offset-2 transition-colors hover:text-[#1a3349] hover:decoration-[#1a3349]">
+                        {copy.facebookCta}
+                      </a>
                     </div>
                   </div>
 
