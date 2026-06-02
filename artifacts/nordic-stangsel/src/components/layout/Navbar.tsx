@@ -153,15 +153,27 @@ export function Navbar() {
           </Link>
         </nav>
 
-        <button
-          className={`-mr-2 p-2 md:hidden ${scrolled ? "text-[#0f1f2e]" : "text-white"}`}
-          onClick={() => setIsOpen(!isOpen)}
-          data-testid="button-mobile-menu"
-          aria-expanded={isOpen}
-          aria-label={isOpen ? closeLabel : openLabel}
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <a
+            href={FACEBOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={facebookAriaLabel}
+            className={`border px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${scrolled ? "border-[#1a3349]/25 text-[#0f1f2e]" : "border-white/40 text-white"}`}
+            data-testid="link-mobile-header-facebook"
+          >
+            Facebook
+          </a>
+          <button
+            className={`-mr-2 p-2 ${scrolled ? "text-[#0f1f2e]" : "text-white"}`}
+            onClick={() => setIsOpen(!isOpen)}
+            data-testid="button-mobile-menu"
+            aria-expanded={isOpen}
+            aria-label={isOpen ? closeLabel : openLabel}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {isOpen && (
