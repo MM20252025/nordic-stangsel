@@ -7,6 +7,7 @@ import logoLightSrc from "../../assets/images/nordic_logo_horizontal.png";
 import { useLanguage } from "@/lib/language";
 
 const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590332861296&sk=about";
+const INSTAGRAM_URL = "https://www.instagram.com/nordic_stangselab/";
 
 function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -15,6 +16,16 @@ function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
         fill="currentColor"
         d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06H297V6.26S260.43 0 225.36 0C152.14 0 104.28 44.38 104.28 124.72v70.62H23V288h81.28v224h100.17V288z"
       />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
     </svg>
   );
 }
@@ -49,6 +60,7 @@ export function Navbar() {
   const openLabel = language === "sv" ? "Öppna meny" : "Open menu";
   const closeLabel = language === "sv" ? "Stäng meny" : "Close menu";
   const facebookAriaLabel = language === "sv" ? "Nordic Stängsel på Facebook" : "Nordic Stängsel on Facebook";
+  const instagramAriaLabel = language === "sv" ? "Nordic Stängsel på Instagram" : "Nordic Stängsel on Instagram";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY >= 40);
@@ -86,7 +98,7 @@ export function Navbar() {
     : "text-white border-b-2 border-white pb-1";
   const switcherBase = scrolled ? "border-gray-300 bg-white text-[#0f1f2e]" : "border-white/30 bg-white/5 text-white";
   const switcherActive = scrolled ? "bg-[#1a3349] text-white border-[#1a3349]" : "bg-white text-[#0f1f2e] border-white";
-  const facebookIconButtonClass = "border-[#3b5998] bg-[#3b5998] text-white hover:border-[#2f477a] hover:bg-[#2f477a]";
+  const socialIconButtonClass = "border-[#315f97] bg-[#315f97] text-white hover:border-[#3c70ad] hover:bg-[#3c70ad]";
 
   return (
     <header className={headerClass} data-testid="navbar">
@@ -119,17 +131,30 @@ export function Navbar() {
                 </li>
               );
             })}
-            <li>
+            <li className="flex items-center gap-2">
               <a
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={facebookAriaLabel}
-                className={`inline-flex h-10 w-10 items-center justify-center rounded-[3px] border transition-colors ${facebookIconButtonClass}`}
+                title={facebookAriaLabel}
+                className={`inline-flex h-10 w-10 items-center justify-center rounded-[3px] border transition-colors ${socialIconButtonClass}`}
                 data-testid="button-nav-facebook"
               >
                 <FacebookIcon className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={instagramAriaLabel}
+                title={instagramAriaLabel}
+                className={`inline-flex h-10 w-10 items-center justify-center rounded-[3px] border transition-colors ${socialIconButtonClass}`}
+                data-testid="button-nav-instagram"
+              >
+                <InstagramIcon className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
               </a>
             </li>
           </ul>
@@ -166,17 +191,30 @@ export function Navbar() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <a
             href={FACEBOOK_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={facebookAriaLabel}
-            className={`inline-flex h-10 w-10 items-center justify-center rounded-[3px] border transition-colors ${facebookIconButtonClass}`}
+            title={facebookAriaLabel}
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-[3px] border transition-colors ${socialIconButtonClass}`}
             data-testid="button-mobile-header-facebook"
           >
             <FacebookIcon className="h-5 w-5" />
             <span className="sr-only">Facebook</span>
+          </a>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={instagramAriaLabel}
+            title={instagramAriaLabel}
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-[3px] border transition-colors ${socialIconButtonClass}`}
+            data-testid="button-mobile-header-instagram"
+          >
+            <InstagramIcon className="h-5 w-5" />
+            <span className="sr-only">Instagram</span>
           </a>
           <button
             className={`-mr-2 p-2 ${scrolled ? "text-[#0f1f2e]" : "text-white"}`}
@@ -230,18 +268,32 @@ export function Navbar() {
                 </li>
               );
             })}
-            <li>
+            <li className="flex justify-center gap-3">
               <a
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={facebookAriaLabel}
+                title={facebookAriaLabel}
                 onClick={() => setIsOpen(false)}
-                className={`mx-auto inline-flex h-12 w-12 items-center justify-center rounded-[3px] border transition-colors ${facebookIconButtonClass}`}
+                className={`inline-flex h-12 w-12 items-center justify-center rounded-[3px] border transition-colors ${socialIconButtonClass}`}
                 data-testid="button-mobile-menu-facebook"
               >
                 <FacebookIcon className="h-6 w-6" />
                 <span className="sr-only">Facebook</span>
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={instagramAriaLabel}
+                title={instagramAriaLabel}
+                onClick={() => setIsOpen(false)}
+                className={`inline-flex h-12 w-12 items-center justify-center rounded-[3px] border transition-colors ${socialIconButtonClass}`}
+                data-testid="button-mobile-menu-instagram"
+              >
+                <InstagramIcon className="h-6 w-6" />
+                <span className="sr-only">Instagram</span>
               </a>
             </li>
           </ul>
