@@ -47,6 +47,8 @@ export function Footer() {
     ? ["Industristängsel", "Skolstängsel", "Idrottsanläggningar", "Säkerhetsstängsel", "Automatiska grindar"]
     : ["Industrial fencing", "School fencing", "Sports facilities", "Security fencing", "Automatic gates"];
 
+  const footerFacebookLabel = language === "sv" ? "Nordic Stängsel på Facebook" : "Nordic Stängsel on Facebook";
+
   return (
     <footer className="border-t border-white/10 bg-[#1a3349] pb-8 pt-16 text-white" data-testid="footer">
       <div className="container mx-auto px-4 md:px-6">
@@ -79,8 +81,15 @@ export function Footer() {
                 <a href="mailto:info@nordicstangsel.com" className="transition-colors hover:text-white">info@nordicstangsel.com</a>
               </li>
               <li>
-                <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">FACEBOOK</span>
-                <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="font-medium underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white">
+                <span className="mb-2 block text-xs uppercase tracking-wider text-white/40">FACEBOOK</span>
+                <a
+                  href={FACEBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={footerFacebookLabel}
+                  className="inline-flex min-h-10 items-center justify-center rounded-none border border-white bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#1a3349] transition-colors hover:bg-white/90"
+                  data-testid="button-footer-contact-facebook"
+                >
                   Facebook
                 </a>
               </li>
@@ -115,8 +124,17 @@ export function Footer() {
 
         <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 text-center text-xs text-white/40 md:flex-row md:text-left">
           <p>© {new Date().getFullYear()} Nordic Stängsel AB. {content.rights}</p>
-          <div className="mt-4 space-x-4 md:mt-0">
-            <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white/80" aria-label="Nordic Stängsel på Facebook">Facebook</a>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-0 md:justify-end">
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-9 items-center justify-center rounded-none border border-white/40 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:border-white hover:bg-white hover:text-[#1a3349]"
+              aria-label={footerFacebookLabel}
+              data-testid="button-footer-facebook"
+            >
+              Facebook
+            </a>
             <Link href={localizePath("/integritetspolicy")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.privacy}</Link>
             <Link href={localizePath("/villkor")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.terms}</Link>
           </div>
