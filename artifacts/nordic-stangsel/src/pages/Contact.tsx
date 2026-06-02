@@ -22,7 +22,7 @@ export default function Contact() {
         phone: "Telefon",
         email: "E-post",
         facebook: "Facebook",
-        facebookCta: "Besök oss på Facebook",
+        facebookCta: "Besök Facebook",
         hours: "Öppettider",
         route: "Vägbeskrivning",
         fastTitle: "Snabbaste vägen till offert",
@@ -36,7 +36,7 @@ export default function Contact() {
         phone: "Phone",
         email: "Email",
         facebook: "Facebook",
-        facebookCta: "Visit us on Facebook",
+        facebookCta: "Visit Facebook",
         hours: "Opening hours",
         route: "Directions",
         fastTitle: "Fastest route to a quote",
@@ -105,8 +105,14 @@ export default function Contact() {
                   <div className="flex gap-4">
                     <ExternalLink className="mt-0.5 h-5 w-5 shrink-0 text-gray-400" />
                     <div>
-                      <span className="mb-1 block text-xs uppercase tracking-wider text-gray-500">{copy.facebook}</span>
-                      <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-[#0f1f2e] underline decoration-gray-300 underline-offset-2 transition-colors hover:text-[#1a3349] hover:decoration-[#1a3349]">
+                      <span className="mb-2 block text-xs uppercase tracking-wider text-gray-500">{copy.facebook}</span>
+                      <a
+                        href={FACEBOOK_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex min-h-10 items-center justify-center rounded-none border border-[#1a3349] bg-[#1a3349] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:border-[#264056] hover:bg-[#264056]"
+                        data-testid="button-contact-facebook"
+                      >
                         {copy.facebookCta}
                       </a>
                     </div>
