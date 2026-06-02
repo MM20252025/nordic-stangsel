@@ -4,6 +4,25 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { useLanguage } from "@/lib/language";
 
 const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590332861296&sk=about";
+const INSTAGRAM_URL = "https://www.instagram.com/nordic_stangselab/";
+
+function FacebookIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+      <path d="M14.3 8.6V6.8c0-.5.4-.8.9-.8h1.8V3h-2.6c-2.9 0-4.4 1.7-4.4 4.2v2.4H7v3.2h3V21h3.5v-8.2h2.7l.5-3.2h-3.2Z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
+    </svg>
+  );
+}
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -21,8 +40,9 @@ export default function Contact() {
         address: "Besöks- & postadress",
         phone: "Telefon",
         email: "E-post",
-        facebook: "Facebook",
-        facebookCta: "Besök Facebook",
+        social: "Sociala medier",
+        facebookLabel: "Nordic Stängsel på Facebook",
+        instagramLabel: "Nordic Stängsel på Instagram",
         hours: "Öppettider",
         route: "Vägbeskrivning",
         fastTitle: "Snabbaste vägen till offert",
@@ -35,13 +55,16 @@ export default function Contact() {
         address: "Visiting & postal address",
         phone: "Phone",
         email: "Email",
-        facebook: "Facebook",
-        facebookCta: "Visit Facebook",
+        social: "Social media",
+        facebookLabel: "Nordic Stängsel on Facebook",
+        instagramLabel: "Nordic Stängsel on Instagram",
         hours: "Opening hours",
         route: "Directions",
         fastTitle: "Fastest route to a quote",
         fastBody: "Send a few lines about the project, the approximate location and what type of fencing or gate you need. That helps us return faster with the right next step.",
       };
+
+  const socialButtonClass = "inline-flex h-10 w-10 items-center justify-center rounded-sm bg-[#315f97] text-white shadow-sm transition-colors hover:bg-[#3c70ad] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a3349]/40";
 
   return (
     <main className="min-h-screen w-full bg-gray-50 pb-24 pt-32">
@@ -105,16 +128,31 @@ export default function Contact() {
                   <div className="flex gap-4">
                     <ExternalLink className="mt-0.5 h-5 w-5 shrink-0 text-gray-400" />
                     <div>
-                      <span className="mb-2 block text-xs uppercase tracking-wider text-gray-500">{copy.facebook}</span>
-                      <a
-                        href={FACEBOOK_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex min-h-10 items-center justify-center rounded-none border border-[#1a3349] bg-[#1a3349] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:border-[#264056] hover:bg-[#264056]"
-                        data-testid="button-contact-facebook"
-                      >
-                        {copy.facebookCta}
-                      </a>
+                      <span className="mb-2 block text-xs uppercase tracking-wider text-gray-500">{copy.social}</span>
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={FACEBOOK_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={copy.facebookLabel}
+                          title={copy.facebookLabel}
+                          className={socialButtonClass}
+                          data-testid="button-contact-facebook"
+                        >
+                          <FacebookIcon />
+                        </a>
+                        <a
+                          href={INSTAGRAM_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={copy.instagramLabel}
+                          title={copy.instagramLabel}
+                          className={socialButtonClass}
+                          data-testid="button-contact-instagram"
+                        >
+                          <InstagramIcon />
+                        </a>
+                      </div>
                     </div>
                   </div>
 
