@@ -79,6 +79,12 @@ export function Footer() {
                 <a href="mailto:info@nordicstangsel.com" className="transition-colors hover:text-white">info@nordicstangsel.com</a>
               </li>
               <li>
+                <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">FACEBOOK</span>
+                <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="font-medium underline decoration-white/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white">
+                  Facebook
+                </a>
+              </li>
+              <li>
                 <span className="mb-1 block text-xs uppercase tracking-wider text-white/40">ORG.NR</span>
                 559582-1900
               </li>
