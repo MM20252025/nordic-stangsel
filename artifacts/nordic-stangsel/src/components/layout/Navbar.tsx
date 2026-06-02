@@ -8,6 +8,17 @@ import { useLanguage } from "@/lib/language";
 
 const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590332861296&sk=about";
 
+function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 320 512" aria-hidden="true" focusable="false">
+      <path
+        fill="currentColor"
+        d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06H297V6.26S260.43 0 225.36 0C152.14 0 104.28 44.38 104.28 124.72v70.62H23V288h81.28v224h100.17V288z"
+      />
+    </svg>
+  );
+}
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
@@ -75,9 +86,7 @@ export function Navbar() {
     : "text-white border-b-2 border-white pb-1";
   const switcherBase = scrolled ? "border-gray-300 bg-white text-[#0f1f2e]" : "border-white/30 bg-white/5 text-white";
   const switcherActive = scrolled ? "bg-[#1a3349] text-white border-[#1a3349]" : "bg-white text-[#0f1f2e] border-white";
-  const facebookButtonClass = scrolled
-    ? "border-[#1a3349] bg-[#1a3349] text-white hover:bg-[#264056] hover:border-[#264056]"
-    : "border-white bg-white text-[#0f1f2e] hover:bg-white/90";
+  const facebookIconButtonClass = "border-[#3b5998] bg-[#3b5998] text-white hover:border-[#2f477a] hover:bg-[#2f477a]";
 
   return (
     <header className={headerClass} data-testid="navbar">
@@ -116,10 +125,11 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={facebookAriaLabel}
-                className={`inline-flex h-10 items-center justify-center rounded-none border px-4 text-sm font-semibold uppercase tracking-[0.12em] transition-colors ${facebookButtonClass}`}
+                className={`inline-flex h-10 w-10 items-center justify-center rounded-[3px] border transition-colors ${facebookIconButtonClass}`}
                 data-testid="button-nav-facebook"
               >
-                Facebook
+                <FacebookIcon className="h-5 w-5" />
+                <span className="sr-only">Facebook</span>
               </a>
             </li>
           </ul>
@@ -162,10 +172,11 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={facebookAriaLabel}
-            className={`inline-flex h-10 items-center justify-center rounded-none border px-3 text-xs font-semibold uppercase tracking-wider transition-colors ${facebookButtonClass}`}
+            className={`inline-flex h-10 w-10 items-center justify-center rounded-[3px] border transition-colors ${facebookIconButtonClass}`}
             data-testid="button-mobile-header-facebook"
           >
-            Facebook
+            <FacebookIcon className="h-5 w-5" />
+            <span className="sr-only">Facebook</span>
           </a>
           <button
             className={`-mr-2 p-2 ${scrolled ? "text-[#0f1f2e]" : "text-white"}`}
@@ -226,10 +237,11 @@ export function Navbar() {
                 rel="noopener noreferrer"
                 aria-label={facebookAriaLabel}
                 onClick={() => setIsOpen(false)}
-                className="mx-auto inline-flex h-12 min-w-40 items-center justify-center rounded-none border border-white bg-white px-6 text-sm font-semibold uppercase tracking-[0.14em] text-[#0f1f2e] transition-colors hover:bg-white/90"
+                className={`mx-auto inline-flex h-12 w-12 items-center justify-center rounded-[3px] border transition-colors ${facebookIconButtonClass}`}
                 data-testid="button-mobile-menu-facebook"
               >
-                Facebook
+                <FacebookIcon className="h-6 w-6" />
+                <span className="sr-only">Facebook</span>
               </a>
             </li>
           </ul>
