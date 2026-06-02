@@ -2,6 +2,8 @@ import { Link } from "wouter";
 import logoSrc from "../../assets/images/nordic_logo_white_transparent.png";
 import { useLanguage } from "@/lib/language";
 
+const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590332861296&sk=about";
+
 export function Footer() {
   const { language, localizePath } = useLanguage();
 
@@ -108,6 +110,7 @@ export function Footer() {
         <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 text-center text-xs text-white/40 md:flex-row md:text-left">
           <p>© {new Date().getFullYear()} Nordic Stängsel AB. {content.rights}</p>
           <div className="mt-4 space-x-4 md:mt-0">
+            <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white/80" aria-label="Nordic Stängsel på Facebook">Facebook</a>
             <Link href={localizePath("/integritetspolicy")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.privacy}</Link>
             <Link href={localizePath("/villkor")} className="transition-colors hover:text-white/80" onClick={scrollToTop}>{content.terms}</Link>
           </div>
