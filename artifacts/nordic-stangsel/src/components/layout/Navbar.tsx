@@ -6,6 +6,8 @@ import logoWhiteSrc from "../../assets/images/nordic_logo_white_transparent.png"
 import logoLightSrc from "../../assets/images/nordic_logo_horizontal.png";
 import { useLanguage } from "@/lib/language";
 
+const FACEBOOK_URL = "https://www.facebook.com/profile.php?id=61590332861296&sk=about";
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
@@ -35,6 +37,7 @@ export function Navbar() {
   const ctaLabel = language === "sv" ? "Få kostnadsfri offert inom 24 timmar" : "Get a free quote within 24 hours";
   const openLabel = language === "sv" ? "Öppna meny" : "Open menu";
   const closeLabel = language === "sv" ? "Stäng meny" : "Close menu";
+  const facebookAriaLabel = language === "sv" ? "Nordic Stängsel på Facebook" : "Nordic Stängsel on Facebook";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY >= 40);
@@ -104,6 +107,18 @@ export function Navbar() {
                 </li>
               );
             })}
+            <li>
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={facebookAriaLabel}
+                className={`text-sm font-semibold underline decoration-current/30 underline-offset-4 transition-colors ${linkClass}`}
+                data-testid="link-nav-facebook"
+              >
+                Facebook
+              </a>
+            </li>
           </ul>
 
           <div className="flex items-center gap-2">
@@ -189,6 +204,18 @@ export function Navbar() {
                 </li>
               );
             })}
+            <li>
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={facebookAriaLabel}
+                onClick={() => setIsOpen(false)}
+                className="text-2xl font-semibold text-white underline decoration-white/40 underline-offset-8"
+              >
+                Facebook
+              </a>
+            </li>
           </ul>
           <div className="mt-12 text-center">
             <Link href={localizePath("/kontakt")} onClick={() => {
