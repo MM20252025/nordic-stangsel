@@ -282,11 +282,11 @@ export default function Home() {
           <img
             src={heroSrc}
             alt={isSv ? "Professionell stängselmontering" : "Professional fence installation"}
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center brightness-[1.12] contrast-[1.04]"
           />
-          <div className="absolute inset-0 bg-[#07121c]/64"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#07121c]/88 via-[#07121c]/56 to-[#07121c]/28"></div>
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#07121c]/72 to-transparent"></div>
+          <div className="absolute inset-0 bg-[#07121c]/46"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07121c]/74 via-[#07121c]/42 to-[#07121c]/18"></div>
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#07121c]/56 to-transparent"></div>
         </div>
 
         <div className="container relative z-10 mx-auto px-4 md:px-6">
