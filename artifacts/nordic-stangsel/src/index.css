@@ -356,3 +356,36 @@
     inset: -1px;
   }
 }
+
+main > section:first-child > .container > div {
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main > section:first-child > .container > div > h1,
+main > section:first-child > .container > div > p {
+  margin-inline: auto;
+}
+
+main > section:first-child > .container > div > div:last-child {
+  justify-content: center;
+}
+
+main > section:first-child > div.absolute.inset-0.z-0 > img {
+  filter: brightness(1.2) contrast(1.04) !important;
+}
+
+main > section:first-child > div.absolute.inset-0.z-0 > div:nth-of-type(1) {
+  background-color: rgb(7 18 28 / 0.36) !important;
+}
+
+main > section:first-child > div.absolute.inset-0.z-0 > div:nth-of-type(2) {
+  background-image: linear-gradient(to right, rgb(7 18 28 / 0.58), rgb(7 18 28 / 0.32), rgb(7 18 28 / 0.12)) !important;
+}
+
+main > section:first-child > div.absolute.bottom-0.left-0.right-0.z-10 .container {
+  justify-content: center;
+}
