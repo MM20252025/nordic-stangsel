@@ -338,15 +338,6 @@ function extractCreatedId(response: unknown) {
   return isRecord(response) && isRecord(response.data) ? toNumber(response.data.id) : null;
 }
 
-function extractCreatedLeadId(response: unknown) {
-  if (!isRecord(response) || !isRecord(response.data)) {
-    return null;
-  }
-
-  const id = response.data.id;
-  return typeof id === "string" && id.length > 0 ? id : null;
-}
-
 function extractSourceField(response: unknown): PipedriveSourceField | null {
   const configuredKey = process.env.PIPEDRIVE_SOURCE_FIELD_KEY?.trim();
 
@@ -472,7 +463,7 @@ async function findOrCreatePerson(client: PipedriveClient, body: NormalizedQuote
   return createdId;
 }
 
-function buildLeadNote(body: NormalizedQuoteRequest) {
+function buildDealNote(body: NormalizedQuoteRequest) {
   return [
     `<strong>namn:</strong> ${escapeHtml(body.name)}`,
     `<strong>telefon:</strong> ${escapeHtml(body.phone)}`,
@@ -486,55 +477,60 @@ function buildLeadNote(body: NormalizedQuoteRequest) {
   ].join("<br>");
 }
 
-async function createPipedriveLead(body: NormalizedQuoteRequest) {
+async function createPipedriveDeal(body: NormalizedQuoteRequest) {
   const client = createPipedriveClient();
   const ownerId = await getOwnerId(client);
   const organizationId = await findOrCreateOrganization(client, body.companyName, ownerId);
   const personId = await findOrCreatePerson(client, body, ownerId, organizationId);
   const sourceField = extractSourceField(await client.get("/dealFields", { limit: 500 }));
-  const leadPayload: Record<string, unknown> = {
+  const stageId = Number(process.env.PIPEDRIVE_DEAL_STAGE_ID);
+  const dealPayload: Record<string, unknown> = {
     title: `${body.projectType} - ${body.name}`,
-    owner_id: ownerId,
+    user_id: ownerId,
     person_id: personId,
-    organization_id: organizationId ?? undefined,
+    org_id: organizationId ?? undefined,
   };
 
-  if (sourceField) {
-    leadPayload[sourceField.key] = sourceField.value;
+  if (Number.isFinite(stageId) && stageId > 0) {
+    dealPayload.stage_id = stageId;
   }
 
-  const lead = await client.post("/leads", leadPayload);
-  const leadId = extractCreatedLeadId(lead);
+  if (sourceField) {
+    dealPayload[sourceField.key] = sourceField.value;
+  }
 
-  if (!leadId) {
-    throw new PipedriveError("Pipedrive lead was created without an id.", lead);
+  const deal = await client.post("/deals", dealPayload);
+  const dealId = extractCreatedId(deal);
+
+  if (!dealId) {
+    throw new PipedriveError("Pipedrive deal was created without an id.", deal);
   }
 
   await client.post("/notes", {
-    lead_id: leadId,
-    content: buildLeadNote(body),
+    deal_id: dealId,
+    content: buildDealNote(body),
   });
 
   await client.post("/activities", {
     subject: PIPEDRIVE_ACTIVITY_SUBJECT,
     type: "task",
     user_id: ownerId,
-    lead_id: leadId,
+    deal_id: dealId,
     person_id: personId,
     org_id: organizationId ?? undefined,
     note: `Ny förfrågan från hemsidan: ${body.projectType}`,
   });
 
-  return leadId;
+  return dealId;
 }
 
 function logPipedriveError(error: unknown) {
   if (error instanceof PipedriveError) {
-    console.error("Pipedrive lead sync failed", { message: error.message, details: error.details });
+    console.error("Pipedrive deal sync failed", { message: error.message, details: error.details });
     return;
   }
 
-  console.error("Pipedrive lead sync failed", error);
+  console.error("Pipedrive deal sync failed", error);
 }
 
 function logEmailError(error: unknown) {
@@ -591,17 +587,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   };
 
   try {
-    await createPipedriveLead(normalizedBody);
+    await createPipedriveDeal(normalizedBody);
   } catch (error) {
     logPipedriveError(error);
-    return res.status(502).json({ error: "Could not create the lead in Pipedrive. Please try again or contact us directly." });
+    return res.status(502).json({ error: "Could not create the deal in Pipedrive. Please try again or contact us directly." });
   }
 
   try {
     await sendWithResend(normalizedBody);
   } catch (error) {
     logEmailError(error);
-    return res.status(502).json({ error: "The quote request was saved in Pipedrive, but the notification email could not be sent." });
+    return res.status(502).json({ error: "The quote request was saved as a Pipedrive deal, but the notification email could not be sent." });
   }
 
   return res.status(200).json({
