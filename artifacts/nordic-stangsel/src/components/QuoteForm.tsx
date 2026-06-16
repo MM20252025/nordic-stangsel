@@ -31,6 +31,7 @@ const TRUSTED_API_HOSTS = new Set(["nordicstangsel.com", "www.nordicstangsel.com
 
 type FormValues = {
   name: string;
+  companyName: string;
   phone: string;
   email: string;
   projectType: string;
@@ -95,6 +96,7 @@ function getFormContent(language: Language) {
       labels: {
         title: "Få kostnadsfri offert inom 24 timmar",
         name: "Namn",
+        companyName: "Företag",
         phone: "Telefon",
         email: "E-postadress",
         projectType: "Typ av projekt",
@@ -104,6 +106,7 @@ function getFormContent(language: Language) {
       },
       placeholders: {
         name: "För- och efternamn",
+        companyName: "Företagsnamn, BRF eller organisation",
         phone: "070 123 45 67",
         email: "namn@foretag.se",
         projectType: "Välj projekttyp",
@@ -135,6 +138,7 @@ function getFormContent(language: Language) {
       mail: {
         subjectPrefix: "Offertförfrågan",
         name: "Namn",
+        companyName: "Företag",
         phone: "Telefon",
         email: "E-post",
         projectType: "Typ av projekt",
@@ -161,6 +165,7 @@ function getFormContent(language: Language) {
     labels: {
       title: "Get a free quote within 24 hours",
       name: "Name",
+      companyName: "Company",
       phone: "Phone",
       email: "Email address",
       projectType: "Project type",
@@ -170,6 +175,7 @@ function getFormContent(language: Language) {
     },
     placeholders: {
       name: "First and last name",
+      companyName: "Company, housing association or organization",
       phone: "+46 70 123 45 67",
       email: "name@company.com",
       projectType: "Select project type",
@@ -201,6 +207,7 @@ function getFormContent(language: Language) {
     mail: {
       subjectPrefix: "Quote request",
       name: "Name",
+      companyName: "Company",
       phone: "Phone",
       email: "Email",
       projectType: "Project type",
@@ -215,6 +222,7 @@ function buildMailtoLink(values: FormValues, attachmentCount: number, language: 
   const subject = `${content.mail.subjectPrefix} - ${values.projectType}`;
   const bodyLines = [
     `${content.mail.name}: ${values.name}`,
+    `${content.mail.companyName}: ${values.companyName || "-"}`,
     `${content.mail.phone}: ${values.phone}`,
     `${content.mail.email}: ${values.email}`,
     `${content.mail.projectType}: ${values.projectType}`,
@@ -257,6 +265,7 @@ function QuoteFormInner({ language }: { language: Language }) {
 
   const formSchema = z.object({
     name: z.string().min(2, { message: content.validation.name }),
+    companyName: z.string().optional(),
     phone: z.string().min(6, { message: content.validation.phone }),
     email: z.string().email({ message: content.validation.email }),
     projectType: z.string().min(1, { message: content.validation.projectType }),
@@ -267,6 +276,7 @@ function QuoteFormInner({ language }: { language: Language }) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      companyName: "",
       phone: "",
       email: "",
       projectType: "",
@@ -279,6 +289,7 @@ function QuoteFormInner({ language }: { language: Language }) {
 
     const files = filesRef.current;
     const attachmentCount = files?.length ?? 0;
+    const imageNames = files ? Array.from(files).map((file) => file.name).slice(0, 10) : [];
 
     try {
       const res = await fetch(FORM_ENDPOINT, {
@@ -287,7 +298,7 @@ function QuoteFormInner({ language }: { language: Language }) {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...values, attachmentCount }),
+        body: JSON.stringify({ ...values, attachmentCount, imageNames }),
       });
       const contentType = res.headers.get("content-type") ?? "";
       const responseBody = contentType.includes("application/json") ? await res.json().catch(() => null) : null;
@@ -397,6 +408,29 @@ function QuoteFormInner({ language }: { language: Language }) {
 
             <FormField
               control={form.control}
+              name="companyName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">
+                    {content.labels.companyName} <span className="normal-case text-gray-400">({content.labels.optional})</span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={content.placeholders.companyName}
+                      {...field}
+                      className="rounded-none border-gray-200 focus-visible:ring-[#0f1f2e]"
+                      data-testid="input-company-name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <FormField
+              control={form.control}
               name="phone"
               render={({ field }) => (
                 <FormItem>
@@ -414,9 +448,7 @@ function QuoteFormInner({ language }: { language: Language }) {
                 </FormItem>
               )}
             />
-          </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
               name="email"
@@ -436,35 +468,35 @@ function QuoteFormInner({ language }: { language: Language }) {
                 </FormItem>
               )}
             />
-
-            <FormField
-              control={form.control}
-              name="projectType"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-xs uppercase tracking-wider text-gray-500">{content.labels.projectType}</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger
-                        className="rounded-none border-gray-200 focus:ring-[#0f1f2e]"
-                        data-testid="select-project-type"
-                      >
-                        <SelectValue placeholder={content.placeholders.projectType} />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent className="rounded-none">
-                      {content.projectTypes.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
+
+          <FormField
+            control={form.control}
+            name="projectType"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-xs uppercase tracking-wider text-gray-500">{content.labels.projectType}</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger
+                      className="rounded-none border-gray-200 focus:ring-[#0f1f2e]"
+                      data-testid="select-project-type"
+                    >
+                      <SelectValue placeholder={content.placeholders.projectType} />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent className="rounded-none">
+                    {content.projectTypes.map((type) => (
+                      <SelectItem key={type} value={type}>
+                        {type}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
