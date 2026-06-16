@@ -18,13 +18,27 @@ const PIPEDRIVE_OWNER_NAME = "Marcin Makarewicz";
 const PIPEDRIVE_SOURCE = "Hemsida";
 const PIPEDRIVE_ACTIVITY_SUBJECT = "Kontakta ny kund från hemsidan";
 
+type QuoteFile =
+  | string
+  | {
+      name?: string;
+      filename?: string;
+      originalname?: string;
+      size?: number;
+      type?: string;
+      mimetype?: string;
+    };
+
 type QuoteRequestBody = {
   name?: string;
   companyName?: string;
+  company?: string;
+  organization?: string;
   phone?: string;
   email?: string;
   projectType?: string;
   message?: string;
+  files?: QuoteFile[];
   attachmentCount?: number;
   imageNames?: string[];
 };
@@ -36,8 +50,7 @@ type NormalizedQuoteRequest = {
   email: string;
   projectType: string;
   message: string;
-  attachmentCount: number;
-  imageNames: string[];
+  files: string[];
 };
 
 type VercelRequest = {
@@ -51,18 +64,23 @@ type VercelResponse = {
   json: (body: unknown) => void;
 };
 
-type EmailDeliveryResult = {
-  sent: boolean;
-  reason?: string;
-  details?: unknown;
-};
-
 type PipedriveClient = {
   get: (path: string, query?: Record<string, string | number | boolean>) => Promise<unknown>;
   post: (path: string, body: Record<string, unknown>) => Promise<unknown>;
 };
 
+type PipedriveSourceField = {
+  key: string;
+  value: string | number;
+};
+
 class PipedriveError extends Error {
+  constructor(message: string, public details?: unknown) {
+    super(message);
+  }
+}
+
+class EmailDeliveryError extends Error {
   constructor(message: string, public details?: unknown) {
     super(message);
   }
@@ -108,16 +126,46 @@ function toNumber(value: unknown) {
   return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
-function buildAttachmentText(body: NormalizedQuoteRequest) {
-  if (body.attachmentCount <= 0) {
-    return "Inga bilder valdes i formuläret.";
-  }
-
-  const names = body.imageNames.length > 0 ? ` Filnamn: ${body.imageNames.join(", ")}.` : "";
-  return `${body.attachmentCount} bild(er) valdes i formuläret.${names} Be kunden skicka bilderna som svar eller separat bilaga.`;
+function normalizeText(value: string) {
+  return value.trim().toLowerCase();
 }
 
-function buildText(body: NormalizedQuoteRequest) {
+function fileToText(file: QuoteFile) {
+  if (typeof file === "string") {
+    return file.trim();
+  }
+
+  const name = optionalValue(file.name) || optionalValue(file.filename) || optionalValue(file.originalname) || "Namnlös fil";
+  const type = optionalValue(file.type) || optionalValue(file.mimetype);
+  const details = [type, typeof file.size === "number" && Number.isFinite(file.size) ? `${file.size} bytes` : ""]
+    .filter(hasValue)
+    .join(", ");
+
+  return details ? `${name} (${details})` : name;
+}
+
+function normalizeFiles(body: QuoteRequestBody) {
+  if (Array.isArray(body.files)) {
+    return body.files.map(fileToText).filter(hasValue).slice(0, 20);
+  }
+
+  if (Array.isArray(body.imageNames)) {
+    return body.imageNames.filter(hasValue).map((name) => name.trim()).slice(0, 20);
+  }
+
+  const count = Number.isFinite(body.attachmentCount) ? Number(body.attachmentCount) : 0;
+  return count > 0 ? [`${count} fil(er) valdes i formuläret.`] : [];
+}
+
+function buildFilesText(body: NormalizedQuoteRequest) {
+  if (body.files.length === 0) {
+    return "Inga filer skickades i formuläret.";
+  }
+
+  return body.files.join(", ");
+}
+
+function buildDescription(body: NormalizedQuoteRequest) {
   return [
     `Namn: ${body.name}`,
     `Telefon: ${body.phone}`,
@@ -129,7 +177,7 @@ function buildText(body: NormalizedQuoteRequest) {
     "Projektbeskrivning:",
     body.message,
     "",
-    `Bifogade bilder: ${buildAttachmentText(body)}`,
+    `Filer: ${buildFilesText(body)}`,
   ].join("\n");
 }
 
@@ -141,51 +189,40 @@ function buildHtml(body: NormalizedQuoteRequest) {
     <p><strong>E-post:</strong> ${escapeHtml(body.email)}</p>
     <p><strong>Företag:</strong> ${escapeHtml(body.companyName || "Ej angivet")}</p>
     <p><strong>Typ av projekt:</strong> ${escapeHtml(body.projectType)}</p>
-    <p><strong>Källa:</strong> ${PIPEDRIVE_SOURCE}</p>
+    <p><strong>Källa:</strong> ${escapeHtml(PIPEDRIVE_SOURCE)}</p>
     <p><strong>Projektbeskrivning:</strong></p>
     <p>${escapeHtml(body.message).replace(/\n/g, "<br />")}</p>
-    <p><strong>Bifogade bilder:</strong> ${escapeHtml(buildAttachmentText(body))}</p>
+    <p><strong>Filer:</strong> ${escapeHtml(buildFilesText(body))}</p>
   `;
 }
 
-async function sendWithResend(body: NormalizedQuoteRequest): Promise<EmailDeliveryResult> {
-  const apiKey = process.env.RESEND_API_KEY;
+async function sendWithResend(body: NormalizedQuoteRequest) {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
 
   if (!apiKey) {
-    return { sent: false, reason: "missing RESEND_API_KEY" };
+    throw new EmailDeliveryError("Email delivery is missing RESEND_API_KEY.");
   }
 
   const from = process.env.QUOTE_FROM_EMAIL || DEFAULT_FROM_EMAIL;
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [RECIPIENT_EMAIL],
+      reply_to: body.email,
+      subject: `Offertförfrågan - ${body.projectType}`,
+      text: buildDescription(body),
+      html: buildHtml(body),
+    }),
+  });
 
-  try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from,
-        to: [RECIPIENT_EMAIL],
-        reply_to: body.email,
-        subject: `Offertförfrågan - ${body.projectType}`,
-        text: buildText(body),
-        html: buildHtml(body),
-      }),
-    });
-
-    if (response.ok) {
-      return { sent: true };
-    }
-
+  if (!response.ok) {
     const details = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
-    return {
-      sent: false,
-      reason: `Resend returned ${response.status} ${response.statusText}`,
-      details,
-    };
-  } catch (error) {
-    return { sent: false, reason: "Resend request failed", details: error };
+    throw new EmailDeliveryError(`Resend returned ${response.status} ${response.statusText}.`, details);
   }
 }
 
@@ -212,12 +249,12 @@ function buildQuery(apiToken: string, query?: Record<string, string | number | b
   return parts.join("&");
 }
 
-function createPipedriveClient(): PipedriveClient | null {
+function createPipedriveClient(): PipedriveClient {
   const apiToken = process.env.PIPEDRIVE_API_TOKEN?.trim() ?? "";
   const baseUrl = getPipedriveBaseUrl() ?? "";
 
   if (!apiToken || !baseUrl) {
-    return null;
+    throw new PipedriveError("Pipedrive integration is missing PIPEDRIVE_API_TOKEN or PIPEDRIVE_COMPANY_DOMAIN.");
   }
 
   async function request(path: string, init: { method: string; body?: Record<string, unknown>; query?: Record<string, string | number | boolean> }) {
@@ -280,10 +317,10 @@ function extractFirstUserId(response: unknown) {
 
   for (const user of users) {
     if (!isRecord(user)) continue;
-    const name = typeof user.name === "string" ? user.name.toLowerCase() : "";
+    const name = typeof user.name === "string" ? normalizeText(user.name) : "";
     const id = toNumber(user.id);
 
-    if (id && user.active_flag !== false && name.includes(PIPEDRIVE_OWNER_NAME.toLowerCase())) {
+    if (id && user.active_flag !== false && name.includes(normalizeText(PIPEDRIVE_OWNER_NAME))) {
       return id;
     }
   }
@@ -308,6 +345,40 @@ function extractCreatedLeadId(response: unknown) {
 
   const id = response.data.id;
   return typeof id === "string" && id.length > 0 ? id : null;
+}
+
+function extractSourceField(response: unknown): PipedriveSourceField | null {
+  const configuredKey = process.env.PIPEDRIVE_SOURCE_FIELD_KEY?.trim();
+
+  if (configuredKey) {
+    return { key: configuredKey, value: PIPEDRIVE_SOURCE };
+  }
+
+  if (!isRecord(response) || !Array.isArray(response.data)) {
+    return null;
+  }
+
+  for (const field of response.data) {
+    if (!isRecord(field) || typeof field.key !== "string" || typeof field.name !== "string") continue;
+
+    const fieldName = normalizeText(field.name);
+    const looksLikeSourceField = fieldName === "källa" || fieldName.includes("källa") || fieldName.includes("source");
+    if (!looksLikeSourceField) continue;
+
+    if (Array.isArray(field.options)) {
+      for (const option of field.options) {
+        if (!isRecord(option) || typeof option.label !== "string") continue;
+        if (normalizeText(option.label) === normalizeText(PIPEDRIVE_SOURCE)) {
+          const optionId = typeof option.id === "number" || typeof option.id === "string" ? option.id : option.label;
+          return { key: field.key, value: optionId };
+        }
+      }
+    }
+
+    return { key: field.key, value: PIPEDRIVE_SOURCE };
+  }
+
+  return null;
 }
 
 async function getOwnerId(client: PipedriveClient) {
@@ -408,8 +479,8 @@ function buildLeadNote(body: NormalizedQuoteRequest) {
     `<strong>e-post:</strong> ${escapeHtml(body.email)}`,
     `<strong>företag:</strong> ${escapeHtml(body.companyName || "Ej angivet")}`,
     `<strong>projekttyp:</strong> ${escapeHtml(body.projectType)}`,
-    `<strong>källa:</strong> ${PIPEDRIVE_SOURCE}`,
-    `<strong>bifogade bilder:</strong> ${escapeHtml(buildAttachmentText(body))}`,
+    `<strong>källa:</strong> ${escapeHtml(PIPEDRIVE_SOURCE)}`,
+    `<strong>filer:</strong> ${escapeHtml(buildFilesText(body))}`,
     "",
     `<strong>beskrivning:</strong><br>${escapeHtml(body.message).replace(/\n/g, "<br>")}`,
   ].join("<br>");
@@ -417,20 +488,22 @@ function buildLeadNote(body: NormalizedQuoteRequest) {
 
 async function createPipedriveLead(body: NormalizedQuoteRequest) {
   const client = createPipedriveClient();
-
-  if (!client) {
-    throw new PipedriveError("Pipedrive integration is missing PIPEDRIVE_API_TOKEN or PIPEDRIVE_COMPANY_DOMAIN.");
-  }
-
   const ownerId = await getOwnerId(client);
   const organizationId = await findOrCreateOrganization(client, body.companyName, ownerId);
   const personId = await findOrCreatePerson(client, body, ownerId, organizationId);
-  const lead = await client.post("/leads", {
+  const sourceField = extractSourceField(await client.get("/dealFields", { limit: 500 }));
+  const leadPayload: Record<string, unknown> = {
     title: `${body.projectType} - ${body.name}`,
     owner_id: ownerId,
     person_id: personId,
     organization_id: organizationId ?? undefined,
-  });
+  };
+
+  if (sourceField) {
+    leadPayload[sourceField.key] = sourceField.value;
+  }
+
+  const lead = await client.post("/leads", leadPayload);
   const leadId = extractCreatedLeadId(lead);
 
   if (!leadId) {
@@ -455,18 +528,6 @@ async function createPipedriveLead(body: NormalizedQuoteRequest) {
   return leadId;
 }
 
-function logEmailDeliveryError(result: EmailDeliveryResult) {
-  if (result.sent) {
-    return;
-  }
-
-  console.error("Quote email delivery failed", {
-    recipient: RECIPIENT_EMAIL,
-    reason: result.reason,
-    details: result.details,
-  });
-}
-
 function logPipedriveError(error: unknown) {
   if (error instanceof PipedriveError) {
     console.error("Pipedrive lead sync failed", { message: error.message, details: error.details });
@@ -474,6 +535,15 @@ function logPipedriveError(error: unknown) {
   }
 
   console.error("Pipedrive lead sync failed", error);
+}
+
+function logEmailError(error: unknown) {
+  if (error instanceof EmailDeliveryError) {
+    console.error("Quote email delivery failed", { message: error.message, details: error.details, recipient: RECIPIENT_EMAIL });
+    return;
+  }
+
+  console.error("Quote email delivery failed", error);
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -511,34 +581,30 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const normalizedBody: NormalizedQuoteRequest = {
-    name: body.name?.trim() ?? "",
-    companyName: optionalValue(body.companyName),
-    phone: body.phone?.trim() ?? "",
-    email: body.email?.trim() ?? "",
-    projectType: body.projectType?.trim() ?? "",
-    message: body.message?.trim() ?? "",
-    attachmentCount: Number.isFinite(body.attachmentCount) ? Number(body.attachmentCount) : 0,
-    imageNames: Array.isArray(body.imageNames) ? body.imageNames.filter(hasValue).map((name) => name.trim()).slice(0, 10) : [],
+    name: body.name.trim(),
+    companyName: optionalValue(body.companyName) || optionalValue(body.company) || optionalValue(body.organization),
+    phone: body.phone.trim(),
+    email: body.email.trim(),
+    projectType: body.projectType.trim(),
+    message: body.message.trim(),
+    files: normalizeFiles(body),
   };
 
-  const emailResult = await sendWithResend(normalizedBody);
-  logEmailDeliveryError(emailResult);
-
   try {
-    const leadId = await createPipedriveLead(normalizedBody);
-
-    return res.status(200).json({
-      status: "sent",
-      recipient: RECIPIENT_EMAIL,
-      emailSent: emailResult.sent,
-      pipedriveLeadId: leadId,
-    });
+    await createPipedriveLead(normalizedBody);
   } catch (error) {
     logPipedriveError(error);
-    return res.status(503).json({
-      error: "Pipedrive lead creation failed.",
-      recipient: RECIPIENT_EMAIL,
-      emailSent: emailResult.sent,
-    });
+    return res.status(502).json({ error: "Could not create the lead in Pipedrive. Please try again or contact us directly." });
   }
+
+  try {
+    await sendWithResend(normalizedBody);
+  } catch (error) {
+    logEmailError(error);
+    return res.status(502).json({ error: "The quote request was saved in Pipedrive, but the notification email could not be sent." });
+  }
+
+  return res.status(200).json({
+    success: true,
+  });
 }
