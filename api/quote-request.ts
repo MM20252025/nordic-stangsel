@@ -1,5 +1,10 @@
 declare const process: { env: Record<string, string | undefined> };
 declare const console: { error: (...args: unknown[]) => void };
+declare class URLSearchParams {
+  constructor(init?: Record<string, string>);
+  set(name: string, value: string): void;
+  toString(): string;
+}
 
 type FetchResponse = {
   ok: boolean;
