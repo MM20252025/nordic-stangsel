@@ -1,10 +1,7 @@
 declare const process: { env: Record<string, string | undefined> };
 declare const console: { error: (...args: unknown[]) => void };
-declare class URLSearchParams {
-  constructor(init?: Record<string, string>);
-  set(name: string, value: string): void;
-  toString(): string;
-}
+declare function fetch(input: string, init?: unknown): Promise<FetchResponse>;
+declare function encodeURIComponent(value: string): string;
 
 type FetchResponse = {
   ok: boolean;
@@ -13,8 +10,6 @@ type FetchResponse = {
   json: () => Promise<unknown>;
   text: () => Promise<string>;
 };
-
-declare function fetch(input: string, init?: unknown): Promise<FetchResponse>;
 
 const RECIPIENT_EMAIL = "info@nordicstangsel.com";
 const BLOCKED_DOMAIN = "nordicstangsel.se";
@@ -34,7 +29,13 @@ type QuoteRequestBody = {
   imageNames?: string[];
 };
 
-type NormalizedQuoteRequest = Required<Omit<QuoteRequestBody, "attachmentCount" | "imageNames">> & {
+type NormalizedQuoteRequest = {
+  name: string;
+  companyName: string;
+  phone: string;
+  email: string;
+  projectType: string;
+  message: string;
   attachmentCount: number;
   imageNames: string[];
 };
@@ -50,16 +51,27 @@ type VercelResponse = {
   json: (body: unknown) => void;
 };
 
+type PipedriveClient = {
+  get: (path: string, query?: Record<string, string | number | boolean>) => Promise<unknown>;
+  post: (path: string, body: Record<string, unknown>) => Promise<unknown>;
+};
+
+class PipedriveError extends Error {
+  constructor(message: string, public details?: unknown) {
+    super(message);
+  }
+}
+
 function getBody(req: VercelRequest): QuoteRequestBody {
-  if (typeof req.body === "string") {
-    try {
-      return JSON.parse(req.body) as QuoteRequestBody;
-    } catch {
-      return {};
-    }
+  if (typeof req.body !== "string") {
+    return req.body ?? {};
   }
 
-  return req.body ?? {};
+  try {
+    return JSON.parse(req.body) as QuoteRequestBody;
+  } catch {
+    return {};
+  }
 }
 
 function hasValue(value: string | undefined): value is string {
@@ -82,6 +94,14 @@ function escapeHtml(value: string) {
     .replace(/"/g, "&quot;");
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === "object";
+}
+
+function toNumber(value: unknown) {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
 function buildAttachmentText(body: NormalizedQuoteRequest) {
   if (body.attachmentCount <= 0) {
     return "Inga bilder valdes i formuläret.";
@@ -92,7 +112,7 @@ function buildAttachmentText(body: NormalizedQuoteRequest) {
 }
 
 function buildText(body: NormalizedQuoteRequest) {
-  const lines = [
+  return [
     `Namn: ${body.name}`,
     `Telefon: ${body.phone}`,
     `E-post: ${body.email}`,
@@ -104,9 +124,7 @@ function buildText(body: NormalizedQuoteRequest) {
     body.message,
     "",
     `Bifogade bilder: ${buildAttachmentText(body)}`,
-  ];
-
-  return lines.join("\n");
+  ].join("\n");
 }
 
 function buildHtml(body: NormalizedQuoteRequest) {
@@ -132,7 +150,6 @@ async function sendWithResend(body: NormalizedQuoteRequest) {
   }
 
   const from = process.env.QUOTE_FROM_EMAIL || DEFAULT_FROM_EMAIL;
-  const subject = `Offertförfrågan - ${body.projectType}`;
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -143,7 +160,7 @@ async function sendWithResend(body: NormalizedQuoteRequest) {
       from,
       to: [RECIPIENT_EMAIL],
       reply_to: body.email,
-      subject,
+      subject: `Offertförfrågan - ${body.projectType}`,
       text: buildText(body),
       html: buildHtml(body),
     }),
@@ -165,93 +182,15 @@ function getPipedriveBaseUrl() {
   return `https://${host}/api/v1`;
 }
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return Boolean(value) && typeof value === "object";
+function buildQuery(apiToken: string, query?: Record<string, string | number | boolean>) {
+  const parts = [`api_token=${encodeURIComponent(apiToken)}`];
+
+  for (const [key, value] of Object.entries(query ?? {})) {
+    parts.push(`${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`);
+  }
+
+  return parts.join("&");
 }
-
-function toNumber(value: unknown) {
-  return typeof value === "number" && Number.isFinite(value) ? value : null;
-}
-
-function extractSearchItemId(response: unknown) {
-  if (!isRecord(response) || !isRecord(response.data)) {
-    return null;
-  }
-
-  const items = Array.isArray(response.data.items) ? response.data.items : Array.isArray(response.data) ? response.data : [];
-
-  for (const entry of items) {
-    if (!isRecord(entry)) continue;
-
-    const directId = toNumber(entry.id);
-    if (directId) return directId;
-
-    if (isRecord(entry.item)) {
-      const itemId = toNumber(entry.item.id);
-      if (itemId) return itemId;
-    }
-  }
-
-  return null;
-}
-
-function extractFirstUserId(response: unknown) {
-  if (!isRecord(response)) {
-    return null;
-  }
-
-  const data = response.data;
-  const users = Array.isArray(data) ? data : isRecord(data) ? [data] : [];
-
-  for (const user of users) {
-    if (!isRecord(user)) continue;
-    const name = typeof user.name === "string" ? user.name.toLowerCase() : "";
-    const isActive = user.active_flag !== false;
-    const id = toNumber(user.id);
-
-    if (id && isActive && name.includes(PIPEDRIVE_OWNER_NAME.toLowerCase())) {
-      return id;
-    }
-  }
-
-  for (const user of users) {
-    if (!isRecord(user)) continue;
-    const id = toNumber(user.id);
-    if (id && user.active_flag !== false) {
-      return id;
-    }
-  }
-
-  return null;
-}
-
-function extractCreatedId(response: unknown) {
-  if (!isRecord(response) || !isRecord(response.data)) {
-    return null;
-  }
-
-  return toNumber(response.data.id);
-}
-
-function extractCreatedLeadId(response: unknown) {
-  if (!isRecord(response) || !isRecord(response.data)) {
-    return null;
-  }
-
-  const id = response.data.id;
-  return typeof id === "string" && id.length > 0 ? id : null;
-}
-
-class PipedriveError extends Error {
-  constructor(message: string, public details?: unknown) {
-    super(message);
-  }
-}
-
-type PipedriveClient = {
-  get: (path: string, query?: Record<string, string | number | boolean | undefined>) => Promise<unknown>;
-  post: (path: string, body: Record<string, unknown>) => Promise<unknown>;
-};
 
 function createPipedriveClient(): PipedriveClient | null {
   const apiToken = process.env.PIPEDRIVE_API_TOKEN?.trim();
@@ -261,16 +200,8 @@ function createPipedriveClient(): PipedriveClient | null {
     return null;
   }
 
-  async function request(path: string, init: { method: string; body?: Record<string, unknown>; query?: Record<string, string | number | boolean | undefined> }) {
-    const query = new URLSearchParams({ api_token: apiToken });
-
-    for (const [key, value] of Object.entries(init.query ?? {})) {
-      if (value !== undefined) {
-        query.set(key, String(value));
-      }
-    }
-
-    const response = await fetch(`${baseUrl}${path}?${query.toString()}`, {
+  async function request(path: string, init: { method: string; body?: Record<string, unknown>; query?: Record<string, string | number | boolean> }) {
+    const response = await fetch(`${baseUrl}${path}?${buildQuery(apiToken, init.query)}`, {
       method: init.method,
       headers: {
         Accept: "application/json",
@@ -296,6 +227,67 @@ function createPipedriveClient(): PipedriveClient | null {
     get: (path, query) => request(path, { method: "GET", query }),
     post: (path, body) => request(path, { method: "POST", body }),
   };
+}
+
+function extractSearchItemId(response: unknown) {
+  if (!isRecord(response) || !isRecord(response.data)) {
+    return null;
+  }
+
+  const items = Array.isArray(response.data.items) ? response.data.items : Array.isArray(response.data) ? response.data : [];
+
+  for (const entry of items) {
+    if (!isRecord(entry)) continue;
+    const directId = toNumber(entry.id);
+    if (directId) return directId;
+
+    if (isRecord(entry.item)) {
+      const itemId = toNumber(entry.item.id);
+      if (itemId) return itemId;
+    }
+  }
+
+  return null;
+}
+
+function extractFirstUserId(response: unknown) {
+  if (!isRecord(response)) {
+    return null;
+  }
+
+  const data = response.data;
+  const users = Array.isArray(data) ? data : isRecord(data) ? [data] : [];
+
+  for (const user of users) {
+    if (!isRecord(user)) continue;
+    const name = typeof user.name === "string" ? user.name.toLowerCase() : "";
+    const id = toNumber(user.id);
+
+    if (id && user.active_flag !== false && name.includes(PIPEDRIVE_OWNER_NAME.toLowerCase())) {
+      return id;
+    }
+  }
+
+  for (const user of users) {
+    if (!isRecord(user)) continue;
+    const id = toNumber(user.id);
+    if (id && user.active_flag !== false) return id;
+  }
+
+  return null;
+}
+
+function extractCreatedId(response: unknown) {
+  return isRecord(response) && isRecord(response.data) ? toNumber(response.data.id) : null;
+}
+
+function extractCreatedLeadId(response: unknown) {
+  if (!isRecord(response) || !isRecord(response.data)) {
+    return null;
+  }
+
+  const id = response.data.id;
+  return typeof id === "string" && id.length > 0 ? id : null;
 }
 
 async function getOwnerId(client: PipedriveClient) {
@@ -333,10 +325,7 @@ async function findOrCreateOrganization(client: PipedriveClient, companyName: st
     return existingId;
   }
 
-  const created = await client.post("/organizations", {
-    name: companyName,
-    owner_id: ownerId,
-  });
+  const created = await client.post("/organizations", { name: companyName, owner_id: ownerId });
   const createdId = extractCreatedId(created);
 
   if (!createdId) {
@@ -347,23 +336,26 @@ async function findOrCreateOrganization(client: PipedriveClient, companyName: st
 }
 
 async function findPerson(client: PipedriveClient, body: NormalizedQuoteRequest) {
-  const searchTerms = [body.email, body.phone].filter(Boolean);
+  const searchByEmail = await client.get("/persons/search", {
+    term: body.email,
+    fields: "email",
+    exact_match: true,
+    limit: 1,
+  });
+  const emailMatch = extractSearchItemId(searchByEmail);
 
-  for (const term of searchTerms) {
-    const search = await client.get("/persons/search", {
-      term,
-      fields: term === body.email ? "email" : "phone",
-      exact_match: true,
-      limit: 1,
-    });
-    const existingId = extractSearchItemId(search);
-
-    if (existingId) {
-      return existingId;
-    }
+  if (emailMatch) {
+    return emailMatch;
   }
 
-  return null;
+  const searchByPhone = await client.get("/persons/search", {
+    term: body.phone,
+    fields: "phone",
+    exact_match: true,
+    limit: 1,
+  });
+
+  return extractSearchItemId(searchByPhone);
 }
 
 async function findOrCreatePerson(client: PipedriveClient, body: NormalizedQuoteRequest, ownerId: number, organizationId: number | null) {
@@ -390,7 +382,7 @@ async function findOrCreatePerson(client: PipedriveClient, body: NormalizedQuote
 }
 
 function buildLeadNote(body: NormalizedQuoteRequest) {
-  const lines = [
+  return [
     `<strong>namn:</strong> ${escapeHtml(body.name)}`,
     `<strong>telefon:</strong> ${escapeHtml(body.phone)}`,
     `<strong>e-post:</strong> ${escapeHtml(body.email)}`,
@@ -400,21 +392,7 @@ function buildLeadNote(body: NormalizedQuoteRequest) {
     `<strong>bifogade bilder:</strong> ${escapeHtml(buildAttachmentText(body))}`,
     "",
     `<strong>beskrivning:</strong><br>${escapeHtml(body.message).replace(/\n/g, "<br>")}`,
-  ];
-
-  return lines.join("<br>");
-}
-
-async function createLeadActivity(client: PipedriveClient, body: NormalizedQuoteRequest, leadId: string, ownerId: number, personId: number, organizationId: number | null) {
-  await client.post("/activities", {
-    subject: PIPEDRIVE_ACTIVITY_SUBJECT,
-    type: "task",
-    user_id: ownerId,
-    lead_id: leadId,
-    person_id: personId,
-    org_id: organizationId ?? undefined,
-    note: `Ny förfrågan från hemsidan: ${body.projectType}`,
-  });
+  ].join("<br>");
 }
 
 async function createPipedriveLead(body: NormalizedQuoteRequest) {
@@ -427,9 +405,8 @@ async function createPipedriveLead(body: NormalizedQuoteRequest) {
   const ownerId = await getOwnerId(client);
   const organizationId = await findOrCreateOrganization(client, body.companyName, ownerId);
   const personId = await findOrCreatePerson(client, body, ownerId, organizationId);
-  const leadTitle = `${body.projectType} - ${body.name}`;
   const lead = await client.post("/leads", {
-    title: leadTitle,
+    title: `${body.projectType} - ${body.name}`,
     owner_id: ownerId,
     person_id: personId,
     organization_id: organizationId ?? undefined,
@@ -445,9 +422,15 @@ async function createPipedriveLead(body: NormalizedQuoteRequest) {
     content: buildLeadNote(body),
   });
 
-  await createLeadActivity(client, body, leadId, ownerId, personId, organizationId);
-
-  return { leadId, ownerId, personId, organizationId };
+  await client.post("/activities", {
+    subject: PIPEDRIVE_ACTIVITY_SUBJECT,
+    type: "task",
+    user_id: ownerId,
+    lead_id: leadId,
+    person_id: personId,
+    org_id: organizationId ?? undefined,
+    note: `Ny förfrågan från hemsidan: ${body.projectType}`,
+  });
 }
 
 function logPipedriveError(error: unknown) {
@@ -478,13 +461,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const body = getBody(req);
 
-  if (
-    !hasValue(body.name) ||
-    !hasValue(body.phone) ||
-    !hasValue(body.email) ||
-    !hasValue(body.projectType) ||
-    !hasValue(body.message)
-  ) {
+  if (!hasValue(body.name) || !hasValue(body.phone) || !hasValue(body.email) || !hasValue(body.projectType) || !hasValue(body.message)) {
     return res.status(400).json({ error: "Missing one or more required quote request fields." });
   }
 
