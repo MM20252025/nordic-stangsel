@@ -193,8 +193,8 @@ function buildQuery(apiToken: string, query?: Record<string, string | number | b
 }
 
 function createPipedriveClient(): PipedriveClient | null {
-  const apiToken = process.env.PIPEDRIVE_API_TOKEN?.trim();
-  const baseUrl = getPipedriveBaseUrl();
+  const apiToken = process.env.PIPEDRIVE_API_TOKEN?.trim() ?? "";
+  const baseUrl = getPipedriveBaseUrl() ?? "";
 
   if (!apiToken || !baseUrl) {
     return null;
@@ -466,12 +466,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const normalizedBody: NormalizedQuoteRequest = {
-    name: body.name.trim(),
+    name: body.name?.trim() ?? "",
     companyName: optionalValue(body.companyName),
-    phone: body.phone.trim(),
-    email: body.email.trim(),
-    projectType: body.projectType.trim(),
-    message: body.message.trim(),
+    phone: body.phone?.trim() ?? "",
+    email: body.email?.trim() ?? "",
+    projectType: body.projectType?.trim() ?? "",
+    message: body.message?.trim() ?? "",
     attachmentCount: Number.isFinite(body.attachmentCount) ? Number(body.attachmentCount) : 0,
     imageNames: Array.isArray(body.imageNames) ? body.imageNames.filter(hasValue).map((name) => name.trim()).slice(0, 10) : [],
   };
