@@ -51,6 +51,12 @@ type VercelResponse = {
   json: (body: unknown) => void;
 };
 
+type EmailDeliveryResult = {
+  sent: boolean;
+  reason?: string;
+  details?: unknown;
+};
+
 type PipedriveClient = {
   get: (path: string, query?: Record<string, string | number | boolean>) => Promise<unknown>;
   post: (path: string, body: Record<string, unknown>) => Promise<unknown>;
@@ -142,31 +148,45 @@ function buildHtml(body: NormalizedQuoteRequest) {
   `;
 }
 
-async function sendWithResend(body: NormalizedQuoteRequest) {
+async function sendWithResend(body: NormalizedQuoteRequest): Promise<EmailDeliveryResult> {
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
-    return false;
+    return { sent: false, reason: "missing RESEND_API_KEY" };
   }
 
   const from = process.env.QUOTE_FROM_EMAIL || DEFAULT_FROM_EMAIL;
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [RECIPIENT_EMAIL],
-      reply_to: body.email,
-      subject: `Offertförfrågan - ${body.projectType}`,
-      text: buildText(body),
-      html: buildHtml(body),
-    }),
-  });
 
-  return response.ok;
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [RECIPIENT_EMAIL],
+        reply_to: body.email,
+        subject: `Offertförfrågan - ${body.projectType}`,
+        text: buildText(body),
+        html: buildHtml(body),
+      }),
+    });
+
+    if (response.ok) {
+      return { sent: true };
+    }
+
+    const details = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
+    return {
+      sent: false,
+      reason: `Resend returned ${response.status} ${response.statusText}`,
+      details,
+    };
+  } catch (error) {
+    return { sent: false, reason: "Resend request failed", details: error };
+  }
 }
 
 function getPipedriveBaseUrl() {
@@ -431,6 +451,20 @@ async function createPipedriveLead(body: NormalizedQuoteRequest) {
     org_id: organizationId ?? undefined,
     note: `Ny förfrågan från hemsidan: ${body.projectType}`,
   });
+
+  return leadId;
+}
+
+function logEmailDeliveryError(result: EmailDeliveryResult) {
+  if (result.sent) {
+    return;
+  }
+
+  console.error("Quote email delivery failed", {
+    recipient: RECIPIENT_EMAIL,
+    reason: result.reason,
+    details: result.details,
+  });
 }
 
 function logPipedriveError(error: unknown) {
@@ -456,12 +490,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (isBlockedAddress(process.env.QUOTE_RECIPIENT_EMAIL) || isBlockedAddress(process.env.QUOTE_FROM_EMAIL)) {
+    console.error("Quote request blocked because mail configuration contains nordicstangsel.se", {
+      hasQuoteRecipientEmail: hasValue(process.env.QUOTE_RECIPIENT_EMAIL),
+      hasQuoteFromEmail: hasValue(process.env.QUOTE_FROM_EMAIL),
+    });
     return res.status(500).json({ error: "Blocked Nordic Stängsel .se mail configuration." });
   }
 
   const body = getBody(req);
 
   if (!hasValue(body.name) || !hasValue(body.phone) || !hasValue(body.email) || !hasValue(body.projectType) || !hasValue(body.message)) {
+    console.error("Quote request rejected because required fields are missing", {
+      hasName: hasValue(body.name),
+      hasPhone: hasValue(body.phone),
+      hasEmail: hasValue(body.email),
+      hasProjectType: hasValue(body.projectType),
+      hasMessage: hasValue(body.message),
+    });
     return res.status(400).json({ error: "Missing one or more required quote request fields." });
   }
 
@@ -476,20 +521,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     imageNames: Array.isArray(body.imageNames) ? body.imageNames.filter(hasValue).map((name) => name.trim()).slice(0, 10) : [],
   };
 
-  const sent = await sendWithResend(normalizedBody);
-
-  if (!sent) {
-    return res.status(503).json({
-      error: "Quote email delivery is not configured or failed.",
-      recipient: RECIPIENT_EMAIL,
-    });
-  }
+  const emailResult = await sendWithResend(normalizedBody);
+  logEmailDeliveryError(emailResult);
 
   try {
-    await createPipedriveLead(normalizedBody);
+    const leadId = await createPipedriveLead(normalizedBody);
+
+    return res.status(200).json({
+      status: "sent",
+      recipient: RECIPIENT_EMAIL,
+      emailSent: emailResult.sent,
+      pipedriveLeadId: leadId,
+    });
   } catch (error) {
     logPipedriveError(error);
+    return res.status(503).json({
+      error: "Pipedrive lead creation failed.",
+      recipient: RECIPIENT_EMAIL,
+      emailSent: emailResult.sent,
+    });
   }
-
-  return res.status(200).json({ status: "sent", recipient: RECIPIENT_EMAIL });
 }
