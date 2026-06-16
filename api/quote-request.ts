@@ -196,34 +196,86 @@ function buildHtml(body: NormalizedQuoteRequest) {
   `;
 }
 
-async function sendWithResend(body: NormalizedQuoteRequest) {
+function buildCustomerConfirmationText(body: NormalizedQuoteRequest) {
+  return [
+    `Hej ${body.name},`,
+    "",
+    "Tack för din förfrågan till Nordic Stängsel.",
+    "",
+    "Vi har tagit emot dina uppgifter och kommer att gå igenom ditt projekt så snart som möjligt. En person från vårt team återkommer till dig med nästa steg, vanligtvis via telefon eller e-post.",
+    "",
+    `Projekt: ${body.projectType}`,
+    body.companyName ? `Företag: ${body.companyName}` : "",
+    "",
+    "Om du vill komplettera din förfrågan med ritningar, bilder eller ytterligare information kan du svara direkt på detta meddelande.",
+    "",
+    "Med vänliga hälsningar,",
+    "Nordic Stängsel",
+    "info@nordicstangsel.com",
+  ]
+    .filter((line) => line !== "")
+    .join("\n");
+}
+
+function buildCustomerConfirmationHtml(body: NormalizedQuoteRequest) {
+  return `
+    <div style="font-family: Arial, sans-serif; color: #1f2933; line-height: 1.6; max-width: 640px;">
+      <p>Hej ${escapeHtml(body.name)},</p>
+      <p>Tack för din förfrågan till <strong>Nordic Stängsel</strong>.</p>
+      <p>Vi har tagit emot dina uppgifter och kommer att gå igenom ditt projekt så snart som möjligt. En person från vårt team återkommer till dig med nästa steg, vanligtvis via telefon eller e-post.</p>
+      <p><strong>Projekt:</strong> ${escapeHtml(body.projectType)}${body.companyName ? `<br><strong>Företag:</strong> ${escapeHtml(body.companyName)}` : ""}</p>
+      <p>Om du vill komplettera din förfrågan med ritningar, bilder eller ytterligare information kan du svara direkt på detta meddelande.</p>
+      <p>Med vänliga hälsningar,<br><strong>Nordic Stängsel</strong><br><a href="mailto:${RECIPIENT_EMAIL}">${RECIPIENT_EMAIL}</a></p>
+    </div>
+  `;
+}
+
+async function sendResendEmail(payload: Record<string, unknown>) {
   const apiKey = process.env.RESEND_API_KEY?.trim();
 
   if (!apiKey) {
     throw new EmailDeliveryError("Email delivery is missing RESEND_API_KEY.");
   }
 
-  const from = process.env.QUOTE_FROM_EMAIL || DEFAULT_FROM_EMAIL;
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      from,
-      to: [RECIPIENT_EMAIL],
-      reply_to: body.email,
-      subject: `Offertförfrågan - ${body.projectType}`,
-      text: buildDescription(body),
-      html: buildHtml(body),
-    }),
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     const details = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
     throw new EmailDeliveryError(`Resend returned ${response.status} ${response.statusText}.`, details);
   }
+}
+
+async function sendWithResend(body: NormalizedQuoteRequest) {
+  const from = process.env.QUOTE_FROM_EMAIL || DEFAULT_FROM_EMAIL;
+
+  await sendResendEmail({
+    from,
+    to: [RECIPIENT_EMAIL],
+    reply_to: body.email,
+    subject: `Offertförfrågan - ${body.projectType}`,
+    text: buildDescription(body),
+    html: buildHtml(body),
+  });
+}
+
+async function sendCustomerConfirmationWithResend(body: NormalizedQuoteRequest) {
+  const from = process.env.QUOTE_FROM_EMAIL || DEFAULT_FROM_EMAIL;
+
+  await sendResendEmail({
+    from,
+    to: [body.email],
+    reply_to: RECIPIENT_EMAIL,
+    subject: "Tack för din förfrågan till Nordic Stängsel",
+    text: buildCustomerConfirmationText(body),
+    html: buildCustomerConfirmationHtml(body),
+  });
 }
 
 function getPipedriveBaseUrl() {
@@ -595,9 +647,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await sendWithResend(normalizedBody);
+    await sendCustomerConfirmationWithResend(normalizedBody);
   } catch (error) {
     logEmailError(error);
-    return res.status(502).json({ error: "The quote request was saved as a Pipedrive deal, but the notification email could not be sent." });
+    return res.status(502).json({ error: "The quote request was saved as a Pipedrive deal, but one or more notification emails could not be sent." });
   }
 
   return res.status(200).json({
